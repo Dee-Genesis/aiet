@@ -142,8 +142,8 @@ $body .= "Submitted On     : {$now}{$nl}{$nl}{$nl}";
 
 $body .= "[ 1 ] PROGRAM SELECTION{$nl}";
 $body .= "------------------------{$nl}";
-$body .= "Program Applied For  : {$program}{$nl}";
-$body .= "Specialization       : " . ($spec ?: 'Not specified') . "{$nl}";
+$body .= "Programme Type       : {$program}{$nl}";
+$body .= "Course / Specialism  : " . ($spec ?: 'Not specified') . "{$nl}";
 $body .= "Intake               : {$intake}{$nl}";
 $body .= "Study Mode           : {$studyMode}{$nl}";
 $body .= "Referral Source      : " . ($referral ?: 'Not provided') . "{$nl}{$nl}{$nl}";

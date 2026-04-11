@@ -308,6 +308,46 @@
     .footer-bottom a { color: rgba(255,255,255,0.45); text-decoration: none; }
     .footer-bottom a:hover { color: var(--white); }
 
+    /* ── MAP SECTION ── */
+    .map-section { background: var(--offwhite); padding: 72px 24px; }
+    .map-inner { max-width: 1200px; margin: auto; }
+    .map-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+    .map-header-text .section-tag { margin-bottom: 8px; }
+    .map-header-text .section-title { margin-bottom: 8px; }
+    .map-header-text p { font-family: var(--font-body); font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 520px; }
+    .map-frame-wrap {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(27,42,107,0.14);
+      border: 2px solid #dce3f0;
+    }
+    .map-frame-wrap iframe {
+      width: 100%;
+      height: 440px;
+      display: block;
+      border: none;
+    }
+    .map-info-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--navy);
+      border-radius: 0 0 18px 18px;
+      overflow: hidden;
+    }
+    .map-info-item {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .map-info-item:last-child { border-right: none; }
+    .map-info-item .mii-icon { font-size: 22px; flex-shrink: 0; }
+    .map-info-item .mii-label { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 3px; }
+    .map-info-item .mii-value { font-family: var(--font-body); font-size: 13.5px; font-weight: 600; color: var(--white); line-height: 1.4; }
+    .map-info-item a { color: var(--teal); text-decoration: none; }
+    .map-info-item a:hover { color: #4ecdc4; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .contact-main { grid-template-columns: 1fr; }
@@ -321,6 +361,10 @@
       .quick-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
       .regions-grid { grid-template-columns: repeat(3, 1fr); }
       .footer-grid { grid-template-columns: 1fr 1fr; }
+      .map-info-strip { grid-template-columns: 1fr; }
+      .map-info-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .map-info-item:last-child { border-bottom: none; }
+      .map-frame-wrap iframe { height: 300px; }
     }
     @media (max-width: 600px) {
       .regions-grid { grid-template-columns: repeat(2, 1fr); }
@@ -370,12 +414,12 @@
         </div>
       </li>
       <li class="dropdown">
-        <a href="#">Qualifications ▾</a>
+        <a href="#">Programs ▾</a>
         <div class="drop-menu">
           <a href="certificate-programs.html">Certificate Programs</a>
-          <a href="professional-diploma-in-education-and-training.html">Professional Diploma in Education</a>
-          <a href="adv.html">Advanced Diploma in Education</a>
-          <a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma in Education</a>
+          <a href="professional-diploma-in-education-and-training.html">Professional Diploma</a>
+          <a href="adv.html">Advanced Diploma</a>
+          <a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma</a>
         </div>
       </li>
       <li class="dropdown">
@@ -424,7 +468,7 @@
     <div class="quick-item">
       <div class="qi-icon">🎓</div>
       <div class="qi-label">Admissions</div>
-      <div class="qi-value"><a href="mailto:admissions@aietglobal.us">admissions@aietglobal.us</a></div>
+      <div class="qi-value"><a href="mailto:info@aietglobal.us">info@aietglobal.us</a></div>
     </div>
     <div class="quick-item">
       <div class="qi-icon">🕐</div>
@@ -463,8 +507,8 @@
       <div class="dept-card">
         <div class="dept-icon">📋</div>
         <h3>Admissions &amp; Enrollment</h3>
-        <a href="mailto:admissions@aietglobal.us" class="dept-email">
-          <span>✉</span> admissions@aietglobal.us
+        <a href="mailto:info@aietglobal.us" class="dept-email">
+          <span>✉</span> info@aietglobal.us
         </a>
         <ul class="dept-items">
           <li>Program selection &amp; eligibility</li>
@@ -477,8 +521,8 @@
       <div class="dept-card">
         <div class="dept-icon">🎧</div>
         <h3>Student Support Services</h3>
-        <a href="mailto:support@aietglobal.us" class="dept-email">
-          <span>✉</span> support@aietglobal.us
+        <a href="mailto:info@aietglobal.us" class="dept-email">
+          <span>✉</span> info@aietglobal.us
         </a>
         <ul class="dept-items">
           <li>Learning platform access</li>
@@ -491,8 +535,8 @@
       <div class="dept-card">
         <div class="dept-icon">🏅</div>
         <h3>Certificate Verification</h3>
-        <a href="mailto:verifycertificate@aietglobal.us" class="dept-email">
-          <span>✉</span> verifycertificate@aietglobal.us
+        <a href="mailto:info@aietglobal.us" class="dept-email">
+          <span>✉</span> info@aietglobal.us
         </a>
         <ul class="dept-items">
           <li>Employer &amp; institution verification</li>
@@ -614,7 +658,53 @@
   <footer>— AIET Communication Commitment</footer>
 </blockquote>
 
-<!-- GLOBAL REACH -->
+<!-- LOCATION MAP -->
+<div class="map-section">
+  <div class="map-inner">
+    <div class="map-header">
+      <div class="map-header-text">
+        <div class="section-tag">Our Location</div>
+        <h2 class="section-title">Find Us on the Map</h2>
+        <p>AIET is registered in the United States and operates as a fully online institution. Our registered address is shown below for official correspondence purposes.</p>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=1846+E+Innovation+Park+Dr+Suite+100+Oro+Valley+AZ+85755" target="_blank" rel="noopener" style="font-family:var(--font-body); font-size:14px; font-weight:700; color:var(--teal-dark); text-decoration:none; white-space:nowrap;">
+        Open in Google Maps →
+      </a>
+    </div>
+    <div class="map-frame-wrap">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3372.1!2d-110.9747!3d32.4218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86d6a!2s1846+E+Innovation+Park+Dr%2C+Suite+100%2C+Oro+Valley%2C+AZ+85755!5e0!3m2!1sen!2sus!4v1"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="AIET Office Location — Oro Valley, AZ"
+      ></iframe>
+      <div class="map-info-strip">
+        <div class="map-info-item">
+          <div class="mii-icon">📍</div>
+          <div>
+            <div class="mii-label">Registered Address</div>
+            <div class="mii-value">1846 E. Innovation Park Dr., Suite 100<br>Oro Valley, AZ 85755, USA</div>
+          </div>
+        </div>
+        <div class="map-info-item">
+          <div class="mii-icon">📞</div>
+          <div>
+            <div class="mii-label">Phone</div>
+            <div class="mii-value"><a href="tel:+14809550876">+1 (480) 955-0876</a></div>
+          </div>
+        </div>
+        <div class="map-info-item">
+          <div class="mii-icon">✉️</div>
+          <div>
+            <div class="mii-label">Email</div>
+            <div class="mii-value"><a href="mailto:info@aietglobal.us">info@aietglobal.us</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="reach-section">
   <div class="reach-inner">
     <div class="section-tag">Global Accessibility</div>
@@ -680,7 +770,7 @@
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Qualifications</h4>
+      <h4>Programs</h4>
       <ul>
         <li><a href="certificate-programs.html">Early Child Care &amp; Education</a></li>
         <li><a href="certificate-programs.html">Nursery Teachers Training</a></li>
@@ -704,7 +794,7 @@
       <ul>
         <li><span>📞</span><a href="tel:+14809550876">+1 (480) 955-0876</a></li>
         <li><span>✉</span><a href="mailto:info@aietglobal.us">info@aietglobal.us</a></li>
-        <li><span>🎓</span><a href="mailto:admissions@aietglobal.us">admissions@aietglobal.us</a></li>
+        <li><span>🎓</span><a href="mailto:info@aietglobal.us">info@aietglobal.us</a></li>
         <li><span>📍</span>1846 E. Innovation Park Dr., Suite 100, Oro Valley, AZ 85755</li>
       </ul>
     </div>
@@ -725,17 +815,15 @@
 
   function handleSubmit() {
     const firstName = document.getElementById('firstName').value.trim();
-    const email     = document.getElementById('email').value.trim();
-    const subject   = document.getElementById('subject').value;
-    const message   = document.getElementById('message').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value.trim();
 
     if (!firstName || !email || !subject || !message) {
       alert('Please fill in all required fields before submitting.');
       return;
     }
-
-    // Simple email format check
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!email.includes('@')) {
       alert('Please enter a valid email address.');
       return;
     }

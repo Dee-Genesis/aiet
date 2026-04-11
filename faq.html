@@ -598,12 +598,12 @@
         </div>
       </li>
       <li class="dropdown">
-        <a href="#">Qualifications ▾</a>
+        <a href="#">Programs ▾</a>
         <div class="drop-menu">
           <a href="certificate-programs.html">Certificate Programs</a>
-          <a href="professional-diploma-in-education-and-training.html">Professional Diploma in Education</a>
-          <a href="adv.html">Advanced Diploma in Education</a>
-          <a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma in Education</a>
+          <a href="professional-diploma-in-education-and-training.html">Professional Diploma</a>
+          <a href="adv.html">Advanced Diploma</a>
+          <a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma</a>
         </div>
       </li>
       <li class="dropdown">
@@ -757,7 +757,7 @@
             <ul>
               <li>📞 <strong>Phone:</strong> <a href="tel:+14809550876" style="color:var(--teal-dark);font-weight:600;">+1 (480) 955-0876</a></li>
               <li>✉️ <strong>General Enquiries:</strong> <a href="mailto:info@aietglobal.us" style="color:var(--teal-dark);font-weight:600;">info@aietglobal.us</a></li>
-              <li>🏅 <strong>Certificate Verification:</strong> <a href="mailto:verifycertificate@aietglobal.us" style="color:var(--teal-dark);font-weight:600;">verifycertificate@aietglobal.us</a></li>
+              <li>🏅 <strong>Certificate Verification:</strong> <a href="mailto:info@aietglobal.us" style="color:var(--teal-dark);font-weight:600;">info@aietglobal.us</a></li>
               <li>🌐 <strong>Contact Form:</strong> Available on the official website</li>
             </ul>
             <div class="highlight-box">Our team is available during business hours to respond to inquiries. For verification requests, allow 2–5 working days for processing.</div>
@@ -1122,7 +1122,7 @@
           </div>
           <div class="faq-a"><div class="faq-a-inner">
             <p><strong>Yes.</strong> AIET provides a structured <strong>manual certificate verification system</strong> to allow employers, academic institutions, professional bodies, government agencies, and recruitment firms to confirm the authenticity and validity of any AIET-issued certificate.</p>
-            <p>To request verification, contact AIET at: <a href="mailto:verifycertificate@aietglobal.us" style="color:var(--teal-dark);font-weight:600;">verifycertificate@aietglobal.us</a></p>
+            <p>To request verification, contact AIET at: <a href="mailto:info@aietglobal.us" style="color:var(--teal-dark);font-weight:600;">info@aietglobal.us</a></p>
             <p>Include the following in your request:</p>
             <ul>
               <li>Full name of the certificate holder (as it appears on the certificate)</li>
@@ -1142,7 +1142,7 @@
           </div>
           <div class="faq-a"><div class="faq-a-inner">
             <p>AIET takes academic fraud extremely seriously. Any form of tampering, alteration, or falsification of an AIET certificate renders it <strong>automatically invalid</strong>.</p>
-            <p>If a fraudulent or altered certificate is suspected, it should be reported immediately to <a href="mailto:verifycertificate@aietglobal.us" style="color:var(--teal-dark);font-weight:600;">verifycertificate@aietglobal.us</a> with all relevant supporting details. AIET will:</p>
+            <p>If a fraudulent or altered certificate is suspected, it should be reported immediately to <a href="mailto:info@aietglobal.us" style="color:var(--teal-dark);font-weight:600;">info@aietglobal.us</a> with all relevant supporting details. AIET will:</p>
             <ul>
               <li>Investigate the reported case thoroughly</li>
               <li>Invalidate the certificate if fraud is confirmed</li>
@@ -1621,7 +1621,7 @@
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Qualifications</h4>
+      <h4>Programs</h4>
       <ul>
         <li><a href="certificate-programs.html">Certificate Programs</a></li>
         <li><a href="certificate-programs.html">Nursery Teachers Training</a></li>
@@ -1704,23 +1704,6 @@
 
     noResults.style.display = totalVisible === 0 ? 'block' : 'none';
   }
-
-  // ── SIDEBAR ACTIVE ON SCROLL ──
-  const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
-  const sectionBlocks = document.querySelectorAll('.faq-section-block');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        sidebarLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-        });
-      }
-    });
-  }, { threshold: 0.25, rootMargin: '-80px 0px -60% 0px' });
-
-  sectionBlocks.forEach(section => observer.observe(section));
 </script>
 </body>
 </html>

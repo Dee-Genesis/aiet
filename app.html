@@ -303,12 +303,12 @@ footer{background:#060d2e;padding:48px 24px 0}
         </div>
       </li>
       <li class="dropdown">
-        <a href="#">Qualifications ▾</a>
+        <a href="#">Programs ▾</a>
         <div class="drop-menu">
           <a href="certificate-programs.html">Certificate Programs</a>
-          <a href="professional-diploma-in-education-and-training.html">Professional Diploma in Education</a>
-          <a href="adv.html">Advanced Diploma in Education</a>
-          <a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma in Education</a>
+          <a href="professional-diploma-in-education-and-training.html">Professional Diploma</a>
+          <a href="adv.html">Advanced Diploma</a>
+          <a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma</a>
         </div>
       </li>
       <li class="dropdown">
@@ -333,13 +333,13 @@ footer{background:#060d2e;padding:48px 24px 0}
       <span>Applications Now Open for 2026 Intake</span>
       <span>Available Online &amp; Onsite — Africa · Asia · Europe</span>
       <span>Certificate, Diploma &amp; Postgraduate Programmes</span>
-      <span>Fellowship Induction Now Open — Apply Today</span>
+      <span>New Student Enrolment Now Open — Apply Today</span>
       <span>Rolling Admissions — Early Applicants Receive Priority</span>
       <span>Contact: info@aietglobal.us | +1 (480) 955-0876</span>
       <span>Applications Now Open for 2026 Intake</span>
       <span>Available Online &amp; Onsite — Africa · Asia · Europe</span>
       <span>Certificate, Diploma &amp; Postgraduate Programmes</span>
-      <span>Fellowship Induction Now Open — Apply Today</span>
+      <span>New Student Enrolment Now Open — Apply Today</span>
       <span>Rolling Admissions — Early Applicants Receive Priority</span>
       <span>Contact: info@aietglobal.us | +1 (480) 955-0876</span>
     </div>
@@ -440,45 +440,21 @@ footer{background:#060d2e;padding:48px 24px 0}
       <div class="form-section-label">Programme Details</div>
       <div class="form-row c1">
         <div class="field">
-          <label>Programme Applying For <span class="req">*</span></label>
-          <select id="programSelect" required onchange="updateProgramInfo(this)">
-            <option value="">— Select a Programme —</option>
-            <optgroup label="📜 Certificate Programmes">
-              <option value="Certificate in Early Child Care and Education">Certificate in Early Child Care and Education</option>
-              <option value="Certificate in Nursery Teachers Training">Certificate in Nursery Teachers Training</option>
-              <option value="Certificate in Pre and Primary Teacher Training">Certificate in Pre and Primary Teacher Training</option>
-              <option value="Certificate in Montessori Teacher Training">Certificate in Montessori Teacher Training</option>
-            </optgroup>
-            <optgroup label="🎓 Professional Diploma Programmes">
-              <option value="Professional Diploma in Education and Training (General)">Professional Diploma in Education &amp; Training (General)</option>
-              <option value="Professional Diploma in Early Child Care and Education">Professional Diploma in Early Child Care &amp; Education</option>
-              <option value="Professional Diploma in Nursery Teachers Training">Professional Diploma in Nursery Teachers Training</option>
-              <option value="Professional Diploma in Montessori Teacher Training">Professional Diploma in Montessori Teacher Training</option>
-              <option value="Professional Diploma in Special Needs Education">Professional Diploma in Special Needs Education</option>
-              <option value="Professional Diploma in Educational Leadership">Professional Diploma in Educational Leadership</option>
-              <option value="Professional Diploma in Educational Technology and E-Learning">Professional Diploma in Educational Technology &amp; E-Learning</option>
-              <option value="Professional Diploma in Teaching English as a Second Language (TESL)">Professional Diploma in TESL</option>
-              <option value="Professional Diploma in Educational Psychology and Counselling">Professional Diploma in Educational Psychology &amp; Counselling</option>
-              <option value="Professional Diploma in STEM Education">Professional Diploma in STEM Education</option>
-              <option value="Professional Diploma in Curriculum and Instructional Design">Professional Diploma in Curriculum &amp; Instructional Design</option>
-            </optgroup>
-            <optgroup label="🏅 Advanced Diploma Programmes">
-              <option value="Advanced Diploma in Education and Training">Advanced Diploma in Education and Training</option>
-              <option value="Advanced Diploma in Educational Leadership and Management">Advanced Diploma in Educational Leadership &amp; Management</option>
-              <option value="Advanced Diploma in Special Needs and Inclusive Education">Advanced Diploma in Special Needs &amp; Inclusive Education</option>
-              <option value="Advanced Diploma in Educational Technology">Advanced Diploma in Educational Technology</option>
-              <option value="Advanced Diploma in Curriculum Design and Instructional Planning">Advanced Diploma in Curriculum Design &amp; Instructional Planning</option>
-            </optgroup>
-            <optgroup label="🎓 Postgraduate Diploma">
-              <option value="Postgraduate Diploma in Education and Training">Postgraduate Diploma in Education and Training</option>
-              <option value="Postgraduate Diploma in Educational Leadership and Administration">Postgraduate Diploma in Educational Leadership &amp; Administration</option>
-              <option value="Postgraduate Diploma in Special Needs and Inclusive Education">Postgraduate Diploma in Special Needs &amp; Inclusive Education</option>
-              <option value="Postgraduate Diploma in Educational Research and Policy">Postgraduate Diploma in Educational Research &amp; Policy</option>
-            </optgroup>
-            <optgroup label="🌐 Fellowship &amp; Membership">
-              <option value="AIET Fellow Membership (FAIET)">AIET Fellow Membership (FAIET)</option>
-              <option value="AIET Associate Membership (AAIET)">AIET Associate Membership (AAIET)</option>
-            </optgroup>
+          <label>Programme Type <span class="req">*</span></label>
+          <select id="programSelect" required onchange="updateCourseList(this)">
+            <option value="">— Select a Programme Type —</option>
+            <option value="Certificate Programme">📜 Certificate Programme</option>
+            <option value="Professional Diploma">🎓 Professional Diploma</option>
+            <option value="Advanced Diploma">🏅 Advanced Diploma</option>
+            <option value="Postgraduate Diploma">🌟 Postgraduate Diploma</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row c1" id="courseSelectRow" style="display:none">
+        <div class="field">
+          <label>Course / Specialization <span class="req">*</span></label>
+          <select id="courseSelect" required onchange="updateProgramInfo(this)">
+            <option value="">— Select a Course —</option>
           </select>
         </div>
       </div>
@@ -497,11 +473,11 @@ footer{background:#060d2e;padding:48px 24px 0}
         <div class="field">
           <label>Intake Semester <span class="req">*</span></label>
           <select id="intakeSem" required>
-            <option value="">Select Semester</option>
-            <option value="January (Semester 1)">January (Semester 1)</option>
-            <option value="April (Semester 2)">April (Semester 2)</option>
-            <option value="July (Semester 3)">July (Semester 3)</option>
-            <option value="October (Semester 4)">October (Semester 4)</option>
+            <option value="">Select Intake</option>
+            <option value="Winter Intake (January)">Winter Intake (January)</option>
+            <option value="Spring Intake (April)">Spring Intake (April)</option>
+            <option value="Summer Intake (July)">Summer Intake (July)</option>
+            <option value="Autumn Intake (October)">Autumn Intake (October)</option>
           </select>
         </div>
         <div class="field">
@@ -1031,7 +1007,7 @@ footer{background:#060d2e;padding:48px 24px 0}
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Qualifications</h4>
+      <h4>Programs</h4>
       <ul>
         <li><a href="certificate-programs.html">Certificate Programmes</a></li>
         <li><a href="professional-diploma-in-education-and-training.html">Professional Diploma</a></li>
@@ -1066,25 +1042,334 @@ footer{background:#060d2e;padding:48px 24px 0}
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── NAVBAR TOGGLE ──
 function toggleMenu(){document.getElementById('navLinks').classList.toggle('open')}
 
-// ── PROGRAMME INFO DATA ──
-var progData={
-  'Certificate in Early Child Care and Education':{desc:'A foundational qualification covering child development, care practices, and early education essentials for those entering the early childhood education sector.',pills:['Duration: 3–6 months','Level: Certificate','Mode: Online / Onsite']},
-  'Certificate in Nursery Teachers Training':{desc:'Equips aspiring educators with specialised skills and knowledge to deliver quality early-years education at nursery level.',pills:['Duration: 3–6 months','Level: Certificate','Mode: Online / Onsite']},
-  'Certificate in Pre and Primary Teacher Training':{desc:'A comprehensive training programme for educators entering pre-school and primary level teaching, covering pedagogy, curriculum, and classroom management.',pills:['Duration: 3–6 months','Level: Certificate','Mode: Online / Onsite']},
-  'Certificate in Montessori Teacher Training':{desc:'Master the internationally renowned Montessori method to create child-centred, enriching learning environments for young children.',pills:['Duration: 3–6 months','Level: Certificate','Mode: Online / Onsite']},
-  'default':{desc:'A globally recognised professional qualification from the American Institute of Education and Training. This programme is designed to equip you with the knowledge, skills, and credentials to advance your career in education and training.',pills:['Rolling Admissions','Online / Blended / Onsite','Globally Recognised Credential']}
+// ── PROGRAMME COURSES DATA ──
+var courseLists = {
+  'Certificate Programme': [
+    // General Education & Training
+    'Certificate in Education and Training',
+    'Certificate in Teaching and Learning',
+    'Certificate in Teaching, Learning & Assessment',
+    'Certificate in Education and Workforce Training',
+    'Certificate in Adult Education and Training',
+    'Certificate in Training Delivery and Facilitation',
+    'Certificate in Curriculum Development Basics',
+    'Certificate in Learning Design Fundamentals',
+    'Certificate in Instructional Methods',
+    // Early Childhood Education & Care
+    'Certificate in Early Child Care and Education',
+    'Certificate in Nursery Teachers Training',
+    'Certificate in Montessori Teacher Training',
+    'Certificate in Pre & Primary Teacher Training',
+    'Certificate in Child Development and Play',
+    'Certificate in Early Years Pedagogy',
+    'Certificate in Childminding and Family Support',
+    'Certificate in Early Literacy and Numeracy',
+    // Teacher Training & Pedagogy
+    'Certificate in Secondary Education Teaching',
+    'Certificate in Classroom Management',
+    'Certificate in Reflective Teaching Practice',
+    'Certificate in Micro-Teaching Techniques',
+    'Certificate in Lesson Planning and Delivery',
+    'Certificate in Student Engagement Strategies',
+    'Certificate in Differentiated Instruction',
+    'Certificate in Competency-Based Teaching',
+    // Educational Leadership & Administration
+    'Certificate in School Administration',
+    'Certificate in Educational Leadership Fundamentals',
+    'Certificate in Quality Assurance in Education',
+    'Certificate in Strategic Planning in Education',
+    'Certificate in School Governance',
+    'Certificate in Educational Policy and Practice',
+    'Certificate in Managing Educational Institutions',
+    // Educational Technology & E-Learning
+    'Certificate in Digital Literacy for Educators',
+    'Certificate in Online Teaching and Learning',
+    'Certificate in Learning Management Systems (LMS)',
+    'Certificate in Artificial Intelligence in Education',
+    'Certificate in Blended Learning Design',
+    'Certificate in EdTech Tools for Classroom Use',
+    'Certificate in Digital Assessment and Feedback',
+    'Certificate in Virtual Classroom Facilitation',
+    // Educational Psychology & Counseling
+    'Certificate in Educational Psychology',
+    'Certificate in Student Guidance and Counseling',
+    'Certificate in Child and Adolescent Psychology',
+    'Certificate in Student Mental Health Awareness',
+    'Certificate in Behavioral Management in Education',
+    'Certificate in Learning Difficulties and Intervention',
+    'Certificate in Positive Psychology in Education',
+    'Certificate in Trauma-Informed Teaching',
+    // Special Needs & Inclusive Education
+    'Certificate in Special Needs Education',
+    'Certificate in Inclusive Classroom Practices',
+    'Certificate in Autism Spectrum Education',
+    'Certificate in Learning Disabilities Support',
+    'Certificate in ADHD Awareness and Teaching Strategies',
+    'Certificate in Sensory Processing in Learning',
+    'Certificate in Sign Language for Educators',
+    // Language Education & Literacy
+    'Certificate in Teaching English as a Second Language (TESL)',
+    'Certificate in Phonics and Early Literacy',
+    'Certificate in Bilingual Education',
+    'Certificate in Language Assessment and Testing',
+    'Certificate in English for Academic Purposes',
+    'Certificate in Reading Instruction Methods',
+    'Certificate in English Language Curriculum Design',
+    // STEM Education & Innovation
+    'Certificate in STEM Education Foundations',
+    'Certificate in Teaching Science and Technology',
+    'Certificate in Mathematics Instruction Strategies',
+    'Certificate in Robotics and Coding for Educators',
+    'Certificate in Inquiry-Based Learning in STEM',
+    // Assessment & Evaluation
+    'Certificate in Assessment Design and Evaluation',
+    'Certificate in Formative and Summative Assessment',
+    'Certificate in Learner Progress Monitoring',
+    // Adult & Continuing Education
+    'Certificate in Adult Learning and Development',
+    'Certificate in Lifelong Learning Facilitation',
+    'Certificate in Workplace Training and Development',
+    // Training & Development
+    'Certificate in Corporate Training and Development',
+    'Certificate in Human Resource Development',
+    'Certificate in Performance Coaching and Mentoring',
+    // Educational Communication
+    'Certificate in Communication Skills for Educators',
+    'Certificate in Public Speaking and Presentation',
+    // School Safety & Student Welfare
+    'Certificate in Child Protection and Safeguarding',
+    'Certificate in School Safety and Crisis Management',
+    // Education Policy & Global Education
+    'Certificate in Global Education and Comparative Systems',
+    'Certificate in Education Policy Awareness',
+  ],
+  'Professional Diploma': [
+    // General Education & Training
+    'Professional Diploma in Education and Training (DET)',
+    'Professional Diploma in Teaching and Learning',
+    'Professional Diploma in Teaching, Learning & Assessment',
+    'Professional Diploma in Applied Teaching and Learning',
+    'Professional Diploma in Adult Education and Training',
+    'Professional Diploma in Training Delivery and Facilitation',
+    'Professional Diploma in Curriculum Development',
+    'Professional Diploma in Learning Design',
+    'Professional Diploma in Instructional Methods',
+    // Early Childhood Education & Care
+    'Professional Diploma in Early Child Care and Education',
+    'Professional Diploma in Nursery Teachers Training',
+    'Professional Diploma in Montessori Teacher Training',
+    'Professional Diploma in Pre & Primary Teacher Training',
+    'Professional Diploma in Child Development and Play',
+    'Professional Diploma in Early Years Pedagogy',
+    // Teacher Training & Pedagogy
+    'Professional Diploma in Secondary Education Teaching',
+    'Professional Diploma in Classroom Management & Instructional Skills',
+    'Professional Diploma in Reflective Teaching Practice',
+    'Professional Diploma in Micro-Teaching Techniques',
+    'Professional Diploma in Competency-Based Teaching',
+    // Educational Leadership & Administration
+    'Professional Diploma in Educational Leadership',
+    'Professional Diploma in School Administration',
+    'Professional Diploma in Quality Assurance in Education',
+    'Professional Diploma in Strategic Planning in Education',
+    'Professional Diploma in School Governance',
+    // Educational Technology & E-Learning
+    'Professional Diploma in Educational Technology & E-Learning',
+    'Professional Diploma in Online Teaching and Learning',
+    'Professional Diploma in Learning Management Systems (LMS)',
+    'Professional Diploma in Artificial Intelligence in Education',
+    'Professional Diploma in Blended Learning Design',
+    // Educational Psychology & Counseling
+    'Professional Diploma in Educational Psychology & Counselling',
+    'Professional Diploma in Student Guidance and Counseling',
+    'Professional Diploma in Child and Adolescent Psychology',
+    'Professional Diploma in Behavioral Management in Education',
+    'Professional Diploma in Trauma-Informed Teaching',
+    // Special Needs & Inclusive Education
+    'Professional Diploma in Special Needs Education',
+    'Professional Diploma in Inclusive Classroom Practices',
+    'Professional Diploma in Autism Spectrum Education',
+    'Professional Diploma in Learning Disabilities Support',
+    // Language Education & Literacy
+    'Professional Diploma in Teaching English as a Second Language (TESL)',
+    'Professional Diploma in Phonics and Early Literacy',
+    'Professional Diploma in Bilingual Education',
+    'Professional Diploma in Language Assessment and Testing',
+    // STEM Education & Innovation
+    'Professional Diploma in STEM Education',
+    'Professional Diploma in Teaching Science and Technology',
+    'Professional Diploma in Mathematics Instruction Strategies',
+    'Professional Diploma in Robotics and Coding for Educators',
+    // Curriculum & Instructional Design
+    'Professional Diploma in Curriculum & Instructional Design',
+    'Professional Diploma in Assessment Design and Evaluation',
+    // Training & Development
+    'Professional Diploma in Corporate Training and Development',
+    'Professional Diploma in Human Resource Development',
+    'Professional Diploma in Performance Coaching and Mentoring',
+    // Higher Education & Research
+    'Professional Diploma in Higher Education Teaching',
+    'Professional Diploma in Educational Research Methods',
+  ],
+  'Advanced Diploma': [
+    // General Education & Training
+    'Advanced Diploma in Education and Training',
+    'Advanced Diploma in Applied Teaching and Learning',
+    'Advanced Diploma in Teaching, Learning & Assessment',
+    'Advanced Diploma in Adult Education and Training',
+    'Advanced Diploma in Training Delivery and Facilitation',
+    'Advanced Diploma in Learning Design and Development',
+    // Early Childhood Education & Care
+    'Advanced Diploma in Early Child Care and Education',
+    'Advanced Diploma in Nursery Teachers Training',
+    'Advanced Diploma in Montessori Teacher Training',
+    'Advanced Diploma in Early Childhood Leadership',
+    // Teacher Training & Pedagogy
+    'Advanced Diploma in Secondary Education Teaching',
+    'Advanced Diploma in Pedagogy and Instructional Design',
+    'Advanced Diploma in Reflective Teaching Practice',
+    // Educational Leadership & Administration
+    'Advanced Diploma in Educational Leadership & Management',
+    'Advanced Diploma in School Administration and Governance',
+    'Advanced Diploma in Quality Assurance and Accreditation',
+    'Advanced Diploma in Strategic Educational Management',
+    // Educational Technology & E-Learning
+    'Advanced Diploma in Educational Technology',
+    'Advanced Diploma in Online and Blended Learning',
+    'Advanced Diploma in Digital Pedagogy',
+    'Advanced Diploma in AI and EdTech Innovation',
+    // Educational Psychology & Counseling
+    'Advanced Diploma in Educational Psychology',
+    'Advanced Diploma in Student Guidance and Counseling',
+    'Advanced Diploma in Child and Adolescent Psychology',
+    // Special Needs & Inclusive Education
+    'Advanced Diploma in Special Needs & Inclusive Education',
+    'Advanced Diploma in Autism Spectrum Disorders',
+    'Advanced Diploma in Differentiated Learning',
+    // Language Education & Literacy
+    'Advanced Diploma in TESL / English Language Teaching',
+    'Advanced Diploma in Bilingual and Multilingual Education',
+    // STEM Education & Innovation
+    'Advanced Diploma in STEM Education',
+    'Advanced Diploma in Mathematics and Science Teaching',
+    // Curriculum & Instructional Design
+    'Advanced Diploma in Curriculum Design & Instructional Planning',
+    'Advanced Diploma in Assessment and Evaluation',
+    // Training & Development
+    'Advanced Diploma in Corporate Training & Development',
+    'Advanced Diploma in Human Resource Development',
+    'Advanced Diploma in Coaching and Mentoring',
+    // Higher Education & Research
+    'Advanced Diploma in Higher Education Teaching and Learning',
+    'Advanced Diploma in Educational Research and Analysis',
+    // Education Policy
+    'Advanced Diploma in Education Policy & Global Education',
+  ],
+  'Postgraduate Diploma': [
+    // General Education & Training
+    'Postgraduate Diploma in Education and Training',
+    'Postgraduate Diploma in Advanced Teaching and Learning',
+    'Postgraduate Diploma in Professional Practice in Education',
+    // Educational Leadership & Administration
+    'Postgraduate Diploma in Educational Leadership & Administration',
+    'Postgraduate Diploma in School Leadership and Management',
+    'Postgraduate Diploma in Higher Education Administration',
+    'Postgraduate Diploma in Education Systems and Governance',
+    // Special Needs & Inclusive Education
+    'Postgraduate Diploma in Special Needs & Inclusive Education',
+    'Postgraduate Diploma in Autism and Developmental Disorders',
+    'Postgraduate Diploma in Inclusive Pedagogy and Policy',
+    // Educational Research & Policy
+    'Postgraduate Diploma in Educational Research and Policy',
+    'Postgraduate Diploma in Comparative Education',
+    'Postgraduate Diploma in Global Education and Development',
+    'Postgraduate Diploma in Education Reform and Innovation',
+    // Educational Technology
+    'Postgraduate Diploma in Educational Technology and Innovation',
+    'Postgraduate Diploma in Digital Learning and EdTech Leadership',
+    // Curriculum & Assessment
+    'Postgraduate Diploma in Curriculum Design and Assessment',
+    'Postgraduate Diploma in Assessment and Evaluation in Education',
+    // Teacher Education
+    'Postgraduate Diploma in Teacher Education and Professional Development',
+    'Postgraduate Diploma in Pedagogy and Instructional Design',
+    // Early Childhood Education
+    'Postgraduate Diploma in Early Childhood Education and Policy',
+    // Language Education
+    'Postgraduate Diploma in English Language Teaching and Applied Linguistics',
+    // STEM Education
+    'Postgraduate Diploma in STEM Education Leadership',
+    // Training & Development
+    'Postgraduate Diploma in Training, Learning & Development',
+    'Postgraduate Diploma in Organisational Learning and Performance',
+    // Higher Education
+    'Postgraduate Diploma in Higher Education Teaching',
+    'Postgraduate Diploma in Academic Research and Scholarship',
+    // Psychology & Counseling
+    'Postgraduate Diploma in Educational Psychology and Counselling',
+    'Postgraduate Diploma in Child Psychology and Developmental Studies',
+  ]
 };
 
-function updateProgramInfo(el){
-  var box=document.getElementById('progInfoBox');
-  if(!el.value){box.classList.remove('visible');return}
-  var d=progData[el.value]||progData['default'];
-  var pills=d.pills.map(function(p){return'<span class="prog-pill">'+p+'</span>'}).join('');
-  box.innerHTML='<h4>'+el.value+'</h4><p>'+d.desc+'</p><div class="prog-info-pills">'+pills+'</div>';
+var progInfoData = {
+  'Certificate Programme': {
+    desc: 'Focused, career-oriented certificate programmes covering foundational knowledge and practical skills in education and training. Ideal for aspiring educators, career changers, and CPD seekers.',
+    pills: ['Duration: 4 weeks – 6 months', 'Credits: 3–12', 'Online / Blended / Onsite']
+  },
+  'Professional Diploma': {
+    desc: 'Intermediate-level qualifications advancing your teaching capability, professional knowledge, and opening doors to educational leadership and higher qualifications.',
+    pills: ['Duration: 6–12 months', 'Credits: 24–36', 'Online / Blended / Onsite']
+  },
+  'Advanced Diploma': {
+    desc: 'Upper-intermediate qualifications for experienced educators seeking advanced specialization, management skills, and preparation for postgraduate study.',
+    pills: ['Duration: 9–12 months', 'Credits: 36–48', 'Online / Blended / Onsite']
+  },
+  'Postgraduate Diploma': {
+    desc: 'AIET\'s highest-level qualifications, designed for experienced professionals seeking mastery, research capability, and academic or institutional leadership.',
+    pills: ['Duration: 12–18 months', 'Credits: 48–60', 'Online / Blended / Onsite']
+  }
+};
+
+function updateCourseList(el) {
+  var row = document.getElementById('courseSelectRow');
+  var courseEl = document.getElementById('courseSelect');
+  var box = document.getElementById('progInfoBox');
+
+  if (!el.value) {
+    row.style.display = 'none';
+    box.classList.remove('visible');
+    courseEl.innerHTML = '<option value="">— Select a Course —</option>';
+    return;
+  }
+
+  var courses = courseLists[el.value] || [];
+  var opts = '<option value="">— Select a Course —</option>';
+  courses.forEach(function(c) {
+    opts += '<option value="' + c + '">' + c + '</option>';
+  });
+  courseEl.innerHTML = opts;
+  row.style.display = 'block';
+
+  // Show program type info box
+  var d = progInfoData[el.value] || {desc:'Globally recognised qualification from AIET.',pills:['Rolling Admissions','Online / Blended / Onsite']};
+  var pills = d.pills.map(function(p){return'<span class="prog-pill">'+p+'</span>'}).join('');
+  box.innerHTML = '<h4>' + el.value + '</h4><p>' + d.desc + '</p><div class="prog-info-pills">' + pills + '</div>';
+  box.classList.add('visible');
+
+  courseEl.value = '';
+}
+
+function updateProgramInfo(el) {
+  var box = document.getElementById('progInfoBox');
+  if (!el.value) return;
+  var progType = document.getElementById('programSelect').value;
+  var d = progInfoData[progType] || {desc:'Globally recognised qualification from AIET.',pills:['Rolling Admissions','Online / Blended / Onsite']};
+  var pills = d.pills.map(function(p){return'<span class="prog-pill">'+p+'</span>'}).join('');
+  box.innerHTML = '<h4>' + el.value + '</h4><p>' + d.desc + '</p><div class="prog-info-pills">' + pills + '</div>';
   box.classList.add('visible');
 }
 
@@ -1119,9 +1404,10 @@ function prevStep(from){goToStep(from-1)}
 // ── VALIDATION ──
 function validateStep(step){
   if(step===1){
-    if(!g('programSelect')){showToast('Selection Required','Please select a programme before continuing.',true);return false}
+    if(!g('programSelect')){showToast('Selection Required','Please select a programme type before continuing.',true);return false}
+    if(!g('courseSelect')){showToast('Course Required','Please select a specific course / specialization.',true);return false}
     if(!g('intakeYear')){showToast('Intake Year Required','Please select an intake year.',true);return false}
-    if(!g('intakeSem')){showToast('Semester Required','Please select an intake semester.',true);return false}
+    if(!g('intakeSem')){showToast('Intake Required','Please select an intake semester.',true);return false}
     if(!g('studyMode')){showToast('Study Mode Required','Please select a study mode.',true);return false}
   }
   if(step===2){
@@ -1158,8 +1444,8 @@ function buildReview(){
   var eng=document.querySelector('input[name="english"]:checked');
   var data=[
     {title:'Programme Selection',step:1,fields:[
-      {l:'Programme',v:g('programSelect')},{l:'Intake Year',v:g('intakeYear')},
-      {l:'Semester',v:g('intakeSem')},{l:'Study Mode',v:g('studyMode')},
+      {l:'Programme Type',v:g('programSelect')},{l:'Course / Specialization',v:g('courseSelect')},
+      {l:'Intake',v:g('intakeSem')+' '+g('intakeYear')},{l:'Study Mode',v:g('studyMode')},
       {l:'Referral Source',v:g('referralSource')||'Not specified'}
     ]},
     {title:'Personal Information',step:2,fields:[
@@ -1190,6 +1476,95 @@ function buildReview(){
     html+='<div class="review-block"><div class="review-block-head"><h4>'+section.title+'</h4><span class="review-edit-btn" onclick="goToStep('+section.step+')">Edit ✏️</span></div><div class="review-grid">'+items+'</div></div>';
   });
   document.getElementById('reviewContent').innerHTML=html;
+}
+
+// ── SUBMIT ──
+function submitApplication(){
+  var decl=document.getElementById('declarationCheck');
+  if(!decl.checked){showToast('Declaration Required','Please read and accept the declaration before submitting.',true);return}
+  if(!validateStep(1)||!validateStep(2)||!validateStep(3)||!validateStep(4))return;
+
+  var ref='AIET-2026-'+Math.random().toString(36).substring(2,8).toUpperCase();
+  var fd=new FormData();
+  fd.append('ref',ref);
+  fd.append('programSelect',g('programSelect')+' — '+g('courseSelect'));
+  fd.append('specialization',g('courseSelect'));
+  fd.append('intakeYear',g('intakeYear'));
+  fd.append('intakeSem',g('intakeSem'));
+  fd.append('studyMode',g('studyMode'));
+  fd.append('referralSource',g('referralSource'));
+  fd.append('title',g('title'));
+  fd.append('firstName',g('firstName'));
+  fd.append('lastName',g('lastName'));
+  fd.append('middleName',g('middleName'));
+  fd.append('dob',g('dob'));
+  fd.append('gender',g('gender'));
+  fd.append('nationality',g('nationality'));
+  fd.append('passportNum',g('passportNum'));
+  fd.append('country',g('country'));
+  fd.append('email',g('email'));
+  fd.append('phone',g('phone'));
+  fd.append('whatsapp',g('whatsapp'));
+  fd.append('address',g('address'));
+  fd.append('highestQual',g('highestQual'));
+  fd.append('fieldOfStudy',g('fieldOfStudy'));
+  fd.append('institution1',g('institution1'));
+  fd.append('instCountry1',g('instCountry1'));
+  fd.append('gradYear',g('gradYear'));
+  fd.append('grade',g('grade'));
+  fd.append('instrLang',g('instrLang'));
+  fd.append('qual2',g('qual2'));
+  fd.append('body2',g('body2'));
+  fd.append('englishScore',g('englishScore'));
+  fd.append('englishDate',g('englishDate'));
+  fd.append('jobTitle',g('jobTitle'));
+  fd.append('employer',g('employer'));
+  fd.append('industry',g('industry'));
+  fd.append('yearsExp',g('yearsExp'));
+  fd.append('mgmtExp',g('mgmtExp'));
+  fd.append('motivation',g('motivation'));
+  fd.append('goals',g('goals'));
+  fd.append('ref1name',g('ref1name'));
+  fd.append('ref1email',g('ref1email'));
+  fd.append('ref1title',g('ref1title'));
+  fd.append('ref1org',g('ref1org'));
+  var eng=document.querySelector('input[name="english"]:checked');
+  fd.append('englishMethod',eng?eng.value:'Not provided');
+  ['upload_id','upload_transcripts','upload_cv','upload_english','upload_refs'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el&&el.files[0])fd.append(id,el.files[0]);
+  });
+
+  var btn=document.getElementById('submitBtn');
+  var btnText=document.getElementById('submitBtnText');
+  var spinner=document.getElementById('submitBtnSpinner');
+  btn.disabled=true;
+  btnText.style.display='none';
+  spinner.style.display='inline-block';
+
+  fetch('send_mail_aiet.php',{method:'POST',body:fd})
+  .then(function(res){return res.json()})
+  .then(function(data){
+    btn.disabled=false;
+    btnText.style.display='inline';
+    spinner.style.display='none';
+    if(data.success){
+      showToast('✅ Application Submitted!','Your application has been received by AIET. Ref: '+ref,false);
+      document.getElementById('refNumber').textContent = ref;
+      document.getElementById('appLayout').style.display = 'none';
+      document.getElementById('successScreen').style.display = 'block';
+      document.getElementById('successScreen').classList.add('show');
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else {
+      showToast('Submission Error', data.message || 'Something went wrong. Please try again or contact admissions.', true);
+    }
+  })
+  .catch(function(err){
+    btn.disabled=false;
+    btnText.style.display='inline';
+    spinner.style.display='none';
+    showToast('Network Error','Could not reach the server. Please check your connection and try again.',true);
+  });
 }
 
 // ── RADIO SELECTION ──
@@ -1254,97 +1629,6 @@ function showToast(title,msg,isError){
 }
 function hideToast(){toast.classList.remove('show')}
 toastClose.addEventListener('click',hideToast);
-
-// ── SUBMIT ──
-function submitApplication(){
-  var decl=document.getElementById('declarationCheck');
-  if(!decl.checked){showToast('Declaration Required','Please read and accept the declaration before submitting.',true);return}
-  if(!validateStep(1)||!validateStep(2)||!validateStep(3)||!validateStep(4))return;
-
-  var ref='AIET-2026-'+Math.random().toString(36).substring(2,8).toUpperCase();
-  var fd=new FormData();
-  fd.append('ref',ref);
-  fd.append('programSelect',g('programSelect'));
-  fd.append('specialization','');
-  fd.append('intakeYear',g('intakeYear'));
-  fd.append('intakeSem',g('intakeSem'));
-  fd.append('studyMode',g('studyMode'));
-  fd.append('referralSource',g('referralSource'));
-  fd.append('title',g('title'));
-  fd.append('firstName',g('firstName'));
-  fd.append('lastName',g('lastName'));
-  fd.append('middleName',g('middleName'));
-  fd.append('dob',g('dob'));
-  fd.append('gender',g('gender'));
-  fd.append('nationality',g('nationality'));
-  fd.append('passportNum',g('passportNum'));
-  fd.append('country',g('country'));
-  fd.append('email',g('email'));
-  fd.append('phone',g('phone'));
-  fd.append('whatsapp',g('whatsapp'));
-  fd.append('address',g('address'));
-  fd.append('highestQual',g('highestQual'));
-  fd.append('fieldOfStudy',g('fieldOfStudy'));
-  fd.append('institution1',g('institution1'));
-  fd.append('instCountry1',g('instCountry1'));
-  fd.append('gradYear',g('gradYear'));
-  fd.append('grade',g('grade'));
-  fd.append('instrLang',g('instrLang'));
-  fd.append('qual2',g('qual2'));
-  fd.append('body2',g('body2'));
-  fd.append('englishScore',g('englishScore'));
-  fd.append('englishDate',g('englishDate'));
-  fd.append('jobTitle',g('jobTitle'));
-  fd.append('employer',g('employer'));
-  fd.append('industry',g('industry'));
-  fd.append('yearsExp',g('yearsExp'));
-  fd.append('mgmtExp',g('mgmtExp'));
-  fd.append('motivation',g('motivation'));
-  fd.append('goals',g('goals'));
-  fd.append('ref1name',g('ref1name'));
-  fd.append('ref1email',g('ref1email'));
-  fd.append('ref1title',g('ref1title'));
-  fd.append('ref1org',g('ref1org'));
-  var eng=document.querySelector('input[name="english"]:checked');
-  fd.append('englishMethod',eng?eng.value:'Not provided');
-  ['upload_id','upload_transcripts','upload_cv','upload_english','upload_refs'].forEach(function(id){
-    var el=document.getElementById(id);
-    if(el&&el.files[0])fd.append(id,el.files[0]);
-  });
-
-  var btn=document.getElementById('submitBtn');
-  var btnText=document.getElementById('submitBtnText');
-  var spinner=document.getElementById('submitBtnSpinner');
-  btn.disabled=true;
-  btnText.style.display='none';
-  spinner.style.display='inline-block';
-
-  fetch('send_mail_cbs.php',{method:'POST',body:fd})
-  .then(function(res){return res.json()})
-  .then(function(data){
-    btn.disabled=false;
-    btnText.style.display='inline';
-    spinner.style.display='none';
-    if(data.success){
-      showToast('✅ Application Submitted!','Your application has been received by AIET. Ref: '+ref,false);
-      document.getElementById('refNumber').textContent=ref;
-      document.querySelectorAll('.form-panel').forEach(function(p){p.classList.remove('active')});
-      document.querySelectorAll('.step-item').forEach(function(i){i.classList.add('done')});
-      document.getElementById('progressBar').style.width='100%';
-      var s=document.getElementById('successScreen');
-      s.classList.add('show');
-      s.scrollIntoView({behavior:'smooth',block:'start'});
-    }else{
-      showToast('Submission Failed',data.message||'Something went wrong. Please try again or email info@aietglobal.us directly.',true);
-    }
-  })
-  .catch(function(){
-    btn.disabled=false;
-    btnText.style.display='inline';
-    spinner.style.display='none';
-    showToast('Connection Error','Unable to reach the server. Please check your connection and try again.',true);
-  });
-}
 </script>
 </body>
 </html>
