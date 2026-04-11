@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AIET – American Institute of Education and Training</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link rel="apple-touch-icon" href="https://aietglobal.us/wp-content/uploads/2024/01/AIET-Logo-300x174.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #1B2A6B;
+      --teal:        #1A9B8C;
+      --teal-dark:   #148078;
+      --navy-deep:   #111A42;
+      --offwhite:    #F4F6F9;
+      --body:        #2D2D2D;
+      --muted:       #6B7280;
+      --white:       #FFFFFF;
+      --teal-light:  #e8f7f5;
+      --navy-light:  #eef0f8;
+      --font-head:   'Playfair Display', Georgia, serif;
+      --font-body:   'Source Sans 3', 'Segoe UI', sans-serif;
+      --radius:      12px;
+      --shadow:      0 8px 32px rgba(27,42,107,0.13);
+      --shadow-lg:   0 16px 56px rgba(27,42,107,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--body); background: var(--white); overflow-x: hidden; }
+
+    /* ── TOPBAR ── */
+    .topbar { background: var(--navy-deep); color: rgba(255,255,255,0.75); font-size: 13px; padding: 9px 0; font-family: var(--font-body); }
+    .topbar .inner { max-width: 1200px; margin: auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+    .topbar a { color: var(--teal); text-decoration: none; transition: color .2s; }
+    .topbar a:hover { color: #4ecdc4; }
+    .topbar .sep { margin: 0 10px; opacity: 0.3; }
+
+    /* ── NAVBAR ── */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--white); box-shadow: 0 2px 16px rgba(27,42,107,0.10); border-bottom: 3px solid var(--teal); }
+    .nav-inner { max-width: 1200px; margin: auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 74px; }
+    .logo img { height: 54px; width: auto; display: block; }
+    .logo-fallback { display: none; font-family: var(--font-head); font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.1; }
+    .logo-fallback span { display: block; font-size: 10px; color: var(--teal); letter-spacing: 1.5px; text-transform: uppercase; font-family: var(--font-body); }
+
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+    .nav-links > li > a { padding: 8px 13px; border-radius: 6px; font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--navy); text-decoration: none; transition: all .2s; white-space: nowrap; }
+    .nav-links > li > a:hover { color: var(--teal-dark); background: var(--teal-light); }
+
+    .dropdown { position: relative; }
+    .dropdown:hover .drop-menu { display: block; }
+    .drop-menu { display: none; position: absolute; top: calc(100% + 3px); left: 0; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg); padding: 8px 0; min-width: 270px; border-top: 3px solid var(--teal); z-index: 200; }
+    .drop-menu a { display: block; padding: 10px 18px; font-size: 13.5px; color: var(--body); font-family: var(--font-body); text-decoration: none; border-left: 3px solid transparent; transition: all .15s; }
+    .drop-menu a:hover { background: var(--teal-light); color: var(--teal-dark); border-left-color: var(--teal); }
+
+    .nav-cta { background: var(--teal) !important; color: var(--white) !important; padding: 9px 20px !important; border-radius: 8px !important; font-weight: 700 !important; }
+    .nav-cta:hover { background: var(--teal-dark) !important; color: var(--white) !important; transform: translateY(-1px); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; }
+
+    /* ── BUTTONS ── */
+    .btn-teal { background: var(--teal); color: var(--white); padding: 14px 30px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; font-family: var(--font-body); transition: all .2s; display: inline-block; }
+    .btn-teal:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,155,140,0.35); }
+    .btn-outline-white { border: 2px solid rgba(255,255,255,0.45); color: var(--white); padding: 14px 30px; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; font-family: var(--font-body); transition: all .2s; display: inline-block; }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.1); }
+    .btn-navy { background: var(--navy); color: var(--white); padding: 13px 28px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; font-family: var(--font-body); transition: all .2s; display: inline-block; }
+    .btn-navy:hover { background: var(--navy-deep); transform: translateY(-2px); box-shadow: var(--shadow); }
+
+    /* ── HERO SLIDER ── */
+    .hero-slider { position: relative; min-height: 92vh; height: 92vh; overflow: hidden; background: var(--navy-deep); }
+
+    /* Each slide fills the full slider area with a background image */
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+      display: flex;
+      align-items: center;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .slide.active { opacity: 1; z-index: 2; }
+
+    /* Transparent gradient overlay — left darker for text readability, fades to near-transparent on right */
+    .slide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(10, 16, 48, 0.80) 0%,
+        rgba(10, 16, 48, 0.60) 45%,
+        rgba(10, 16, 48, 0.15) 100%
+      );
+      z-index: 0;
+    }
+
+    .slide-left {
+      position: relative;
+      z-index: 2;
+      padding: 90px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 58%;
+      max-width: 700px;
+    }
+
+    /* slide-right is no longer needed — images are CSS backgrounds */
+    .slide-right { display: none; }
+
+    .slide-badge { display: inline-block; background: rgba(26,155,140,0.2); color: #4ecdc4; border: 1px solid rgba(26,155,140,0.4); border-radius: 100px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 16px; margin-bottom: 24px; font-family: var(--font-body); }
+    .slide h1 { font-family: var(--font-head); font-size: clamp(30px, 3.8vw, 52px); font-weight: 700; color: var(--white); line-height: 1.18; margin-bottom: 20px; }
+    .slide h1 em { color: #4ecdc4; font-style: italic; }
+    .slide-desc { font-size: 16px; color: rgba(255,255,255,0.82); line-height: 1.8; margin-bottom: 38px; font-family: var(--font-body); max-width: 480px; }
+    .slide-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+    .slide-stats { display: flex; gap: 28px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.12); flex-wrap: wrap; }
+    .stat-num { font-family: var(--font-head); font-size: 32px; font-weight: 700; color: var(--teal); line-height: 1; }
+    .stat-lbl { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 4px; font-family: var(--font-body); letter-spacing: .5px; }
+
+    /* Slider dots */
+    .slider-controls { position: absolute; bottom: 30px; left: 56px; z-index: 10; display: flex; gap: 10px; align-items: center; }
+    .slider-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; cursor: pointer; transition: all .3s; padding: 0; }
+    .slider-dot.active { background: var(--teal); width: 28px; border-radius: 5px; }
+
+    /* Arrows: hidden by default, fade in only when hovering the hero slider */
+    .slider-arrows {
+      position: absolute;
+      bottom: 24px;
+      right: 32px;
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+    .hero-slider:hover .slider-arrows {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .slider-arrow { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.08); color: var(--white); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .25s; backdrop-filter: blur(4px); }
+    .slider-arrow:hover { background: var(--teal); border-color: var(--teal); }
+
+    /* ── ANNOUNCE ── */
+    .announce { background: var(--teal); color: var(--white); text-align: center; padding: 14px 24px; }
+    .announce p { font-family: var(--font-body); font-size: 14px; font-weight: 600; }
+    .announce a { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ── PULLQUOTE BAND ── */
+    .pullquote-band { background: var(--navy); padding: 52px 24px; text-align: center; position: relative; overflow: hidden; }
+    .pullquote-band::before { content: '❝'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: 160px; color: rgba(255,255,255,0.04); font-family: Georgia; line-height: 1; pointer-events: none; }
+    .pullquote-band blockquote { max-width: 760px; margin: 0 auto; font-family: var(--font-head); font-size: clamp(20px, 2.8vw, 30px); color: var(--white); font-style: italic; line-height: 1.55; position: relative; z-index: 1; }
+    .pullquote-band cite { display: block; margin-top: 18px; font-family: var(--font-body); font-size: 13px; color: var(--teal); font-style: normal; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+
+    /* ── SHARED SECTION ── */
+    section { padding: 88px 24px; }
+    .section-inner { max-width: 1200px; margin: auto; }
+    .section-tag { font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+    .section-title { font-family: var(--font-head); font-size: clamp(26px, 3.5vw, 40px); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 14px; }
+    .section-sub { font-family: var(--font-body); font-size: 16px; color: var(--muted); line-height: 1.8; max-width: 560px; }
+    .sec-header-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px; }
+
+    /* ── ABOUT ── */
+    .about { background: var(--offwhite); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .about-img-wrap { position: relative; }
+    .about-img-wrap img { width: 100%; height: 460px; object-fit: cover; border-radius: 20px; display: block; }
+    .about-img-badge { position: absolute; bottom: -20px; right: -20px; background: var(--teal); color: var(--white); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow); text-align: center; }
+    .about-img-badge strong { font-family: var(--font-head); font-size: 28px; font-weight: 700; display: block; color: var(--white); }
+    .about-img-badge span { font-size: 13px; font-family: var(--font-body); opacity: .85; }
+    .about-img-wrap::before { content: ''; position: absolute; top: -12px; left: -12px; width: 100%; height: 100%; border: 3px solid var(--teal); border-radius: 20px; z-index: -1; opacity: .5; }
+    .about-points { display: flex; flex-direction: column; gap: 14px; margin: 24px 0 32px; }
+    .about-point { display: flex; gap: 14px; align-items: flex-start; background: var(--white); border-radius: var(--radius); padding: 16px 18px; box-shadow: 0 2px 8px rgba(27,42,107,0.07); border-left: 4px solid var(--teal); }
+    .point-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+    .point-text strong { display: block; font-family: var(--font-body); font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+    .point-text p { font-family: var(--font-body); font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+    /* ── INLINE QUOTE STRIP ── */
+    .inline-quote { background: var(--teal-light); border-left: 5px solid var(--teal); margin: 0; padding: 32px 40px; }
+    .inline-quote p { font-family: var(--font-head); font-size: 20px; color: var(--navy); font-style: italic; line-height: 1.6; }
+    .inline-quote footer { margin-top: 10px; font-family: var(--font-body); font-size: 13px; color: var(--teal-dark); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+    /* ── WHY JOIN ── */
+    .why { background: var(--white); }
+    .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .card { background: var(--white); border: 1.5px solid #dce3f0; border-radius: 16px; padding: 28px; transition: all .3s; overflow: hidden; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-5px); border-color: var(--teal); }
+    .card-img { width: 100%; height: 175px; object-fit: cover; border-radius: 10px; margin-bottom: 18px; display: block; }
+    .card h3 { font-family: var(--font-head); font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .card p { font-family: var(--font-body); font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+    /* ── QUALIFICATIONS ── */
+    .qualifications { background: var(--navy-deep); }
+    .qualifications .section-tag { color: var(--teal); }
+    .qualifications .section-title { color: var(--white); }
+    .qualifications .section-sub { color: rgba(255,255,255,0.65); }
+    .qual-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 48px; }
+    .qual-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden; transition: all .3s; }
+    .qual-card:hover { background: rgba(255,255,255,0.11); transform: translateY(-4px); border-color: rgba(26,155,140,0.5); }
+    .qual-img { width: 100%; height: 175px; object-fit: cover; display: block; }
+    .qual-body { padding: 22px; }
+    .qual-badge { display: inline-block; background: rgba(26,155,140,0.2); color: #4ecdc4; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 4px 10px; text-transform: uppercase; margin-bottom: 10px; font-family: var(--font-body); }
+    .qual-card h3 { font-family: var(--font-head); font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 8px; line-height: 1.4; }
+    .qual-card p { font-family: var(--font-body); font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 16px; }
+    .qual-link { font-family: var(--font-body); font-size: 13px; font-weight: 700; color: var(--teal); text-decoration: none; }
+    .qual-link:hover { color: #4ecdc4; }
+    .qual-footer { text-align: center; margin-top: 44px; }
+
+    /* ── MISSION ── */
+    .mission { background: var(--offwhite); }
+    .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .mission-box { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(27,42,107,0.08); }
+    .mission-img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .mission-body { padding: 32px; }
+    .mission-body .label { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+    .mission-body h3 { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+    .mission-body p { font-family: var(--font-body); font-size: 15px; color: var(--muted); line-height: 1.75; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--navy); }
+    .testimonials .section-tag { color: var(--teal); }
+    .testimonials .section-title { color: var(--white); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .testi-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 28px; transition: all .3s; }
+    .testi-card:hover { background: rgba(255,255,255,0.11); border-color: rgba(26,155,140,0.45); }
+    .testi-stars { color: var(--teal); font-size: 16px; margin-bottom: 14px; }
+    .testi-quote { font-family: var(--font-head); font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.75; margin-bottom: 20px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2px solid var(--teal); }
+    .testi-avatar-fallback { width: 46px; height: 46px; border-radius: 50%; background: var(--navy-deep); border: 2px solid var(--teal); display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--teal); flex-shrink: 0; }
+    .testi-name { font-family: var(--font-body); font-size: 14px; font-weight: 700; color: var(--white); }
+    .testi-role { font-family: var(--font-body); font-size: 12px; color: rgba(255,255,255,0.55); }
+
+    /* ── RESOURCES ── */
+    .resources { background: var(--navy-light); }
+    .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .res-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(27,42,107,0.08); transition: all .3s; }
+    .res-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .res-img { width: 100%; height: 165px; object-fit: cover; display: block; }
+    .res-meta { background: var(--navy); padding: 14px 20px; display: flex; gap: 14px; align-items: center; }
+    .res-date { background: var(--teal); color: var(--white); border-radius: 8px; padding: 6px 12px; text-align: center; flex-shrink: 0; }
+    .res-date strong { display: block; font-family: var(--font-head); font-size: 20px; font-weight: 700; line-height: 1; }
+    .res-date span { font-family: var(--font-body); font-size: 11px; font-weight: 700; }
+    .res-meta h3 { font-family: var(--font-body); font-size: 15px; font-weight: 700; color: var(--white); line-height: 1.4; }
+    .res-meta p { font-family: var(--font-body); font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 3px; }
+    .res-body { padding: 18px 20px; }
+    .res-body p { font-family: var(--font-body); font-size: 14px; color: var(--muted); line-height: 1.65; }
+    .res-link { display: inline-block; margin-top: 12px; font-family: var(--font-body); font-size: 13px; font-weight: 700; color: var(--teal-dark); text-decoration: none; }
+    .res-link:hover { color: var(--navy); }
+
+    /* ── FAQ ── */
+    .faq-section { background: var(--white); padding: 88px 24px; }
+    .faq-inner { max-width: 820px; margin: auto; }
+    .faq-intro { text-align: center; margin-bottom: 52px; }
+    .faq-intro .section-tag { display: flex; justify-content: center; margin-bottom: 10px; }
+    .faq-intro .section-title { margin: 0 auto 14px; }
+    .faq-intro p { font-family: var(--font-body); font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 560px; margin: 0 auto; }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { border: 1.5px solid #dce3f0; border-radius: var(--radius); overflow: hidden; transition: border-color .25s; }
+    .faq-item.open { border-color: var(--teal); }
+    .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; cursor: pointer; background: var(--white); transition: background .2s; gap: 16px; }
+    .faq-item.open .faq-q { background: var(--teal-light); }
+    .faq-q span { font-family: var(--font-body); font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.4; }
+    .faq-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--navy-light); display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--navy); flex-shrink: 0; transition: all .3s; font-weight: 700; }
+    .faq-item.open .faq-icon { background: var(--teal); color: var(--white); transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s; }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-a-inner { padding: 0 24px 20px; font-family: var(--font-body); font-size: 15px; color: var(--muted); line-height: 1.75; border-top: 1px solid rgba(27,42,107,0.08); padding-top: 16px; }
+
+    /* ── GALLERY STRIP ── */
+    .gallery-strip { padding: 0; overflow: hidden; }
+    .gallery-strip-inner { display: flex; height: 220px; }
+    .gallery-strip-inner img { flex: 1; object-fit: cover; display: block; transition: flex .4s ease; filter: grayscale(30%) brightness(0.9); }
+    .gallery-strip-inner img:hover { flex: 2.5; filter: grayscale(0%) brightness(1); }
+
+    /* ── BLOG ── */
+    .blog { background: var(--offwhite); }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .blog-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 10px rgba(27,42,107,0.07); transition: all .3s; }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .blog-img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .blog-body { padding: 22px; }
+    .blog-cat { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 8px; }
+    .blog-body h3 { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.4; }
+    .blog-body p { font-family: var(--font-body); font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+    .blog-link { font-family: var(--font-body); font-size: 13px; font-weight: 700; color: var(--teal-dark); text-decoration: none; }
+    .blog-link:hover { color: var(--navy); }
+
+    /* ── PARTNERS ── */
+    .partners { background: var(--white); padding: 60px 24px; border-top: 1px solid #e4e9f5; }
+    .partners-inner { max-width: 1000px; margin: auto; text-align: center; }
+    .partners h4 { font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; }
+    .partners-logos { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 40px; }
+    .partner-logo { height: 50px; width: 130px; object-fit: contain; filter: grayscale(100%); opacity: 0.35; transition: all .3s; }
+    .partner-logo:hover { filter: grayscale(0%); opacity: 1; }
+
+    /* ── CTA BAND ── */
+    .cta-band { position: relative; overflow: hidden; padding: 90px 24px; text-align: center; }
+    .cta-band-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .cta-band-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(17,26,66,0.94) 0%, rgba(27,42,107,0.9) 100%); }
+    .cta-band-content { position: relative; z-index: 2; }
+    .cta-band h2 { font-family: var(--font-head); font-size: clamp(26px, 4vw, 42px); color: var(--white); margin-bottom: 14px; font-weight: 700; }
+    .cta-band-quote { font-family: var(--font-head); font-size: 18px; color: rgba(255,255,255,0.7); font-style: italic; margin-bottom: 10px; }
+    .cta-band p { font-family: var(--font-body); font-size: 17px; color: rgba(255,255,255,0.72); margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer { background: #060d2e; padding: 64px 24px 0; }
+    .footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; }
+    .footer-logo-wrap { display: inline-block; background: var(--white); border-radius: 10px; padding: 10px 16px; margin-bottom: 18px; }
+    .footer-logo-wrap img { height: 48px; width: auto; display: block; }
+    .footer-brand p { font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 280px; margin-bottom: 20px; }
+    .footer-tagline { font-family: var(--font-head); font-size: 13px; font-style: italic; color: rgba(255,255,255,0.35); margin-bottom: 20px; line-height: 1.5; max-width: 280px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-btn { width: 36px; height: 36px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.55); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all .2s; }
+    .social-btn svg { width: 16px; height: 16px; fill: currentColor; display: block; }
+    .social-btn:hover { border-color: var(--teal); background: var(--teal); color: var(--white); }
+    .footer-col h4 { font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 20px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-contact li { display: flex; gap: 10px; font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.5); }
+    .footer-contact span { color: var(--teal); flex-shrink: 0; }
+    .footer-contact a { color: rgba(255,255,255,0.5); }
+    .footer-bottom { max-width: 1200px; margin: 48px auto 0; padding: 22px 0; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-family: var(--font-body); font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-bottom a { color: rgba(255,255,255,0.45); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--white); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .hero-slider { height: auto; min-height: 600px; }
+      .slide { min-height: 600px; }
+      .slide-left { width: 80%; max-width: 100%; padding: 60px 32px; }
+      .about-grid, .mission-grid { grid-template-columns: 1fr; }
+      .cards-grid, .qual-grid, .resources-grid, .blog-grid, .testi-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .hero-slider { height: auto; min-height: 100svh; }
+      .slide { min-height: 100svh; }
+      /* On mobile, darker overlay so text is readable over any image */
+      .slide::before {
+        background: linear-gradient(
+          to bottom,
+          rgba(10, 16, 48, 0.75) 0%,
+          rgba(10, 16, 48, 0.60) 100%
+        );
+      }
+      .slide-left { width: 100%; max-width: 100%; padding: 48px 24px; }
+      .slider-controls { left: 24px; bottom: 24px; }
+      /* On touch devices, always show arrows since there's no hover */
+      .slider-arrows { opacity: 1; pointer-events: auto; bottom: 20px; right: 20px; }
+      .cards-grid, .qual-grid, .resources-grid, .blog-grid, .testi-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 74px; left: 0; right: 0; background: var(--white); box-shadow: var(--shadow); padding: 16px; z-index: 99; gap: 4px; }
+      .drop-menu { position: static; box-shadow: none; border: none; border-top: none; border-left: 3px solid var(--teal); padding: 4px 0 4px 16px; margin: 4px 0; }
+      .gallery-strip-inner { height: 120px; }
+      .about-img-wrap::before { display: none; }
+      .about-img-badge { bottom: 10px; right: 10px; padding: 12px 16px; }
+    }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+    .slide.active .slide-badge { animation: fadeUp .6s ease both; }
+    .slide.active h1 { animation: fadeUp .65s .1s ease both; }
+    .slide.active .slide-desc { animation: fadeUp .65s .2s ease both; }
+    .slide.active .slide-btns { animation: fadeUp .65s .3s ease both; }
+    .slide.active .slide-stats { animation: fadeUp .65s .42s ease both; }
+  </style>
+</head>
+<body>
+
+
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/icons/logo2.png"
+           onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block'"/>
+      <div class="logo-fallback">AIET <span>American Institute of Education &amp; Training</span></div>
+    </a>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+
+      <li class="dropdown">
+        <a href="#">About AIET ▾</a>
+        <div class="drop-menu">
+          <a href="institute-overview.html">Institute Overview</a>
+          <a href="mission-vision.html">Mission &amp; Vision</a>
+          <a href="objectives.html">Objectives</a>
+          <a href="cv.html">Core Values</a>
+          <a href="lsr.html">Legal Status and Recognition</a>
+          <a href="#">Country Directors</a>
+          <a href="#">Partners</a>
+        </div>
+      </li>
+
+      <li class="dropdown">
+        <a href="#">Qualifications ▾</a>
+        <div class="drop-menu">
+          <a href="certificate-programs.html">Certificate Programs</a>
+          <a href="professional-diploma-in-education-and-training.html">Professional Diploma in Education</a>
+          <a href="adv.html"> Advanced Diploma in Education</a>
+          <a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma in Education</a>
+        </div>
+      </li>
+
+      <li class="dropdown">
+        <a href="#">Resources &amp; Insight ▾</a>
+        <div class="drop-menu">
+          <a href="ss.html">Student Services</a>
+          <a href="certv.html">Certification Verification Guidelines</a>
+          <a href="alut.html">Alumni &amp; Testimonials</a>
+          <a href="nub.html">News Updates &amp; Blogs</a>
+        </div>
+      </li>
+
+      <li><a href="app.html" class="nav-cta">Application Portal</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO SLIDER -->
+<div class="hero-slider" id="heroSlider">
+
+  <!-- SLIDE 1: background-image set inline, no slide-right needed -->
+  <div class="slide active" style="background-image: url('assets/images/hm1.jpg');">
+    <div class="slide-left">
+      <div class="slide-badge">Welcome to AIET Global</div>
+      <h1>Raising <em>Formidably</em><br>Well-Trained Professionals</h1>
+      <p class="slide-desc">The American Institute of Education and Training is committed to developing well-trained functionaries at every level of society through professional courses and special training programmes recognised globally.</p>
+      <div class="slide-btns">
+        <a href="certificate-programs.html" class="btn-teal">Explore Certifications</a>
+        <a href="institute-overview.html" class="btn-outline-white">Learn About Us</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="slide" style="background-image: url('assets/images/hm2.jpg');">
+    <div class="slide-left">
+      <div class="slide-badge">Professional Development</div>
+      <h1>Empowering Leaders.<br><em>Inspiring Change.</em></h1>
+      <p class="slide-desc">From Montessori Teacher Training to Postgraduate Diplomas — AIET's globally recognised qualifications equip educators and trainers with the tools to lead, teach, and transform communities worldwide.</p>
+      <div class="slide-btns">
+        <a href="app.html" class="btn-teal">Apply Now</a>
+        <a href="certificate-programs.html" class="btn-outline-white">View Programmes</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="slide" style="background-image: url('assets/images/hm3.jpg');">
+    <div class="slide-left">
+      <div class="slide-badge">Global Membership</div>
+      <h1>Join a Network of<br><em>Visionary Leaders</em></h1>
+      <p class="slide-desc">AIET fellowship and membership connects you with industry thought leaders across the USA, Europe, Asia, and Africa. Expand your visibility, credibility, and influence in the global education landscape.</p>
+      <div class="slide-btns">
+        <a href="app.html" class="btn-teal">Join AIET Today</a>
+        <a href="nub.html" class="btn-outline-white">Upcoming Events</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4 -->
+  <div class="slide" style="background-image: url('assets/images/hm4.jpg');">
+    <div class="slide-left">
+      <div class="slide-badge">Early Childhood Education</div>
+      <h1>Building Tomorrow's<br><em>Teachers Today</em></h1>
+      <p class="slide-desc">From early child care to nursery and primary teacher training — AIET's specialist education programmes are designed to equip passionate educators with the knowledge and skills to make a lasting difference.</p>
+      <div class="slide-btns">
+        <a href="certificate-programs.html" class="btn-teal">Explore Early Ed</a>
+        <a href="certificate-programs.html" class="btn-outline-white">Montessori Training</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5 -->
+  <div class="slide" style="background-image: url('assets/images/hm5.jpg');">
+    <div class="slide-left">
+      <div class="slide-badge">Academic Excellence</div>
+      <h1>Lead Today.<br><em>Shape Tomorrow.</em></h1>
+      <p class="slide-desc">Education is a powerful agent of change — improving health, livelihoods, contributing to social stability, and driving long-term economic growth. AIET is your partner in this transformative journey.</p>
+      <div class="slide-btns">
+        <a href="postgraduate-diploma-in-education-and-training.html" class="btn-teal">Postgraduate Diploma</a>
+        <a href="contact-us.html" class="btn-outline-white">Speak to Advisors</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slider dots and arrows -->
+  <div class="slider-controls" id="sliderDots"></div>
+  <div class="slider-arrows">
+    <button class="slider-arrow" onclick="prevSlide()" aria-label="Previous">&#8592;</button>
+    <button class="slider-arrow" onclick="nextSlide()" aria-label="Next">&#8594;</button>
+  </div>
+</div>
+
+<!-- ANNOUNCEMENT -->
+<div class="announce">
+  <p>🎓 New Fellowship Induction Now Open — <a href="app.html">Apply Today</a> &nbsp;|&nbsp; Available Online &amp; Onsite across Africa, Asia, Europe &nbsp;|&nbsp; <a href="ss.html">View All Events →</a></p>
+</div>
+
+<!-- PULLQUOTE BAND -->
+<div class="pullquote-band">
+  <blockquote>
+    "Leadership begins with knowledge, grows with experience, and thrives with guidance."
+    <cite>— AIET Mission</cite>
+  </blockquote>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="section-inner about-grid">
+    <div class="about-img-wrap">
+      <img src="assets/images/hm6.jpg" alt="AIET Institute"/>
+    </div>
+    <div>
+      <div class="section-tag">Institute Overview</div>
+      <h2 class="section-title">Shaping the Future Through Quality Education</h2>
+      <p class="section-sub">AIET is sold out to raise formidably well-trained functionaries at every level of society through professional courses and special training programmes recognised globally.</p>
+      <div class="about-points">
+        <div class="about-point">
+          <div class="point-icon">🌍</div>
+          <div class="point-text"><strong>Our Mission</strong><p>To promote education and training for the benefit of the public by enhancing and maintaining quality, standards, and practice of Learning and Teaching.</p></div>
+        </div>
+        <div class="about-point">
+          <div class="point-icon">🔭</div>
+          <div class="point-text"><strong>Our Vision</strong><p>A world where every individual has access to quality professional education that empowers them to thrive at every level of society.</p></div>
+        </div>
+        <div class="about-point">
+          <div class="point-icon">🎯</div>
+          <div class="point-text"><strong>Our Objectives</strong><p>To set and maintain high standards of professional practice in education and training through globally recognised qualifications and membership.</p></div>
+        </div>
+      </div>
+      <a href="institute-overview.html" class="btn-navy">Read Full Overview</a>
+    </div>
+  </div>
+</section>
+
+<!-- INLINE QUOTE -->
+<blockquote class="inline-quote">
+  <p>"Building leaders who are equipped to innovate, influence, and impact - at every level of society."</p>
+  <p>— AIET Core Philosophy</p>
+</blockquote>
+
+<!-- WHY JOIN -->
+<section class="why">
+  <div class="section-inner">
+    <div class="sec-header-row">
+      <div>
+        <div class="section-tag">Why Choose AIET</div>
+        <h2 class="section-title">Professional Development That Elevates Your Potential</h2>
+      </div>
+      <a href="app.html" class="btn-navy">Apply Now</a>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <img class="card-img" src="assets/images/hm7.jpg" alt="Qualifications"/>
+        <h3>Recognised Qualifications</h3>
+        <p>From Montessori Training to Postgraduate Diplomas — qualifications tailored to every professional career path in education and training.</p>
+      </div>
+      <div class="card">
+        <img class="card-img" src="assets/images/hm8.jpg" alt="Global Recognition"/>
+        <h3>Global Recognition</h3>
+        <p>Earn credentials respected by employers and institutions worldwide, opening doors across sectors and borders for your career advancement.</p>
+      </div>
+      <div class="card">
+        <img class="card-img" src="assets/images/hm9.jpg" alt="Expert Instructors"/>
+        <h3>Expert Instructors</h3>
+        <p>Learn from seasoned professionals with deep expertise who bring real-world experience into every lesson they deliver.</p>
+      </div>
+      <div class="card">
+        <img class="card-img" src="assets/images/hm10.jpg" alt="Flexible Learning"/>
+        <h3>Flexible Learning</h3>
+        <p>Study at your own pace — online or onsite — with flexible scheduling designed for working professionals and full-time students alike.</p>
+      </div>
+      <div class="card">
+        <img class="card-img" src="assets/images/hm11.jpg" alt="Global Community"/>
+        <h3>Global Membership Community</h3>
+        <p>Join a thriving global community of educators, trainers, and professionals who support each other's growth across four continents.</p>
+      </div>
+      <div class="card">
+        <img class="card-img" src="assets/images/hm12.jpg" alt="Career Growth"/>
+        <h3>Career Advancement</h3>
+        <p>Our programmes fast-track your career with significant improvements in employment and promotion opportunities worldwide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALIFICATIONS -->
+<section class="qualifications">
+  <div class="section-inner">
+    <div class="section-tag">Our Qualifications</div>
+    <h2 class="section-title">Professional Education &amp; Training Programmes</h2>
+    <p class="section-sub">From Classroom to Boardroom — explore our specialist programmes designed to equip you with skills for success in education and training.</p>
+    <div class="qual-grid">
+      <div class="qual-card">
+        <img class="qual-img" src="assets/images/hm13.jpg" alt="Early Child Care"/>
+        <div class="qual-body">
+          <div class="qual-badge">Early Education</div>
+          <h3>Early Child Care &amp; Education Courses</h3>
+          <p>Specialised training covering child development, care, and early education practices for young children.</p>
+          <a href="certificate-programs.html" class="qual-link">Learn More →</a>
+        </div>
+      </div>
+      <div class="qual-card">
+        <img class="qual-img" src="assets/images/hm14.jpg" alt="Nursery Training"/>
+        <div class="qual-body">
+          <div class="qual-badge">Teacher Training</div>
+          <h3>Nursery Teachers Training</h3>
+          <p>Equip yourself to deliver quality early-years education with this specialised nursery teacher training programme.</p>
+          <a href="certificate-programs.html" class="qual-link">Learn More →</a>
+        </div>
+      </div>
+      <div class="qual-card">
+        <img class="qual-img" src="assets/images/hm15.jpg" alt="Primary Training"/>
+        <div class="qual-body">
+          <div class="qual-badge">Teacher Training</div>
+          <h3>Pre and Primary Teacher Training Course</h3>
+          <p>A comprehensive course preparing educators for pre-school and primary level teaching practice.</p>
+          <a href="certificate-programs.html" class="qual-link">Learn More →</a>
+        </div>
+      </div>
+      <div class="qual-card">
+        <img class="qual-img" src="assets/images/hm16.jpg" alt="Montessori"/>
+        <div class="qual-body">
+          <div class="qual-badge">Specialisation</div>
+          <h3>Montessori Teacher Training</h3>
+          <p>Master the Montessori method and create enriching learning environments for young children worldwide.</p>
+          <a href="certificate-programs.html" class="qual-link">Learn More →</a>
+        </div>
+      </div>
+      <div class="qual-card">
+        <img class="qual-img" src="assets/images/hm17.jpg" alt="Professional Diploma"/>
+        <div class="qual-body">
+          <div class="qual-badge">Diploma</div>
+          <h3>Professional Diploma in Education and Training</h3>
+          <p>A professional-level diploma for practitioners advancing their expertise in education and training delivery.</p>
+          <a href="professional-diploma-in-education-and-training.html" class="qual-link">Learn More →</a>
+        </div>
+      </div>
+      <div class="qual-card">
+        <img class="qual-img" src="assets/images/hm18.jpg" alt="Postgraduate Diploma"/>
+        <div class="qual-body">
+          <div class="qual-badge">Postgraduate</div>
+          <h3>Postgraduate Diploma in Education and Training</h3>
+          <p>An advanced postgraduate qualification for experienced educators seeking the highest level of recognition.</p>
+          <a href="postgraduate-diploma-in-education-and-training.html" class="qual-link">Learn More →</a>
+        </div>
+      </div>
+    </div>
+    <div class="qual-footer">
+      <a href="certificate-programs.html" class="btn-teal">View All Qualifications</a>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section class="mission">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom:48px;">
+      <div class="section-tag" style="display:flex; justify-content:center; margin-bottom:10px;">Our Foundation</div>
+      <h2 class="section-title" style="max-width:600px; margin:0 auto; color:var(--navy);">Guided by Purpose, Driven by Excellence</h2>
+    </div>
+    <div class="mission-grid">
+      <div class="mission-box">
+        <img class="mission-img" src="assets/images/hm19.jpg" alt="Vision"/>
+        <div class="mission-body">
+          <div class="label">Our Vision</div>
+          <h3>A World Empowered by Education</h3>
+          <p>To promote education and training for the benefit of the public by enhancing and maintaining quality, standards, and practice of learning and teaching at every level of society.</p>
+        </div>
+      </div>
+      <div class="mission-box">
+        <img class="mission-img" src="assets/images/hm20.jpg" alt="Mission"/>
+        <div class="mission-body">
+          <div class="label">Our Mission</div>
+          <h3>Training Leaders for Every Level</h3>
+          <p>AIET is sold out to raise formidably well-trained functionaries at every level of society through professional courses and special training programmes that empower individuals globally.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom:48px;">
+      <div class="section-tag" style="display:flex; justify-content:center; margin-bottom:10px;">Testimonials</div>
+      <h2 class="section-title" style="color:var(--white); max-width:520px; margin:0 auto;">What Our Members Say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"AIET transformed my approach to leadership — from managing tasks to inspiring vision. It is more than a certificate; it is a global network."</p>
+        <div class="testi-author">
+          <img class="testi-avatar" src="assets/images/hm21.jpg" alt="Dr. Amina Bello" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+          <div class="testi-avatar-fallback" style="display:none">A</div>
+          <div><div class="testi-name">Dr. Amina Bello</div><div class="testi-role">AIET Fellow Member, Nigeria</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"The mentorship and knowledge I gained at AIET have been pivotal in my career growth. Every course prepared me for challenges I didn't even know were coming."</p>
+        <div class="testi-author">
+          <img class="testi-avatar" src="assets/images/hm22.jpg" alt="James Okafor" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+          <div class="testi-avatar-fallback" style="display:none">J</div>
+          <div><div class="testi-name">James Okafor</div><div class="testi-role">AIET Fellow, Ghana</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"The institute instils not only skills but also the confidence to lead in any environment. AIET helped me turn ambition into actionable strategies."</p>
+        <div class="testi-author">
+          <img class="testi-avatar" src="assets/images/hm23.jpg" alt="Li Wei" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+          <div class="testi-avatar-fallback" style="display:none">L</div>
+          <div><div class="testi-name">Li Wei</div><div class="testi-role">AIET Fellow Member, Malaysia</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES & INSIGHT -->
+<section class="resources">
+  <div class="section-inner">
+    <div class="sec-header-row">
+      <div>
+        <div class="section-tag">Resources &amp; Insight</div>
+        <h2 class="section-title">Stay Informed &amp; Connected</h2>
+        <p class="section-sub" style="margin-top:8px;">Get Certified. Get Ahead. — access events, articles, and tools to grow your career.</p>
+      </div>
+      <a href="nub.html" class="btn-navy">All Resources</a>
+    </div>
+    <div class="resources-grid">
+      <div class="res-card">
+        <img class="res-img" src="assets/images/hm24.jpg" alt="Event"/>
+        <div class="res-meta">
+          <div class="res-date"><strong>15</strong><span>MAY</span></div>
+          <div><h3>Professional Educator Certification Workshop</h3><p>📍 Online (Zoom)</p></div>
+        </div>
+        <div class="res-body">
+          <p>A full-day intensive workshop preparing candidates for professional certification examination and practice.</p>
+          <a href="app.html" class="res-link">Register Now →</a>
+        </div>
+      </div>
+      <div class="res-card">
+        <img class="res-img" src="assets/images/hm25.jpg" alt="Blog"/>
+        <div class="res-meta">
+          <div class="res-date"><strong>28</strong><span>APR</span></div>
+          <div><h3>The Future of Teacher Certification in Africa</h3><p>📰 Blogs &amp; Articles</p></div>
+        </div>
+        <div class="res-body">
+          <p>Exploring how standardised professional certifications are transforming the quality of education across Africa.</p>
+          <a href="nub.html" class="res-link">Read More →</a>
+        </div>
+      </div>
+      <div class="res-card">
+        <img class="res-img" src="assets/images/hm26.jpg" alt="FAQ"/>
+        <div class="res-meta">
+          <div class="res-date"><strong>?</strong><span>FAQ</span></div>
+          <div><h3>Frequently Asked Questions</h3><p>📋 Quick Answers</p></div>
+        </div>
+        <div class="res-body">
+          <p>Have questions about membership, programmes, or induction? Find answers to the most commonly asked questions.</p>
+          <a href="faq.html" class="res-link">View All FAQs →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY STRIP -->
+<div class="gallery-strip">
+  <div class="gallery-strip-inner">
+    <img src="assets/images/hm27.jpg" alt="Gallery"/>
+    <img src="assets/images/hm28.jpg" alt="Gallery"/>
+    <img src="assets/images/hm29.jpg" alt="Gallery"/>
+    <img src="assets/images/hm30.jpg" alt="Gallery"/>
+    <img src="assets/images/hm31.jpg" alt="Gallery"/>
+  </div>
+</div>
+
+<!-- BLOG -->
+<section class="blog">
+  <div class="section-inner">
+    <div class="sec-header-row">
+      <div>
+        <div class="section-tag">Latest Articles</div>
+        <h2 class="section-title">News, Blog &amp; Press</h2>
+      </div>
+      <a href="nub.html" class="btn-navy">All Articles</a>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <img class="blog-img" src="assets/images/hm32.jpg" alt="Blog 1"/>
+        <div class="blog-body">
+          <div class="blog-cat">Education Trends</div>
+          <h3>The Future of Professional Teacher Certification in Africa</h3>
+          <p>Exploring how standardised professional certifications are transforming education quality across the African continent.</p>
+          <a href="nub.html" class="blog-link">Read More →</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img class="blog-img" src="assets/images/hm33.jpg" alt="Blog 2"/>
+        <div class="blog-body">
+          <div class="blog-cat">Training &amp; Development</div>
+          <h3>Why the Postgraduate Diploma is a Game Changer for Educators</h3>
+          <p>How the Postgraduate Diploma in Education and Training is equipping professionals with advanced skills for today's workplace.</p>
+          <a href="nub.html" class="blog-link">Read More →</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img class="blog-img" src="assets/images/hm34.jpg" alt="Blog 3"/>
+        <div class="blog-body">
+          <div class="blog-cat">Montessori</div>
+          <h3>Montessori Education: Why It Matters More Than Ever</h3>
+          <p>A deep look at how Montessori principles are reshaping early childhood education for modern learners worldwide.</p>
+          <a href="nub.html" class="blog-link">Read More →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <img class="cta-band-img" src="assets/images/hm35.jpg" alt="" onerror="this.style.display='none'"/>
+  <div class="cta-band-overlay"></div>
+  <div class="cta-band-content">
+    <h2>Ready to Start Your New Career?</h2>
+    <p class="cta-band-quote">"Your Journey to Leadership Starts Here."</p>
+    <p>Join thousands of professionals who have transformed their careers through AIET's world-class education and training programmes.</p>
+    <div class="cta-btns">
+      <a href="app.html" class="btn-teal">Apply Now</a>
+      <a href="contact-us.html" class="btn-outline-white">Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+      <img src="assets/icons/logo2.png"
+             onerror="this.src='https://aietglobal.us/wp-content/uploads/2024/01/AIET-Logo-300x174.png'"/>
+      </div>
+      <p>The American Institute of Education and Training — raising formidably well-trained professionals at every level of society through quality education and training programmes.</p>
+      <p class="footer-tagline">"Drive Change. Lead with Purpose."</p>
+      <div class="footer-socials">
+        <a href="https://facebook.com" class="social-btn" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+        </a>
+        <a href="https://linkedin.com" class="social-btn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://x.com" class="social-btn" aria-label="X (Twitter)">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://youtube.com" class="social-btn" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>About AIET</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="institute-overview.html">Institute Overview</a></li>
+        <li><a href="mission-vision.html">Mission &amp; Vision</a></li>
+        <li><a href="objectives.html">Objectives</a></li>
+                <li><a href="#">Directors</a></li>
+        <li><a href="#">Partners</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Qualifications</h4>
+      <ul>
+        <li><a href="certificate-programs.html">Early Child Care &amp; Education</a></li>
+        <li><a href="certificate-programs.html">Nursery Teachers Training</a></li>
+        <li><a href="certificate-programs.html">Pre &amp; Primary Teacher Training</a></li>
+        <li><a href="certificate-programs.html">Montessori Teacher Training</a></li>
+        <li><a href="professional-diploma-in-education-and-training.html">Professional Diploma</a></li>
+        <li><a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="nub.html">New Updates &amp; Blogs</a></li>
+        <li><a href="ss.html">Student Services</a></li>
+        <li><a href="alut.html">Alumni and Testimonials</a></li>
+        <li><a href="faq.html">FAQs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col footer-contact">
+      <h4>Contact</h4>
+      <ul>
+        <li><span>📞</span><a href="tel:+14809550876">+1 (480) 955-0876</a></li>
+        <li><span>✉</span><a href="mailto:info@aietglobal.us">info@aietglobal.us</li>
+        <li><span>📍</span>1950 W Corporate Way #15593, Anaheim, CA 92801</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 American Institute of Education and Training. All rights reserved.</p>
+    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+      <a href="pp.html">Privacy Policy</a>
+      <a href="tu.html">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── NAVBAR TOGGLE ──
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // ── HERO SLIDER ──
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('sliderDots');
+  let current = 0;
+  let autoTimer;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  });
+
+  function goToSlide(n) {
+    slides[current].classList.remove('active');
+    dotsContainer.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsContainer.children[current].classList.add('active');
+    resetTimer();
+  }
+
+  function nextSlide() { goToSlide(current + 1); }
+  function prevSlide() { goToSlide(current - 1); }
+
+  function resetTimer() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(nextSlide, 6000);
+  }
+
+  resetTimer();
+
+  // ── FAQ ACCORDION ──
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>

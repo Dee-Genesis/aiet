@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Professional Diploma in Education &amp; Training – AIET</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #1B2A6B;
+      --teal:        #1A9B8C;
+      --teal-dark:   #148078;
+      --navy-deep:   #111A42;
+      --offwhite:    #F4F6F9;
+      --body:        #2D2D2D;
+      --muted:       #6B7280;
+      --white:       #FFFFFF;
+      --teal-light:  #e8f7f5;
+      --navy-light:  #eef0f8;
+      --font-head:   'Playfair Display', Georgia, serif;
+      --font-body:   'Source Sans 3', 'Segoe UI', sans-serif;
+      --radius:      12px;
+      --shadow:      0 8px 32px rgba(27,42,107,0.13);
+      --shadow-lg:   0 16px 56px rgba(27,42,107,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--body); background: var(--white); overflow-x: hidden; }
+
+    /* ── TOPBAR ── */
+    .topbar { background: var(--navy-deep); color: rgba(255,255,255,0.75); font-size: 13px; padding: 9px 0; }
+    .topbar .inner { max-width: 1200px; margin: auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+    .topbar a { color: var(--teal); text-decoration: none; transition: color .2s; }
+    .topbar a:hover { color: #4ecdc4; }
+    .topbar .sep { margin: 0 10px; opacity: 0.3; }
+
+    /* ── NAVBAR ── */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--white); box-shadow: 0 2px 16px rgba(27,42,107,0.10); border-bottom: 3px solid var(--teal); }
+    .nav-inner { max-width: 1200px; margin: auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 74px; }
+    .logo img { height: 54px; width: auto; display: block; }
+    .logo-fallback { display: none; font-family: var(--font-head); font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.1; }
+    .logo-fallback span { display: block; font-size: 10px; color: var(--teal); letter-spacing: 1.5px; text-transform: uppercase; font-family: var(--font-body); }
+
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+    .nav-links > li > a { padding: 8px 13px; border-radius: 6px; font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--navy); text-decoration: none; transition: all .2s; white-space: nowrap; }
+    .nav-links > li > a:hover, .nav-links > li > a.active { color: var(--teal-dark); background: var(--teal-light); }
+
+    .dropdown { position: relative; }
+    .dropdown:hover .drop-menu { display: block; }
+    .drop-menu { display: none; position: absolute; top: calc(100% + 3px); left: 0; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg); padding: 8px 0; min-width: 270px; border-top: 3px solid var(--teal); z-index: 200; }
+    .drop-menu a { display: block; padding: 10px 18px; font-size: 13.5px; color: var(--body); text-decoration: none; border-left: 3px solid transparent; transition: all .15s; }
+    .drop-menu a:hover, .drop-menu a.active { background: var(--teal-light); color: var(--teal-dark); border-left-color: var(--teal); }
+
+    .nav-cta { background: var(--teal) !important; color: var(--white) !important; padding: 9px 20px !important; border-radius: 8px !important; font-weight: 700 !important; }
+    .nav-cta:hover { background: var(--teal-dark) !important; color: var(--white) !important; transform: translateY(-1px); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; }
+
+    /* ── BUTTONS ── */
+    .btn-teal { background: var(--teal); color: var(--white); padding: 14px 30px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; font-family: var(--font-body); transition: all .2s; display: inline-block; }
+    .btn-teal:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,155,140,0.35); }
+    .btn-outline-white { border: 2px solid rgba(255,255,255,0.45); color: var(--white); padding: 14px 30px; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; font-family: var(--font-body); transition: all .2s; display: inline-block; }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.1); }
+    .btn-navy { background: var(--navy); color: var(--white); padding: 13px 28px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; font-family: var(--font-body); transition: all .2s; display: inline-block; }
+    .btn-navy:hover { background: var(--navy-deep); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .btn-outline-navy { border: 2px solid var(--navy); color: var(--navy); padding: 12px 26px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; font-family: var(--font-body); transition: all .2s; display: inline-block; }
+    .btn-outline-navy:hover { background: var(--navy); color: var(--white); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      position: relative;
+      background-image: url('assets/images/hm2.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 100px 24px 80px;
+      overflow: hidden;
+      text-align: center;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,16,48,0.88) 0%, rgba(17,26,66,0.80) 50%, rgba(10,16,48,0.75) 100%);
+    }
+    .page-hero::after {
+      content: 'AIET';
+      position: absolute;
+      right: -30px;
+      bottom: -40px;
+      font-family: var(--font-head);
+      font-size: 220px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.03);
+      line-height: 1;
+      pointer-events: none;
+      letter-spacing: -8px;
+    }
+    .page-hero-inner { position: relative; z-index: 2; max-width: 800px; margin: auto; }
+    .breadcrumb { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+    .breadcrumb a { font-family: var(--font-body); font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--teal); }
+    .breadcrumb span { color: rgba(255,255,255,0.25); font-size: 13px; }
+    .breadcrumb strong { font-family: var(--font-body); font-size: 13px; color: var(--teal); }
+    .page-hero-badge { display: inline-block; background: rgba(26,155,140,0.2); color: #4ecdc4; border: 1px solid rgba(26,155,140,0.4); border-radius: 100px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 16px; margin-bottom: 20px; font-family: var(--font-body); }
+    .page-hero h1 { font-family: var(--font-head); font-size: clamp(32px, 5vw, 58px); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 20px; }
+    .page-hero h1 em { color: #4ecdc4; font-style: italic; }
+    .page-hero-desc { font-family: var(--font-body); font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.8; max-width: 640px; margin: 0 auto 36px; }
+    .page-hero-stats { display: flex; justify-content: center; gap: 48px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.12); flex-wrap: wrap; }
+    .hero-stat-num { font-family: var(--font-head); font-size: 36px; font-weight: 700; color: var(--teal); line-height: 1; }
+    .hero-stat-lbl { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 5px; font-family: var(--font-body); letter-spacing: .5px; }
+
+    /* ── SHARED SECTION ── */
+    section { padding: 88px 24px; }
+    .section-inner { max-width: 1200px; margin: auto; }
+    .section-tag { font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+    .section-title { font-family: var(--font-head); font-size: clamp(26px, 3.5vw, 40px); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 14px; }
+    .section-sub { font-family: var(--font-body); font-size: 16px; color: var(--muted); line-height: 1.8; max-width: 560px; }
+
+    /* ── OVERVIEW INTRO ── */
+    .prog-intro { background: var(--white); }
+    .prog-intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .prog-img-wrap { position: relative; }
+    .prog-img-wrap img { width: 100%; height: 480px; object-fit: cover; border-radius: 20px; display: block; }
+    .prog-img-wrap::before { content: ''; position: absolute; top: -14px; left: -14px; width: 100%; height: 100%; border: 3px solid var(--teal); border-radius: 20px; z-index: -1; opacity: .45; }
+    .prog-img-badge { position: absolute; bottom: -20px; right: -20px; background: var(--navy); color: var(--white); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow); text-align: center; }
+    .prog-img-badge strong { font-family: var(--font-head); font-size: 26px; font-weight: 700; display: block; color: var(--teal); }
+    .prog-img-badge span { font-size: 13px; font-family: var(--font-body); opacity: .75; line-height: 1.4; display: block; max-width: 120px; }
+    .prog-text p { font-family: var(--font-body); font-size: 16px; color: var(--muted); line-height: 1.85; margin-bottom: 18px; }
+    .prog-text p:last-of-type { margin-bottom: 0; }
+    .prog-text strong { color: var(--navy); }
+    .learner-tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 32px; }
+    .learner-tag { background: var(--teal-light); color: var(--teal-dark); border-radius: 100px; padding: 6px 16px; font-size: 13px; font-weight: 600; font-family: var(--font-body); }
+
+    /* ── KEY FEATURES ── */
+    .features { background: var(--offwhite); }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .feature-card { background: var(--white); border-radius: 18px; padding: 32px 28px; border: 1.5px solid #dce3f0; transition: all .3s; position: relative; overflow: hidden; }
+    .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--teal); transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
+    .feature-card:hover { box-shadow: var(--shadow); transform: translateY(-6px); border-color: transparent; }
+    .feature-card:hover::before { transform: scaleX(1); }
+    .feature-icon { width: 54px; height: 54px; background: var(--teal-light); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 20px; transition: background .3s; }
+    .feature-card:hover .feature-icon { background: var(--teal); }
+    .feature-card h3 { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .feature-card p { font-family: var(--font-body); font-size: 14px; color: var(--muted); line-height: 1.75; }
+
+    /* ── SPECIALIZATIONS ── */
+    .specializations { background: var(--white); }
+    .spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .spec-card { background: var(--offwhite); border-radius: 16px; padding: 28px 24px; border: 1.5px solid transparent; transition: all .3s; }
+    .spec-card:hover { border-color: var(--teal); background: var(--teal-light); transform: translateY(-4px); box-shadow: var(--shadow); }
+    .spec-card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .spec-emoji { font-size: 28px; width: 50px; height: 50px; background: var(--white); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(27,42,107,0.1); flex-shrink: 0; }
+    .spec-card h3 { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+    .spec-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .spec-list li { font-family: var(--font-body); font-size: 13px; color: var(--muted); padding-left: 16px; position: relative; line-height: 1.5; }
+    .spec-list li::before { content: '›'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+    .spec-more { display: inline-block; margin-top: 12px; font-family: var(--font-body); font-size: 12px; font-weight: 700; color: var(--teal); letter-spacing: .5px; }
+
+    /* ── PROGRAMME STRUCTURE ── */
+    .structure { background: var(--navy-deep); }
+    .structure .section-tag { color: var(--teal); }
+    .structure .section-title { color: var(--white); }
+    .structure .section-sub { color: rgba(255,255,255,0.6); }
+    .structure-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 52px; }
+    .struct-block { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 32px 28px; transition: all .3s; }
+    .struct-block:hover { background: rgba(255,255,255,0.1); border-color: rgba(26,155,140,0.4); }
+    .struct-block-icon { font-size: 28px; margin-bottom: 16px; }
+    .struct-block h3 { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 16px; }
+    .struct-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .struct-list li { font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.7); padding-left: 20px; position: relative; line-height: 1.6; }
+    .struct-list li::before { content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 700; font-size: 13px; }
+    .struct-highlight { display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
+    .struct-pill { background: rgba(26,155,140,0.15); border: 1px solid rgba(26,155,140,0.3); color: #4ecdc4; border-radius: 100px; padding: 5px 14px; font-family: var(--font-body); font-size: 12px; font-weight: 700; }
+
+    /* ── PROGRAMME COMPONENTS ── */
+    .components { background: var(--offwhite); }
+    .comp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
+    .comp-card { background: var(--white); border-radius: 16px; padding: 28px 22px; text-align: center; border: 1.5px solid #dce3f0; transition: all .3s; position: relative; overflow: hidden; }
+    .comp-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--teal); transform: scaleX(0); transform-origin: center; transition: transform .35s ease; }
+    .comp-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: transparent; }
+    .comp-card:hover::before { transform: scaleX(1); }
+    .comp-num { font-family: var(--font-head); font-size: 36px; font-weight: 700; color: rgba(26,155,140,0.2); line-height: 1; margin-bottom: 6px; }
+    .comp-icon { font-size: 30px; margin-bottom: 14px; }
+    .comp-card h4 { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .comp-card p { font-family: var(--font-body); font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    /* ── ASSESSMENT ── */
+    .assessment { background: var(--white); }
+    .assess-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-top: 48px; }
+    .assess-donut-wrap { display: flex; flex-direction: column; align-items: center; gap: 32px; }
+    .assess-donut { position: relative; width: 280px; height: 280px; }
+    .assess-donut svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .assess-donut-label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .assess-donut-label strong { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--navy); line-height: 1.2; }
+    .assess-donut-label span { font-family: var(--font-body); font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .assess-legend { display: flex; flex-direction: column; gap: 14px; width: 100%; }
+    .legend-item { display: flex; align-items: center; gap: 12px; }
+    .legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+    .legend-label { font-family: var(--font-body); font-size: 14px; color: var(--body); flex: 1; }
+    .legend-pct { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--navy); }
+    .assess-details { display: flex; flex-direction: column; gap: 20px; }
+    .assess-detail { background: var(--offwhite); border-radius: 14px; padding: 24px 22px; border-left: 4px solid var(--teal); transition: all .3s; }
+    .assess-detail:hover { background: var(--teal-light); transform: translateX(4px); }
+    .assess-detail h4 { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .assess-detail ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .assess-detail ul li { font-family: var(--font-body); font-size: 13.5px; color: var(--muted); padding-left: 16px; position: relative; }
+    .assess-detail ul li::before { content: '·'; position: absolute; left: 4px; color: var(--teal); font-weight: 900; font-size: 16px; line-height: 1; }
+
+    /* ── GRADING ── */
+    .grading { background: var(--offwhite); }
+    .grade-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
+    .grade-card { background: var(--white); border-radius: 16px; padding: 28px 22px; text-align: center; border: 1.5px solid #dce3f0; transition: all .3s; }
+    .grade-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .grade-card-letter { font-family: var(--font-head); font-size: 48px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+    .grade-card-class { font-family: var(--font-body); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+    .grade-card-range { font-family: var(--font-body); font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+    .grade-card-desc { font-family: var(--font-body); font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* ── PERFORMANCE EXPECTATIONS ── */
+    .expectations { background: var(--navy); position: relative; overflow: hidden; }
+    .expectations::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(26,155,140,0.15) 0%, transparent 65%); }
+    .expectations .section-tag { color: var(--teal); }
+    .expectations .section-title { color: var(--white); }
+    .expectations .section-sub { color: rgba(255,255,255,0.6); }
+    .expect-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; position: relative; z-index: 1; }
+    .expect-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 28px 24px; transition: all .3s; display: flex; gap: 16px; align-items: flex-start; }
+    .expect-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(26,155,140,0.4); transform: translateY(-4px); }
+    .expect-num { font-family: var(--font-head); font-size: 32px; font-weight: 700; color: rgba(26,155,140,0.3); line-height: 1; flex-shrink: 0; }
+    .expect-text h4 { font-family: var(--font-head); font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 8px; line-height: 1.35; }
+    .expect-text p { font-family: var(--font-body); font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.65; }
+
+    /* ── PROGRESSION ── */
+    .progression { background: var(--white); }
+    .prog-track { display: flex; align-items: center; gap: 0; margin-top: 52px; flex-wrap: wrap; justify-content: center; }
+    .prog-node { text-align: center; padding: 28px 24px; background: var(--offwhite); border-radius: 16px; border: 2px solid #dce3f0; min-width: 180px; transition: all .3s; }
+    .prog-node.active { background: var(--teal-light); border-color: var(--teal); box-shadow: var(--shadow); }
+    .prog-node:hover { transform: translateY(-4px); }
+    .prog-node-icon { font-size: 32px; margin-bottom: 12px; }
+    .prog-node h4 { font-family: var(--font-head); font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; line-height: 1.3; }
+    .prog-node p { font-family: var(--font-body); font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .prog-arrow { color: var(--teal); font-size: 24px; padding: 0 12px; flex-shrink: 0; }
+
+    /* ── PULLQUOTE ── */
+    .pullquote-band { background: var(--teal); padding: 56px 24px; text-align: center; position: relative; overflow: hidden; }
+    .pullquote-band::before { content: '❝'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: 160px; color: rgba(255,255,255,0.1); font-family: Georgia; line-height: 1; pointer-events: none; }
+    .pullquote-band blockquote { max-width: 760px; margin: 0 auto; font-family: var(--font-head); font-size: clamp(20px, 2.8vw, 30px); color: var(--white); font-style: italic; line-height: 1.55; position: relative; z-index: 1; }
+    .pullquote-band cite { display: block; margin-top: 18px; font-family: var(--font-body); font-size: 13px; color: rgba(255,255,255,0.7); font-style: normal; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+
+    /* ── CTA BAND ── */
+    .cta-band { position: relative; overflow: hidden; padding: 90px 24px; text-align: center; background: linear-gradient(135deg, rgba(17,26,66,0.97) 0%, rgba(27,42,107,0.95) 100%); }
+    .cta-band-overlay { position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(26,155,140,0.18) 0%, transparent 70%); }
+    .cta-band-content { position: relative; z-index: 2; }
+    .cta-band h2 { font-family: var(--font-head); font-size: clamp(26px, 4vw, 42px); color: var(--white); margin-bottom: 14px; font-weight: 700; }
+    .cta-band-quote { font-family: var(--font-head); font-size: 18px; color: rgba(255,255,255,0.6); font-style: italic; margin-bottom: 10px; }
+    .cta-band p { font-family: var(--font-body); font-size: 16px; color: rgba(255,255,255,0.7); max-width: 560px; margin: 0 auto 36px; line-height: 1.8; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--navy-deep); color: rgba(255,255,255,0.65); padding: 72px 24px 0; }
+    .footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr; gap: 48px; padding-bottom: 56px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .footer-logo-wrap { margin-bottom: 20px; }
+    .footer-logo-wrap img { height: 48px; }
+    .footer-brand p { font-size: 14px; line-height: 1.8; margin-bottom: 10px; }
+    .footer-tagline { font-family: var(--font-head); font-style: italic; color: var(--teal) !important; font-size: 15px !important; }
+    .footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+    .social-btn { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; transition: all .2s; }
+    .social-btn svg { width: 16px; height: 16px; fill: rgba(255,255,255,0.55); }
+    .social-btn:hover { background: var(--teal); }
+    .social-btn:hover svg { fill: var(--white); }
+    .footer-col h4 { font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--white); margin-bottom: 20px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: 14px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--teal); }
+    .footer-contact ul li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; }
+    .footer-contact ul li span { color: var(--teal); flex-shrink: 0; margin-top: 1px; }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 13px; }
+    .footer-bottom a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color .2s; }
+    .footer-bottom a:hover { color: var(--teal); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .prog-intro-grid, .assess-grid, .structure-grid { grid-template-columns: 1fr; gap: 40px; }
+      .prog-img-wrap { display: none; }
+      .features-grid, .spec-grid, .expect-grid { grid-template-columns: 1fr 1fr; }
+      .grade-cards, .comp-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .prog-track { flex-direction: column; align-items: stretch; }
+      .prog-arrow { transform: rotate(90deg); margin: 0 auto; }
+    }
+    @media (max-width: 640px) {
+      .features-grid, .spec-grid, .expect-grid, .grade-cards, .comp-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 74px; left: 0; right: 0; background: var(--white); padding: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.1); gap: 4px; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .page-hero-stats { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="inner">
+    <div>
+      <span>📞 <a href="tel:+14809550876">+1 (480) 955-0876</a></span>
+      <span class="sep">|</span>
+      <span>✉ <a href="mailto:info@aietglobal.us">info@aietglobal.us</a></span>
+    </div>
+    <div>
+      <span>🕒 Mon – Fri: 9 AM – 5 PM EST</span>
+      <span class="sep">|</span>
+      <span>📍 Anaheim, CA 92801, USA</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/icons/logo2.png"
+           onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block'"/>
+      <div class="logo-fallback">AIET <span>American Institute of Education &amp; Training</span></div>
+    </a>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="#">About AIET ▾</a>
+        <div class="drop-menu">
+          <a href="institute-overview.html">Institute Overview</a>
+          <a href="mission-vision.html">Mission &amp; Vision</a>
+          <a href="objectives.html">Objectives</a>
+          <a href="cv.html">Core Values</a>
+          <a href="lsr.html">Legal Status and Recognition</a>
+          <a href="#">Country Directors</a>
+          <a href="#">Partners</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="active">Qualifications ▾</a>
+        <div class="drop-menu">
+          <a href="certificate-programs.html">Certificate Programs</a>
+          <a href="professional-diploma-in-education-and-training.html" class="active">Professional Diploma in Education</a>
+          <a href="adv.html"> Advanced Diploma in Education</a>
+          <a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma in Education</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Resources &amp; Insight ▾</a>
+        <div class="drop-menu">
+          <a href="ss.html">Student Services</a>
+          <a href="certv.html">Certification Verification Guidelines</a>
+          <a href="alut.html">Alumni &amp; Testimonials</a>
+          <a href="nub.html">News Updates &amp; Blogs</a>
+        </div>
+      </li>
+      <li><a href="app.html" class="nav-cta">Application Portal</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="#">Qualifications</a>
+      <span>/</span>
+      <strong>Professional Diploma</strong>
+    </div>
+    <div class="page-hero-badge">Intermediate Qualification</div>
+    <h1>Professional Diploma in<br><em>Education &amp; Training</em></h1>
+    <p class="page-hero-desc">A comprehensive, intermediate-level qualification designed to advance your teaching capability, deepen your professional knowledge, and open doors to leadership and higher qualifications.</p>
+    <div class="page-hero-stats">
+      <div>
+        <div class="hero-stat-num">17+</div>
+        <div class="hero-stat-lbl">Areas of Specialization</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">24–36</div>
+        <div class="hero-stat-lbl">Credit Units</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">6–12</div>
+        <div class="hero-stat-lbl">Months Duration</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">Online</div>
+        <div class="hero-stat-lbl">Flexible Delivery</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW INTRO -->
+<section class="prog-intro">
+  <div class="section-inner prog-intro-grid">
+    <div class="prog-img-wrap">
+      <img src="assets/images/hm35.jpg" alt="Professional Diploma at AIET" onerror="this.style.display='none'"/>
+      <div class="prog-img-badge">
+        <strong>Diploma</strong>
+        <span>Intermediate Level</span>
+      </div>
+    </div>
+    <div class="prog-text">
+      <div class="section-tag">Programme Overview</div>
+      <h2 class="section-title">Advance Your Practice. Deepen Your Impact.</h2>
+      <p>The <strong>Professional Diploma in Education and Training at AIET</strong> is a comprehensive and career-focused qualification for individuals seeking to develop advanced knowledge, practical teaching skills, and professional competence in the field of education and training.</p>
+      <p>Building upon foundational concepts, the programme introduces learners to <strong>in-depth theories, methodologies, and practices</strong> required for effective teaching, training delivery, and educational management. It emphasises a balanced approach to theory and practice — equipping learners to design curriculum, deliver engaging lessons, assess learner performance, and manage diverse learning environments.</p>
+      <p>The Diploma is designed with flexibility in mind, accommodating both new entrants into education and <strong>experienced professionals seeking formal qualification and career advancement</strong>. It also serves as a clear progression pathway toward higher-level qualifications.</p>
+      <div class="section-tag" style="margin-top: 28px; margin-bottom: 12px;">Ideal For</div>
+      <div class="learner-tags">
+        <span class="learner-tag">🎓 Aspiring Teachers</span>
+        <span class="learner-tag">💼 Corporate Trainers</span>
+        <span class="learner-tag">🤝 Education Support Staff</span>
+        <span class="learner-tag">🔄 Career Changers</span>
+        <span class="learner-tag">📈 Career Advancers</span>
+      </div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="app.html" class="btn-navy">Apply Now</a>
+        <a href="contact-us.html" class="btn-outline-navy">Enquire</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY FEATURES -->
+<section class="features">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom:8px;">
+      <div class="section-tag" style="display:flex; justify-content:center;">Why Choose the AIET Diploma</div>
+      <h2 class="section-title" style="margin:0 auto; max-width:540px; text-align:center;">An Intermediate Qualification Built for Professional Growth</h2>
+      <p class="section-sub" style="margin:14px auto 0; text-align:center;">Combining academic rigour with real-world application for educators and trainers at every stage.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <h3>Intermediate-Level Depth</h3>
+        <p>Goes beyond foundational knowledge to explore advanced theories, instructional strategies, and educational management practices in your chosen specialization.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛠️</div>
+        <h3>Theory Meets Practice</h3>
+        <p>A balanced curriculum integrating curriculum design, lesson delivery, learner assessment, reflective practice, and practical teaching or facilitation exercises.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>Flexible Study Options</h3>
+        <p>Online, blended, guided, and self-paced delivery models — designed to fit around your work and personal commitments, wherever you are in the world.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Industry-Relevant Curriculum</h3>
+        <p>Globally aligned content that reflects current demands across education, corporate training, early childhood, special needs, ed-tech, and more.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📶</div>
+        <h3>Clear Progression Pathway</h3>
+        <p>Structured as a stepping stone from Certificate level, and a gateway into Higher Diploma and Postgraduate Diploma programmes at AIET.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3>Critical Thinking &amp; Reflective Practice</h3>
+        <p>Develops analytical ability, independent thinking, and reflective professional practice — the hallmarks of effective, modern educators and trainers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALIZATIONS -->
+<section class="specializations">
+  <div class="section-inner">
+    <div class="section-tag">Areas of Specialization</div>
+    <h2 class="section-title">Over 17 Specialist Diploma Pathways</h2>
+    <p class="section-sub">AIET's Diploma portfolio spans the full breadth of the education and training sector, from early childhood to higher education and corporate learning.</p>
+
+    <div class="spec-grid" style="margin-top: 40px;">
+      <div class="spec-card">
+        <div class="spec-card-header">
+          <div class="spec-emoji">📚</div>
+          <h3>General Education &amp; Training</h3>
+        </div>
+        <ul class="spec-list">
+          <li>Diploma in Education and Training (DET)</li>
+          <li>Diploma in Teaching and Learning</li>
+          <li>Diploma in Teaching, Learning &amp; Assessment</li>
+          <li>Diploma in Applied Teaching and Learning</li>
+        </ul>
+        <span class="spec-more">+ 5 more programmes</span>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-header">
+          <div class="spec-emoji">🧒</div>
+          <h3>Early Childhood Education &amp; Care</h3>
+        </div>
+        <ul class="spec-list">
+          <li>Diploma in Early Child Care and Education</li>
+          <li>Diploma in Nursery Teachers Training</li>
+          <li>Diploma in Montessori Teacher Training</li>
+          <li>Diploma in Pre &amp; Primary Teacher Training</li>
+        </ul>
+        <span class="spec-more">+ 4 more programmes</span>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-header">
+          <div class="spec-emoji">🏫</div>
+          <h3>Teacher Training &amp; Pedagogy</h3>
+        </div>
+        <ul class="spec-list">
+          <li>Diploma in Secondary Education Teaching</li>
+          <li>Diploma in Classroom Management &amp; Instructional Skills</li>
+          <li>Diploma in Reflective Teaching Practice</li>
+          <li>Diploma in Micro-Teaching Techniques</li>
+        </ul>
+        <span class="spec-more">+ 4 more programmes</span>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-header">
+          <div class="spec-emoji">🏢</div>
+          <h3>Educational Leadership &amp; Administration</h3>
+        </div>
+        <ul class="spec-list">
+          <li>Diploma in School Administration</li>
+          <li>Diploma in Educational Leadership Fundamentals</li>
+          <li>Diploma in Quality Assurance in Education</li>
+          <li>Diploma in Strategic Planning in Education</li>
+        </ul>
+        <span class="spec-more">+ 4 more programmes</span>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-header">
+          <div class="spec-emoji">💻</div>
+          <h3>Educational Technology &amp; E-Learning</h3>
+        </div>
+        <ul class="spec-list">
+          <li>Diploma in Digital Literacy for Educators</li>
+          <li>Diploma in Online Teaching and Learning</li>
+          <li>Diploma in Learning Management Systems (LMS)</li>
+          <li>Diploma in Artificial Intelligence in Education</li>
+        </ul>
+        <span class="spec-more">+ 4 more programmes</span>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-header">
+          <div class="spec-emoji">🧠</div>
+          <h3>Educational Psychology &amp; Counseling</h3>
+        </div>
+        <ul class="spec-list">
+          <li>Diploma in Educational Psychology</li>
+          <li>Diploma in Student Guidance and Counseling</li>
+          <li>Diploma in Child and Adolescent Psychology</li>
+          <li>Diploma in Student Mental Health Awareness</li>
+        </ul>
+        <span class="spec-more">+ 4 more programmes</span>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-header">
+          <div class="spec-emoji">♿</div>
+          <h3>Special Needs &amp; Inclusive Education</h3>
+        </div>
+        <ul class="spec-list">
+          <li>Diploma in Special Needs Education</li>
+          <li>Diploma in Inclusive Classroom Practices</li>
+          <li>Diploma in Autism Spectrum Education</li>
+          <li>Diploma in Differentiated Instruction</li>
+        </ul>
+        <span class="spec-more">+ 4 more programmes</span>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-header">
+          <div class="spec-emoji">🌍</div>
+          <h3>Language Education &amp; Literacy</h3>
+        </div>
+        <ul class="spec-list">
+          <li>Diploma in Teaching English as a Second Language (TESL)</li>
+          <li>Diploma in Phonics and Early Literacy</li>
+          <li>Diploma in Bilingual Education</li>
+          <li>Diploma in Language Assessment and Testing</li>
+        </ul>
+        <span class="spec-more">+ 3 more programmes</span>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-header">
+          <div class="spec-emoji">🔬</div>
+          <h3>STEM Education &amp; Innovation</h3>
+        </div>
+        <ul class="spec-list">
+          <li>Diploma in STEM Education Foundations</li>
+          <li>Diploma in Teaching Science and Technology</li>
+          <li>Diploma in Mathematics Instruction Strategies</li>
+          <li>Diploma in Robotics and Coding for Educators</li>
+        </ul>
+        <span class="spec-more">+ 1 more programme</span>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top:36px; font-family:var(--font-body); font-size:14px; color:var(--muted);">
+      Further specializations include <strong>Adult &amp; Continuing Education</strong>, <strong>Curriculum &amp; Instructional Design</strong>, <strong>Assessment &amp; Evaluation</strong>, <strong>Higher Education &amp; Research</strong>, <strong>Training &amp; Development</strong>, <strong>Educational Communication</strong>, <strong>School Safety &amp; Student Welfare</strong>, and <strong>Education Policy &amp; Global Education</strong>.
+<br><a href="assets/documents/aiet diploma programs.pdf" download style="color:var(--teal); font-weight:700; text-decoration:none;">Click here to download the full programme info →</a>    </p>
+  </div>
+</section>
+
+<!-- PROGRAMME STRUCTURE -->
+<section class="structure">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom:8px;">
+      <div class="section-tag" style="display:flex; justify-content:center;">Programme Structure</div>
+      <h2 class="section-title" style="max-width:520px; margin:0 auto; text-align:center; color:var(--white);">Structure &amp; Key Information</h2>
+      <p class="section-sub" style="margin:14px auto 0; text-align:center;">Everything you need to know about eligibility, delivery, duration, and credits.</p>
+    </div>
+    <div class="structure-grid">
+      <div class="struct-block">
+        <div class="struct-block-icon">✅</div>
+        <h3>Eligibility Requirements</h3>
+        <ul class="struct-list">
+          <li>Minimum high school diploma or equivalent qualification</li>
+          <li>Completion of an AIET Certificate Programme</li>
+          <li>Basic proficiency in English (reading, writing, communication)</li>
+          <li>Demonstrated interest or experience in education or training</li>
+          <li>Relevant work experience may be considered on a case-by-case basis</li>
+        </ul>
+      </div>
+      <div class="struct-block">
+        <div class="struct-block-icon">🖥️</div>
+        <h3>Mode of Study</h3>
+        <ul class="struct-list">
+          <li>Online Learning: Full access to digital materials, lectures, and assessments</li>
+          <li>Blended Learning: Online study combined with structured academic support</li>
+          <li>Guided Learning: Instructor-led sessions, mentoring, and supervision</li>
+          <li>Self-Paced Options: Flexible scheduling within defined timelines</li>
+        </ul>
+      </div>
+      <div class="struct-block">
+        <div class="struct-block-icon">⏱️</div>
+        <h3>Programme Duration</h3>
+        <ul class="struct-list">
+          <li>Standard Duration: 6 – 9 months</li>
+          <li>Extended Duration: Up to 12 months (depending on pace and specialization)</li>
+        </ul>
+        <div class="struct-highlight">
+          <span class="struct-pill">Standard</span>
+          <span class="struct-pill">Extended</span>
+        </div>
+      </div>
+      <div class="struct-block">
+        <div class="struct-block-icon">🎓</div>
+        <h3>Credit Unit Structure</h3>
+        <ul class="struct-list">
+          <li>1 Credit Unit = 10–15 learning hours</li>
+          <li>Total Credit Range: 24–36 Credits</li>
+          <li>Credits include lectures, independent study, assignments, projects, and practical activities</li>
+        </ul>
+        <div class="struct-highlight">
+          <span class="struct-pill">U.S.-Style Framework</span>
+          <span class="struct-pill">Modular Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME COMPONENTS -->
+<section class="components">
+  <div class="section-inner">
+    <div style="text-align:center;">
+      <div class="section-tag" style="display:flex; justify-content:center;">How the Programme is Organised</div>
+      <h2 class="section-title" style="max-width:500px; margin:0 auto; text-align:center;">Four Core Components</h2>
+      <p class="section-sub" style="margin:14px auto 0; text-align:center;">Each Diploma programme is structured across four integrated components for a complete and balanced learning experience.</p>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="comp-num">01</div>
+        <div class="comp-icon">📘</div>
+        <h4>Core Modules</h4>
+        <p>Fundamental concepts in education and training that underpin all specialization pathways and establish professional grounding.</p>
+      </div>
+      <div class="comp-card">
+        <div class="comp-num">02</div>
+        <div class="comp-icon">🎯</div>
+        <h4>Specialization Modules</h4>
+        <p>Focused, in-depth study in your chosen area — tailored to your career goals and professional development needs.</p>
+      </div>
+      <div class="comp-card">
+        <div class="comp-num">03</div>
+        <div class="comp-icon">🏫</div>
+        <h4>Practical Components</h4>
+        <p>Teaching practice, facilitation exercises, or applied projects to develop and demonstrate real-world professional competence.</p>
+      </div>
+      <div class="comp-card">
+        <div class="comp-num">04</div>
+        <div class="comp-icon">📋</div>
+        <h4>Capstone / Final Project</h4>
+        <p>Where applicable, a comprehensive final assignment or project that integrates all learning into a cohesive professional output.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSESSMENT -->
+<section class="assessment">
+  <div class="section-inner">
+    <div class="section-tag">Assessment Framework</div>
+    <h2 class="section-title">How You Are Evaluated</h2>
+    <p class="section-sub">A rigorous, competency-based assessment model designed to evaluate theoretical understanding, practical skill, and real-world professional application.</p>
+    <div class="assess-grid">
+      <div class="assess-donut-wrap">
+        <div class="assess-donut">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="38" fill="none" stroke="#e8f7f5" stroke-width="14"/>
+            <!-- Continuous 30% -->
+            <circle cx="50" cy="50" r="38" fill="none" stroke="#1A9B8C" stroke-width="14"
+              stroke-dasharray="71.6 167.0" stroke-dashoffset="0"/>
+            <!-- Applied/Practical 40% -->
+            <circle cx="50" cy="50" r="38" fill="none" stroke="#1B2A6B" stroke-width="14"
+              stroke-dasharray="95.5 143.2" stroke-dashoffset="-71.6"/>
+            <!-- Final 30% -->
+            <circle cx="50" cy="50" r="38" fill="none" stroke="#4ecdc4" stroke-width="14"
+              stroke-dasharray="71.6 167.0" stroke-dashoffset="-167.1"/>
+          </svg>
+          <div class="assess-donut-label">
+            <strong>3-Part<br>Assessment</strong>
+            <span>Competency-Based</span>
+          </div>
+        </div>
+        <div class="assess-legend">
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#1A9B8C;"></div>
+            <div class="legend-label">Continuous Assessment</div>
+            <div class="legend-pct">30%</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#1B2A6B;"></div>
+            <div class="legend-label">Applied / Practical Assessment</div>
+            <div class="legend-pct">40%</div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#4ecdc4;"></div>
+            <div class="legend-label">Final Assessment</div>
+            <div class="legend-pct">30%</div>
+          </div>
+        </div>
+      </div>
+      <div class="assess-details">
+        <div class="assess-detail">
+          <h4>Continuous Assessment (30%)</h4>
+          <ul>
+            <li>Written assignments and coursework</li>
+            <li>Quizzes and structured tests</li>
+            <li>Case studies and scenario-based tasks</li>
+            <li>Class participation and guided learning activities</li>
+          </ul>
+        </div>
+        <div class="assess-detail" style="border-left-color: var(--navy);">
+          <h4>Applied / Practical Assessment (40%)</h4>
+          <ul>
+            <li>Practical projects or applied assignments</li>
+            <li>Instructional design tasks or lesson planning</li>
+            <li>Teaching practice or simulation (where applicable)</li>
+            <li>Workplace-based or case-based activities</li>
+          </ul>
+        </div>
+        <div class="assess-detail" style="border-left-color: #4ecdc4;">
+          <h4>Final Assessment (30%)</h4>
+          <ul>
+            <li>Written examination</li>
+            <li>Final project or portfolio submission</li>
+            <li>Integration of overall programme learning</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRADING -->
+<section class="grading">
+  <div class="section-inner">
+    <div style="text-align:center;">
+      <div class="section-tag" style="display:flex; justify-content:center;">Grading System</div>
+      <h2 class="section-title" style="max-width:480px; margin:0 auto; text-align:center;">Award Classifications</h2>
+      <p class="section-sub" style="margin:14px auto 0; text-align:center;">At Diploma level, students are expected to demonstrate deeper theoretical understanding, analytical ability, and practical competence.</p>
+    </div>
+    <div class="grade-cards">
+      <div class="grade-card">
+        <div class="grade-card-letter" style="color: var(--teal);">A</div>
+        <div class="grade-card-class" style="color: var(--teal);">Distinction</div>
+        <div class="grade-card-range">70% – 100%</div>
+        <div class="grade-card-desc">Excellent performance with strong understanding, critical thinking, and advanced application of knowledge.</div>
+      </div>
+      <div class="grade-card">
+        <div class="grade-card-letter" style="color: var(--navy);">B</div>
+        <div class="grade-card-class" style="color: var(--navy);">Merit</div>
+        <div class="grade-card-range">60% – 69%</div>
+        <div class="grade-card-desc">Good performance with clear understanding and effective application of theories and instructional strategies.</div>
+      </div>
+      <div class="grade-card">
+        <div class="grade-card-letter" style="color: #d97706;">C</div>
+        <div class="grade-card-class" style="color: #d97706;">Pass</div>
+        <div class="grade-card-range">50% – 59%</div>
+        <div class="grade-card-desc">Satisfactory performance meeting minimum academic, practical, and competency requirements.</div>
+      </div>
+      <div class="grade-card">
+        <div class="grade-card-letter" style="color: #dc2626;">F</div>
+        <div class="grade-card-class" style="color: #dc2626;">Fail</div>
+        <div class="grade-card-range">Below 50%</div>
+        <div class="grade-card-desc">Does not meet required standards. Reassessment, resubmission, or additional coursework may be available.</div>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:28px; font-family:var(--font-body); font-size:14px; color:var(--muted);">
+      Awards are issued as <strong>Diploma with Distinction</strong>, <strong>Diploma with Merit</strong>, or <strong>Diploma (Pass)</strong>. A minimum grade of <strong>Pass (C)</strong> is required, along with completion of all modules and demonstration of practical teaching or training competence.
+    </p>
+  </div>
+</section>
+
+<!-- PERFORMANCE EXPECTATIONS -->
+<section class="expectations">
+  <div class="section-inner">
+    <div style="text-align:center; position:relative; z-index:1;">
+      <div class="section-tag" style="display:flex; justify-content:center;">Learning Outcomes</div>
+      <h2 class="section-title" style="max-width:520px; margin:0 auto; text-align:center;">What You Will Be Able to Do</h2>
+      <p class="section-sub" style="margin:14px auto 0; text-align:center;">Graduates of the AIET Professional Diploma leave with measurable, career-defining competencies that set them apart.</p>
+    </div>
+    <div class="expect-grid">
+      <div class="expect-card">
+        <div class="expect-num">01</div>
+        <div class="expect-text">
+          <h4>Advanced Teaching &amp; Facilitation</h4>
+          <p>Apply advanced teaching, training, and facilitation techniques with confidence in real and simulated educational and professional settings.</p>
+        </div>
+      </div>
+      <div class="expect-card">
+        <div class="expect-num">02</div>
+        <div class="expect-text">
+          <h4>Design &amp; Deliver Learning Programmes</h4>
+          <p>Plan, design, and deliver structured learning programmes that are engaging, outcome-driven, and appropriate for diverse learner groups.</p>
+        </div>
+      </div>
+      <div class="expect-card">
+        <div class="expect-num">03</div>
+        <div class="expect-text">
+          <h4>Assessment &amp; Learner Evaluation</h4>
+          <p>Assess and evaluate learner performance effectively using a range of assessment methods, tools, and data-informed approaches.</p>
+        </div>
+      </div>
+      <div class="expect-card">
+        <div class="expect-num">04</div>
+        <div class="expect-text">
+          <h4>Inclusive Learning Environment Management</h4>
+          <p>Create, manage, and sustain diverse, inclusive, and supportive learning environments that meet the needs of all learners.</p>
+        </div>
+      </div>
+      <div class="expect-card">
+        <div class="expect-num">05</div>
+        <div class="expect-text">
+          <h4>Professional Competence &amp; Ethics</h4>
+          <p>Demonstrate professional competence, reflective practice, and ethical standards consistent with the demands of the modern education and training sector.</p>
+        </div>
+      </div>
+      <div class="expect-card">
+        <div class="expect-num">06</div>
+        <div class="expect-text">
+          <h4>Independent Thinking &amp; Analysis</h4>
+          <p>Show analytical ability and independent professional judgement in approaching educational challenges, producing well-structured and professional work.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESSION PATHWAYS -->
+<section class="progression">
+  <div class="section-inner">
+    <div style="text-align:center;">
+      <div class="section-tag" style="display:flex; justify-content:center;">Progression Pathways</div>
+      <h2 class="section-title" style="max-width:520px; margin:0 auto; text-align:center;">Where the Diploma Takes You Next</h2>
+      <p class="section-sub" style="margin:14px auto 0; text-align:center;">The Professional Diploma sits at the heart of AIET's academic ladder — build on it or advance to our highest qualification level.</p>
+    </div>
+    <div class="prog-track">
+      <div class="prog-node">
+        <div class="prog-node-icon">📜</div>
+        <h4>Certificate Programme</h4>
+        <p>Foundational level<br>3–12 credits</p>
+      </div>
+      <div class="prog-arrow">→</div>
+      <div class="prog-node active">
+        <div class="prog-node-icon">🎓</div>
+        <h4>Professional Diploma</h4>
+        <p>Intermediate level<br>24–36 credits</p>
+      </div>
+      <div class="prog-arrow">→</div>
+      <div class="prog-node">
+        <div class="prog-node-icon">🏅</div>
+        <h4>Higher / Advanced Diploma</h4>
+        <p>Upper-intermediate credential</p>
+      </div>
+      <div class="prog-arrow">→</div>
+      <div class="prog-node">
+        <div class="prog-node-icon">🌟</div>
+        <h4>Postgraduate Diploma</h4>
+        <p>AIET's highest qualification</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:40px;">
+      <a href="certificate-programs.html" class="btn-outline-navy" style="margin-right:14px;">View Certificate Programs</a>
+      <a href="postgraduate-diploma-in-education-and-training.html" class="btn-navy">Postgraduate Diploma</a>
+    </div>
+  </div>
+</section>
+
+<!-- PULLQUOTE -->
+<div class="pullquote-band">
+  <blockquote>
+    "The Professional Diploma is where knowledge becomes expertise — equipping educators to lead, inspire, and transform the learning environments they serve."
+    <cite>— American Institute of Education and Training</cite>
+  </blockquote>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band-overlay"></div>
+  <div class="cta-band-content">
+    <h2>Ready to Advance Your Career in Education?</h2>
+    <p class="cta-band-quote">"Your Journey to Leadership Starts Here."</p>
+    <p>Join thousands of educators and trainers worldwide who have elevated their careers through AIET's globally recognised Professional Diploma in Education and Training.</p>
+    <div class="cta-btns">
+      <a href="app.html" class="btn-teal">Apply Now</a>
+      <a href="contact-us.html" class="btn-outline-white">Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <img src="assets/icons/logo2.png"
+             onerror="this.src='https://aietglobal.us/wp-content/uploads/2024/01/AIET-Logo-300x174.png'"/>
+      </div>
+      <p>The American Institute of Education and Training — raising formidably well-trained professionals at every level of society through quality education and training programmes.</p>
+      <p class="footer-tagline">"Drive Change. Lead with Purpose."</p>
+      <div class="footer-socials">
+        <a href="https://facebook.com" class="social-btn" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+        </a>
+        <a href="https://linkedin.com" class="social-btn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://x.com" class="social-btn" aria-label="X (Twitter)">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://youtube.com" class="social-btn" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>About AIET</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="institute-overview.html">Institute Overview</a></li>
+        <li><a href="mission-vision.html">Mission &amp; Vision</a></li>
+        <li><a href="objectives.html">Objectives</a></li>
+        <li><a href="#">Directors</a></li>
+        <li><a href="#">Partners</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Qualifications</h4>
+      <ul>
+        <li><a href="certificate-programs.html">Early Child Care &amp; Education</a></li>
+        <li><a href="certificate-programs.html">Nursery Teachers Training</a></li>
+        <li><a href="certificate-programs.html">Pre &amp; Primary Teacher Training</a></li>
+        <li><a href="certificate-programs.html">Montessori Teacher Training</a></li>
+        <li><a href="professional-diploma-in-education-and-training.html">Professional Diploma</a></li>
+        <li><a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="nub.html">New Updates &amp; Blogs</a></li>
+        <li><a href="ss.html">Student Services</a></li>
+        <li><a href="alut.html">Alumni and Testimonials</a></li>
+        <li><a href="faq.html">FAQs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-contact">
+      <h4>Contact</h4>
+      <ul>
+        <li><span>📞</span><a href="tel:+14809550876">+1 (480) 955-0876</a></li>
+        <li><span>✉</span><a href="mailto:info@aietglobal.us">info@aietglobal.us</a></li>
+        <li><span>📍</span>1950 W Corporate Way #15593, Anaheim, CA 92801</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 American Institute of Education and Training. All rights reserved.</p>
+    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+      <a href="pp.html">Privacy Policy</a>
+      <a href="tu.html">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQs – American Institute of Education and Training</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #1B2A6B;
+      --teal:        #1A9B8C;
+      --teal-dark:   #148078;
+      --navy-deep:   #111A42;
+      --offwhite:    #F4F6F9;
+      --body:        #2D2D2D;
+      --muted:       #6B7280;
+      --white:       #FFFFFF;
+      --teal-light:  #e8f7f5;
+      --navy-light:  #eef0f8;
+      --font-head:   'Playfair Display', Georgia, serif;
+      --font-body:   'Source Sans 3', 'Segoe UI', sans-serif;
+      --radius:      12px;
+      --shadow:      0 8px 32px rgba(27,42,107,0.13);
+      --shadow-lg:   0 16px 56px rgba(27,42,107,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--body); background: var(--white); overflow-x: hidden; }
+
+    /* ── TOPBAR ── */
+    .topbar { background: var(--navy-deep); color: rgba(255,255,255,0.75); font-size: 13px; padding: 9px 0; }
+    .topbar .inner { max-width: 1200px; margin: auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+    .topbar a { color: var(--teal); text-decoration: none; transition: color .2s; }
+    .topbar a:hover { color: #4ecdc4; }
+    .topbar .sep { margin: 0 10px; opacity: 0.3; }
+
+    /* ── NAVBAR ── */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--white); box-shadow: 0 2px 16px rgba(27,42,107,0.10); border-bottom: 3px solid var(--teal); }
+    .nav-inner { max-width: 1200px; margin: auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 74px; }
+    .logo img { height: 54px; width: auto; display: block; }
+    .logo-fallback { display: none; font-family: var(--font-head); font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.1; }
+    .logo-fallback span { display: block; font-size: 10px; color: var(--teal); letter-spacing: 1.5px; text-transform: uppercase; font-family: var(--font-body); }
+
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+    .nav-links > li > a { padding: 8px 13px; border-radius: 6px; font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--navy); text-decoration: none; transition: all .2s; white-space: nowrap; }
+    .nav-links > li > a:hover { color: var(--teal-dark); background: var(--teal-light); }
+
+    .dropdown { position: relative; }
+    .dropdown:hover .drop-menu { display: block; }
+    .drop-menu { display: none; position: absolute; top: calc(100% + 3px); left: 0; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg); padding: 8px 0; min-width: 270px; border-top: 3px solid var(--teal); z-index: 200; }
+    .drop-menu a { display: block; padding: 10px 18px; font-size: 13.5px; color: var(--body); font-family: var(--font-body); text-decoration: none; border-left: 3px solid transparent; transition: all .15s; }
+    .drop-menu a:hover { background: var(--teal-light); color: var(--teal-dark); border-left-color: var(--teal); }
+
+    .nav-cta { background: var(--teal) !important; color: var(--white) !important; padding: 9px 20px !important; border-radius: 8px !important; font-weight: 700 !important; }
+    .nav-cta:hover { background: var(--teal-dark) !important; color: var(--white) !important; transform: translateY(-1px); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);
+      padding: 80px 24px 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '?';
+      position: absolute;
+      right: 8%;
+      top: -30px;
+      font-family: var(--font-head);
+      font-size: 340px;
+      color: rgba(255,255,255,0.03);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .page-hero .badge {
+      display: inline-block;
+      background: rgba(26,155,140,0.2);
+      color: #4ecdc4;
+      border: 1px solid rgba(26,155,140,0.4);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 18px;
+      margin-bottom: 20px;
+      font-family: var(--font-body);
+    }
+    .page-hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(30px, 4vw, 50px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .page-hero h1 em { color: #4ecdc4; font-style: italic; }
+    .page-hero p {
+      font-family: var(--font-body);
+      font-size: 17px;
+      color: rgba(255,255,255,0.72);
+      max-width: 600px;
+      margin: 0 auto 32px;
+      line-height: 1.75;
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      background: var(--offwhite);
+      border-bottom: 1px solid #e0e5f0;
+      padding: 13px 24px;
+    }
+    .breadcrumb-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .breadcrumb-inner a { color: var(--teal-dark); text-decoration: none; font-weight: 600; }
+    .breadcrumb-inner a:hover { color: var(--navy); }
+    .breadcrumb-inner span { opacity: 0.4; }
+
+    /* ── SEARCH BAR ── */
+    .search-wrap {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .search-wrap input {
+      width: 100%;
+      padding: 16px 52px 16px 20px;
+      border-radius: 50px;
+      border: none;
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--body);
+      box-shadow: 0 4px 24px rgba(27,42,107,0.18);
+      outline: none;
+    }
+    .search-wrap input::placeholder { color: var(--muted); }
+    .search-wrap button {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--teal);
+      border: none;
+      border-radius: 50px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      transition: background .2s;
+    }
+    .search-wrap button:hover { background: var(--teal-dark); }
+
+    /* ── MAIN LAYOUT ── */
+    .faq-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 64px 24px 80px;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* ── SIDEBAR ── */
+    .faq-sidebar {
+      position: sticky;
+      top: 92px;
+    }
+    .sidebar-title {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+    .sidebar-nav {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sidebar-nav li a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all .2s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar-nav li a:hover,
+    .sidebar-nav li a.active {
+      color: var(--navy);
+      background: var(--teal-light);
+      border-left-color: var(--teal);
+    }
+    .sidebar-nav li a .cat-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .sidebar-count {
+      margin-left: auto;
+      background: var(--navy-light);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 20px;
+      padding: 2px 8px;
+      font-family: var(--font-body);
+    }
+
+    .sidebar-contact {
+      margin-top: 28px;
+      background: var(--navy);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .sidebar-contact h4 {
+      font-family: var(--font-head);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .sidebar-contact p {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .sidebar-contact a {
+      display: block;
+      background: var(--teal);
+      color: var(--white);
+      text-align: center;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .sidebar-contact a:hover { background: var(--teal-dark); }
+
+    /* ── FAQ CONTENT ── */
+    .faq-content { min-width: 0; }
+
+    /* No results message */
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--muted);
+      font-family: var(--font-body);
+    }
+    .no-results .icon { font-size: 48px; margin-bottom: 16px; }
+    .no-results h3 { font-family: var(--font-head); font-size: 22px; color: var(--navy); margin-bottom: 8px; }
+
+    .faq-section-block { margin-bottom: 52px; }
+    .faq-section-block:last-child { margin-bottom: 0; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--navy-light);
+    }
+    .section-label .label-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--teal-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .section-label h2 {
+      font-family: var(--font-head);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .section-label .q-count {
+      margin-left: auto;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal-dark);
+      background: var(--teal-light);
+      border-radius: 20px;
+      padding: 3px 12px;
+      white-space: nowrap;
+    }
+
+    /* ── ACCORDION ── */
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .faq-item {
+      border: 1.5px solid #dce3f0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .faq-item.open {
+      border-color: var(--teal);
+      box-shadow: 0 4px 16px rgba(26,155,140,0.12);
+    }
+    .faq-item.hidden { display: none; }
+
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 22px;
+      cursor: pointer;
+      background: var(--white);
+      transition: background .2s;
+      gap: 16px;
+      user-select: none;
+    }
+    .faq-item.open .faq-q { background: var(--teal-light); }
+    .faq-q:hover { background: var(--offwhite); }
+    .faq-item.open .faq-q:hover { background: var(--teal-light); }
+
+    .faq-q-text {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.45;
+    }
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border-radius: 50%;
+      background: var(--navy-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--navy);
+      transition: all .3s;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .faq-item.open .faq-icon {
+      background: var(--teal);
+      color: var(--white);
+      transform: rotate(45deg);
+    }
+
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+    .faq-item.open .faq-a { max-height: 1000px; }
+
+    .faq-a-inner {
+      padding: 0 22px 20px;
+      border-top: 1px solid rgba(27,42,107,0.07);
+      padding-top: 16px;
+    }
+    .faq-a-inner p {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    .faq-a-inner p:last-child { margin-bottom: 0; }
+    .faq-a-inner ul, .faq-a-inner ol {
+      padding-left: 20px;
+      margin: 8px 0 10px;
+    }
+    .faq-a-inner li {
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 5px;
+    }
+    .faq-a-inner strong { color: var(--navy); }
+    .faq-a-inner .highlight-box {
+      background: var(--teal-light);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin-top: 12px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--teal-dark);
+      font-weight: 600;
+    }
+    .faq-a-inner .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-family: var(--font-body);
+      font-size: 14px;
+    }
+    .faq-a-inner .info-table th {
+      background: var(--navy);
+      color: var(--white);
+      padding: 9px 14px;
+      text-align: left;
+      font-weight: 700;
+    }
+    .faq-a-inner .info-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid #e0e5f0;
+      color: var(--muted);
+    }
+    .faq-a-inner .info-table tr:nth-child(even) td { background: var(--offwhite); }
+
+    /* ── STATS BAND ── */
+    .stats-band {
+      background: var(--navy);
+      padding: 56px 24px;
+      text-align: center;
+    }
+    .stats-band-inner {
+      max-width: 900px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+    .stat-item .num {
+      font-family: var(--font-head);
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .stat-item .lbl {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 6px;
+      letter-spacing: .3px;
+    }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 100%);
+      padding: 64px 24px;
+      text-align: center;
+    }
+    .cta-band h2 {
+      font-family: var(--font-head);
+      font-size: clamp(24px, 3vw, 36px);
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .cta-band p {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 28px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-white {
+      background: var(--white);
+      color: var(--teal-dark);
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      font-family: var(--font-body);
+      transition: all .2s;
+      display: inline-block;
+    }
+    .btn-white:hover { background: var(--offwhite); transform: translateY(-2px); }
+    .btn-outline-white {
+      border: 2px solid rgba(255,255,255,0.6);
+      color: var(--white);
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      font-family: var(--font-body);
+      transition: all .2s;
+      display: inline-block;
+    }
+    .btn-outline-white:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+    /* ── FOOTER ── */
+    footer { background: #060d2e; padding: 64px 24px 0; }
+    .footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; }
+    .footer-logo-wrap { display: inline-block; background: var(--white); border-radius: 10px; padding: 10px 16px; margin-bottom: 18px; }
+    .footer-logo-wrap img { height: 48px; width: auto; display: block; }
+    .footer-brand p { font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 280px; margin-bottom: 20px; }
+    .footer-tagline { font-family: var(--font-head); font-size: 13px; font-style: italic; color: rgba(255,255,255,0.35); margin-bottom: 20px; line-height: 1.5; max-width: 280px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-btn { width: 36px; height: 36px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.55); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all .2s; }
+    .social-btn svg { width: 16px; height: 16px; fill: currentColor; display: block; }
+    .social-btn:hover { border-color: var(--teal); background: var(--teal); color: var(--white); }
+    .footer-col h4 { font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 20px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-contact li { display: flex; gap: 10px; font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.5); }
+    .footer-contact span { color: var(--teal); flex-shrink: 0; }
+    .footer-contact a { color: rgba(255,255,255,0.5); }
+    .footer-bottom { max-width: 1200px; margin: 48px auto 0; padding: 22px 0; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-family: var(--font-body); font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-bottom a { color: rgba(255,255,255,0.45); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--white); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .faq-main { grid-template-columns: 1fr; }
+      .faq-sidebar { position: static; }
+      .sidebar-nav { flex-direction: row; flex-wrap: wrap; gap: 8px; }
+      .sidebar-nav li a { padding: 7px 12px; font-size: 13px; }
+      .stats-band-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 74px; left: 0; right: 0; background: var(--white); box-shadow: var(--shadow); padding: 16px; z-index: 99; gap: 4px; }
+      .drop-menu { position: static; box-shadow: none; border: none; border-top: none; border-left: 3px solid var(--teal); padding: 4px 0 4px 16px; margin: 4px 0; }
+      .stats-band-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; }
+      .page-hero { padding: 56px 24px 52px; }
+    }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .page-hero .badge { animation: fadeUp .5s ease both; }
+    .page-hero h1 { animation: fadeUp .55s .08s ease both; }
+    .page-hero p { animation: fadeUp .55s .16s ease both; }
+    .page-hero .search-wrap { animation: fadeUp .55s .24s ease both; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/icons/logo2.png"
+           onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block'"/>
+      <div class="logo-fallback">AIET <span>American Institute of Education &amp; Training</span></div>
+    </a>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="#">About AIET ▾</a>
+        <div class="drop-menu">
+          <a href="institute-overview.html">Institute Overview</a>
+          <a href="mission-vision.html">Mission &amp; Vision</a>
+          <a href="objectives.html">Objectives</a>
+          <a href="cv.html">Core Values</a>
+          <a href="lsr.html">Legal Status and Recognition</a>
+          <a href="#">Country Directors</a>
+          <a href="#">Partners</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Qualifications ▾</a>
+        <div class="drop-menu">
+          <a href="certificate-programs.html">Certificate Programs</a>
+          <a href="professional-diploma-in-education-and-training.html">Professional Diploma in Education</a>
+          <a href="adv.html">Advanced Diploma in Education</a>
+          <a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma in Education</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Resources &amp; Insight ▾</a>
+        <div class="drop-menu">
+          <a href="ss.html">Student Services</a>
+          <a href="certv.html">Certification Verification Guidelines</a>
+          <a href="alut.html">Alumni &amp; Testimonials</a>
+          <a href="nub.html">News Updates &amp; Blogs</a>
+        </div>
+      </li>
+      <li><a href="app.html" class="nav-cta">Application Portal</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="badge">Help &amp; Support</div>
+  <h1>Frequently Asked <em>Questions</em></h1>
+  <p>Everything you need to know about AIET programs, admissions, fees, certification, and more. Can't find what you're looking for? Our team is always ready to help.</p>
+  <div class="search-wrap">
+    <input type="text" id="faqSearch" placeholder="Search questions e.g. 'admission requirements', 'certificate verification'…" oninput="filterFAQ(this.value)"/>
+    <button type="button" aria-label="Search">&#8981;</button>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a>
+    <span>›</span>
+    <a href="ss.html">Resources &amp; Insight</a>
+    <span>›</span>
+    <span style="color:var(--navy); font-weight:600;">FAQs</span>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="faq-main">
+
+  <!-- SIDEBAR -->
+  <aside class="faq-sidebar">
+    <div class="sidebar-title">Browse by Category</div>
+    <ul class="sidebar-nav">
+      <li><a href="#general" class="active"><span class="cat-icon">🏫</span> General Information <span class="sidebar-count">5</span></a></li>
+      <li><a href="#admissions"><span class="cat-icon">📋</span> Admissions <span class="sidebar-count">6</span></a></li>
+      <li><a href="#programs"><span class="cat-icon">🎓</span> Programs &amp; Study Mode <span class="sidebar-count">6</span></a></li>
+      <li><a href="#assessment"><span class="cat-icon">📝</span> Assessment &amp; Grading <span class="sidebar-count">5</span></a></li>
+      <li><a href="#certification"><span class="cat-icon">🏅</span> Certification <span class="sidebar-count">5</span></a></li>
+      <li><a href="#accreditation"><span class="cat-icon">⚖️</span> Accreditation &amp; Recognition <span class="sidebar-count">4</span></a></li>
+      <li><a href="#fees"><span class="cat-icon">💳</span> Fees &amp; Payments <span class="sidebar-count">4</span></a></li>
+      <li><a href="#support"><span class="cat-icon">🛠</span> Student Support <span class="sidebar-count">5</span></a></li>
+      <li><a href="#career"><span class="cat-icon">🚀</span> Career &amp; Progression <span class="sidebar-count">4</span></a></li>
+      <li><a href="#policies"><span class="cat-icon">📜</span> Policies &amp; Conduct <span class="sidebar-count">4</span></a></li>
+    </ul>
+
+    <div class="sidebar-contact">
+      <h4>Still have questions?</h4>
+      <p>Our team is available to provide personalised assistance for any inquiry not covered here.</p>
+      <a href="contact-us.html">Contact Us</a>
+    </div>
+  </aside>
+
+  <!-- FAQ CONTENT -->
+  <div class="faq-content">
+
+    <div class="no-results" id="noResults">
+      <div class="icon">🔍</div>
+      <h3>No results found</h3>
+      <p>Try different keywords or <a href="contact-us.html" style="color:var(--teal-dark);font-weight:700;">contact us</a> directly.</p>
+    </div>
+
+    <!-- ── GENERAL INFORMATION ── -->
+    <div class="faq-section-block" id="general">
+      <div class="section-label">
+        <div class="label-icon">🏫</div>
+        <h2>General Information</h2>
+        <span class="q-count">5 Questions</span>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What is the American Institute of Education and Training (AIET)?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>The <strong>American Institute of Education and Training (AIET)</strong> is a United States-based educational and professional training institution dedicated to delivering high-quality, flexible, and career-oriented learning opportunities to a diverse global population. Established to bridge the gap between academic knowledge and practical workforce skills, AIET serves as a platform for individuals seeking to enhance their competencies, advance their careers, and adapt to the evolving demands of the modern workplace.</p>
+            <p>AIET is legally registered in the United States and recognized by the <strong>Secretary of State of Arizona</strong> as a duly registered entity authorized to operate. The institute specializes in Certificate, Diploma, Higher/Advanced Diploma, and Postgraduate Diploma programs focused on education and training.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Where is AIET based and where does it operate?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET is registered in the United States with its official registered address at <strong>1950 W Corporate Way #15593, Anaheim, CA 92801</strong>. As an online and distance learning institution, AIET operates <strong>globally</strong> — welcoming students from all countries across Africa, Asia, Europe, the Americas, and beyond.</p>
+            <p>There is no geographic restriction on enrollment. All programs are delivered digitally, so students can study from anywhere in the world with an internet connection.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What types of programs does AIET offer?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET offers a comprehensive suite of professional qualifications structured as a progressive learning pathway:</p>
+            <table class="info-table">
+              <tr><th>Level</th><th>Duration</th><th>Credits</th></tr>
+              <tr><td><strong>Certificate Programs</strong></td><td>4 weeks – 6 months</td><td>3 – 12 credits</td></tr>
+              <tr><td><strong>Diploma Programs</strong></td><td>6 – 12 months</td><td>24 – 36 credits</td></tr>
+              <tr><td><strong>Higher/Advanced Diploma</strong></td><td>9 – 18 months</td><td>36 – 60 credits</td></tr>
+              <tr><td><strong>Postgraduate Diploma</strong></td><td>12 – 24 months</td><td>60 – 90 credits</td></tr>
+            </table>
+            <p style="margin-top:12px;">All programs are concentrated in the field of <strong>education and training</strong>, spanning areas such as Early Childhood Education, Teacher Training, Educational Leadership, Special Needs Education, Educational Technology, STEM Education, and many more — with over 150 specialization options across all levels.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What is AIET's teaching philosophy and approach?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET operates on a <strong>learner-centered educational model</strong> with a strong emphasis on practical, applied learning. The institute integrates core educational theories with real-world case studies, project-based assignments, and industry-relevant scenarios to ensure students develop skills they can immediately use in their professional environments.</p>
+            <p>AIET's eight core values guide all aspects of its operations:</p>
+            <ul>
+              <li><strong>Excellence</strong> — Highest academic and service standards</li>
+              <li><strong>Integrity</strong> — Honesty, fairness, and ethical conduct</li>
+              <li><strong>Innovation</strong> — Modern technology and creative teaching</li>
+              <li><strong>Student-Centered Learning</strong> — Students at the heart of everything</li>
+              <li><strong>Diversity &amp; Inclusion</strong> — Equal opportunity for all backgrounds</li>
+              <li><strong>Professionalism</strong> — Discipline, responsibility, ethical behavior</li>
+              <li><strong>Lifelong Learning</strong> — Continuous personal and professional growth</li>
+              <li><strong>Global Perspective</strong> — Cross-cultural awareness and adaptability</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How do I contact AIET?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>You can reach AIET through the following channels:</p>
+            <ul>
+              <li>📞 <strong>Phone:</strong> <a href="tel:+14809550876" style="color:var(--teal-dark);font-weight:600;">+1 (480) 955-0876</a></li>
+              <li>✉️ <strong>General Enquiries:</strong> <a href="mailto:info@aietglobal.us" style="color:var(--teal-dark);font-weight:600;">info@aietglobal.us</a></li>
+              <li>🏅 <strong>Certificate Verification:</strong> <a href="mailto:verifycertificate@aietglobal.us" style="color:var(--teal-dark);font-weight:600;">verifycertificate@aietglobal.us</a></li>
+              <li>🌐 <strong>Contact Form:</strong> Available on the official website</li>
+            </ul>
+            <div class="highlight-box">Our team is available during business hours to respond to inquiries. For verification requests, allow 2–5 working days for processing.</div>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── ADMISSIONS ── -->
+    <div class="faq-section-block" id="admissions">
+      <div class="section-label">
+        <div class="label-icon">📋</div>
+        <h2>Admissions</h2>
+        <span class="q-count">6 Questions</span>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What are the general admission requirements?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Admission requirements vary by program level:</p>
+            <table class="info-table">
+              <tr><th>Program Level</th><th>Minimum Requirement</th></tr>
+              <tr><td>Certificate</td><td>High school diploma or equivalent; basic English proficiency</td></tr>
+              <tr><td>Diploma</td><td>High school diploma or equivalent; or AIET Certificate completion</td></tr>
+              <tr><td>Higher/Advanced Diploma</td><td>Diploma in Education or related qualification; or equivalent professional experience</td></tr>
+              <tr><td>Postgraduate Diploma</td><td>Higher/Advanced Diploma, Bachelor's degree, or recognized professional qualification with extensive experience</td></tr>
+            </table>
+            <p style="margin-top:12px;">AIET also recognizes <strong>Recognition of Prior Learning (RPL)</strong> for the Postgraduate Diploma, allowing experienced professionals without formal qualifications to be considered based on professional achievements and competencies.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Is there an age requirement for admission?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Applicants are generally expected to be at least <strong>16 years old</strong> for Certificate programs. Higher-level programs (Diploma, Higher Diploma, Postgraduate Diploma) typically require older applicants with appropriate academic backgrounds or relevant professional experience.</p>
+            <p>Applications may be assessed on a case-by-case basis for applicants who do not meet the standard age or qualification criteria but demonstrate strong professional experience and readiness.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How do I apply and what documents do I need?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>The application process is straightforward and fully online:</p>
+            <ol>
+              <li>Visit the <strong>Application Portal</strong> on the AIET website</li>
+              <li>Complete and submit the online application form</li>
+              <li>Upload required supporting documents (academic certificates, ID, etc.)</li>
+              <li>Make the necessary program payment to confirm enrollment</li>
+              <li>Receive your enrollment confirmation and access credentials</li>
+            </ol>
+            <div class="highlight-box">📎 Documents typically required include copies of prior academic certificates, a valid government-issued ID, and any relevant professional certificates for advanced programs.</div>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Can I apply from outside the United States?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p><strong>Yes, absolutely.</strong> AIET is a fully online institution and proudly accepts students from <strong>all countries worldwide</strong>. There are no geographic restrictions on enrollment. AIET actively serves students across Africa, Asia, Europe, the Middle East, and the Americas.</p>
+            <p>All learning materials, assessments, and communications are delivered digitally, making it easy to study from any location with a reliable internet connection.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Can I enroll without a teaching background?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Yes. For <strong>Certificate and Diploma programs</strong>, prior teaching or training experience is <em>not required</em> but may be an added advantage. These programs are specifically designed for:</p>
+            <ul>
+              <li>Aspiring teachers and educators entering the profession for the first time</li>
+              <li>Teaching assistants and education support personnel</li>
+              <li>Professionals transitioning into the education sector from other industries</li>
+              <li>Individuals pursuing continuous professional development</li>
+            </ul>
+            <p>For <strong>Higher/Advanced Diploma and Postgraduate Diploma</strong> programs, relevant professional experience in education or training is strongly recommended.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Is there a language requirement?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>All AIET programs are delivered <strong>in English</strong>. Applicants are required to demonstrate basic proficiency in English for Certificate programs and progressively higher levels of English competency for Diploma and Postgraduate Diploma programs.</p>
+            <p>For the Postgraduate Diploma, applicants must demonstrate <strong>academic English proficiency</strong>, including the ability to read, write, and critically engage with academic literature and produce scholarly work in English.</p>
+            <p>Formal English proficiency tests (such as IELTS or TOEFL) are not currently mandated, but the ability to successfully complete coursework in English is essential.</p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── PROGRAMS & STUDY MODE ── -->
+    <div class="faq-section-block" id="programs">
+      <div class="section-label">
+        <div class="label-icon">🎓</div>
+        <h2>Programs &amp; Study Mode</h2>
+        <span class="q-count">6 Questions</span>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How are AIET programs delivered?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET programs are delivered through flexible, technology-driven formats that accommodate learners in different situations:</p>
+            <ul>
+              <li><strong>Online Learning:</strong> Fully remote access to lectures, study materials, and assessments via the digital platform</li>
+              <li><strong>Blended Learning:</strong> Combination of online learning with structured academic guidance and support</li>
+              <li><strong>Guided Learning:</strong> Instructor-led sessions, mentoring, and academic supervision</li>
+              <li><strong>Self-Paced Learning:</strong> Flexible study within defined completion timelines</li>
+            </ul>
+            <p>Students have <strong>24/7 access</strong> to all course materials, allowing them to study anytime and anywhere at their own convenience.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How long does it take to complete a program?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Program durations vary by level and specialization:</p>
+            <table class="info-table">
+              <tr><th>Program Level</th><th>Standard Duration</th><th>Maximum Duration</th></tr>
+              <tr><td>Certificate (Short)</td><td>4 – 6 weeks</td><td>—</td></tr>
+              <tr><td>Certificate (Standard)</td><td>8 – 12 weeks</td><td>—</td></tr>
+              <tr><td>Certificate (Extended)</td><td>3 – 6 months</td><td>—</td></tr>
+              <tr><td>Diploma</td><td>6 – 9 months</td><td>12 months</td></tr>
+              <tr><td>Higher/Advanced Diploma</td><td>9 – 12 months</td><td>18 months</td></tr>
+              <tr><td>Postgraduate Diploma</td><td>12 – 18 months</td><td>24 months</td></tr>
+            </table>
+            <p style="margin-top:12px;">AIET's flexible model allows students to study at their own pace within these defined timelines, making it easy to balance education with work and personal commitments.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How many specializations are available and how do I choose one?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET offers <strong>over 150 specialization options</strong> across all program levels, organized into the following broad categories:</p>
+            <ul>
+              <li>General Education and Training</li>
+              <li>Early Childhood Education and Care</li>
+              <li>Teacher Training and Pedagogy</li>
+              <li>Educational Leadership and Administration</li>
+              <li>Curriculum and Instructional Design</li>
+              <li>Special Needs and Inclusive Education</li>
+              <li>Educational Technology and E-Learning</li>
+              <li>Educational Psychology and Counseling</li>
+              <li>Adult and Continuing Education</li>
+              <li>Language Education and Literacy</li>
+              <li>STEM Education and Innovation</li>
+              <li>Assessment, Testing, and Evaluation</li>
+              <li>Training and Development (Professional Education)</li>
+              <li>Education Policy and Global Education</li>
+            </ul>
+            <p>Choose a specialization aligned with your current career, teaching subject area, or professional aspirations. If you are unsure, contact our admissions team for personalized guidance.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Can I study while working full-time?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p><strong>Yes.</strong> AIET programs are specifically designed with working professionals in mind. The self-paced and flexible study options allow you to manage your studies around your employment schedule. You can:</p>
+            <ul>
+              <li>Access all materials at any time — morning, evening, or weekends</li>
+              <li>Set your own study pace within the allowed program timeline</li>
+              <li>Complete assignments and assessments at your convenience</li>
+            </ul>
+            <p>Many AIET graduates have successfully completed their programs while working full-time in schools, corporate training environments, and other professional settings.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Can I progress from one qualification level to a higher one?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Yes. AIET programs are designed to be <strong>progressive and stackable</strong>, forming a clear academic and professional pathway:</p>
+            <ul>
+              <li><strong>Certificate</strong> → Diploma in Education and Training</li>
+              <li><strong>Diploma</strong> → Higher/Advanced Diploma Programs</li>
+              <li><strong>Higher/Advanced Diploma</strong> → Postgraduate Diploma Programs</li>
+              <li><strong>Postgraduate Diploma</strong> → Master's Degree Programs (at partner institutions)</li>
+            </ul>
+            <p>This progressive structure ensures that your qualifications build meaningfully on each other, supporting continuous career and academic advancement.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What technology or equipment do I need to study online?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>To study with AIET, you will need:</p>
+            <ul>
+              <li>A <strong>computer, laptop, tablet, or smartphone</strong></li>
+              <li>A reliable <strong>internet connection</strong></li>
+              <li><strong>Basic digital literacy</strong> — ability to navigate online platforms, submit documents, and communicate via email</li>
+            </ul>
+            <p>No specialist software is required. All course materials are accessible through AIET's online learning platform. Technical support is available if you encounter any access or platform issues.</p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── ASSESSMENT & GRADING ── -->
+    <div class="faq-section-block" id="assessment">
+      <div class="section-label">
+        <div class="label-icon">📝</div>
+        <h2>Assessment &amp; Grading</h2>
+        <span class="q-count">5 Questions</span>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How are students assessed at AIET?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Assessment varies by program level and is designed to be comprehensive, continuous, and competency-based:</p>
+            <table class="info-table">
+              <tr><th>Component</th><th>Certificate</th><th>Diploma / Higher Diploma</th><th>Postgraduate Diploma</th></tr>
+              <tr><td>Continuous Assessment</td><td>40%</td><td>30%</td><td>20%</td></tr>
+              <tr><td>Practical / Applied Project</td><td>40%</td><td>40%</td><td>30%</td></tr>
+              <tr><td>Final Assessment / Thesis</td><td>20%</td><td>30%</td><td>50%</td></tr>
+            </table>
+            <p style="margin-top:12px;">Assessment methods include written assignments, case studies, lesson planning tasks, projects, research work, reflective journals, and final examinations or dissertation defense (Postgraduate level).</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What grading system does AIET use?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET uses the following standard grading classification across all program levels:</p>
+            <table class="info-table">
+              <tr><th>Score Range</th><th>Grade</th><th>Classification</th></tr>
+              <tr><td>70% – 100%</td><td>A</td><td><strong>Distinction</strong></td></tr>
+              <tr><td>60% – 69%</td><td>B</td><td><strong>Merit</strong></td></tr>
+              <tr><td>50% – 59%</td><td>C</td><td><strong>Pass</strong></td></tr>
+              <tr><td>Below 50%</td><td>F</td><td><strong>Fail</strong></td></tr>
+            </table>
+            <p style="margin-top:12px;">Final certificates and diplomas are issued with the classification earned: <em>with Distinction</em>, <em>with Merit</em>, or <em>Pass</em>.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What is the minimum score required to pass a program?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>To successfully complete any AIET program, students must achieve a minimum overall grade of <strong>Pass (C) — 50% or above</strong> across all assessments and modules.</p>
+            <p>For Postgraduate Diploma programs specifically, students must also:</p>
+            <ul>
+              <li>Achieve at least a Pass (C) in all individual modules</li>
+              <li>Successfully complete and submit the mandatory <strong>dissertation or major research project</strong></li>
+              <li>Demonstrate advanced professional and academic competence</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What happens if I fail an assessment or module?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Students who do not meet the required standards are given opportunities to improve their performance through AIET's reassessment policy:</p>
+            <ul>
+              <li><strong>Resubmit assignments</strong> — submit revised or improved work</li>
+              <li><strong>Retake assessments</strong> — undertake a second attempt at tests or examinations</li>
+              <li><strong>Revise and resubmit research projects</strong> — applicable at Higher Diploma and Postgraduate level</li>
+            </ul>
+            <p>All reassessment opportunities are subject to institutional policies and applicable timelines. Students are encouraged to seek academic support before and after assessments to maximize their chances of success.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Will I receive feedback on my assignments?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p><strong>Yes.</strong> AIET is committed to providing meaningful, constructive feedback throughout your studies. Students receive:</p>
+            <ul>
+              <li>Personalized feedback on submitted assignments and coursework</li>
+              <li>Guidance on areas of strength and areas for improvement</li>
+              <li>Continuous monitoring of academic progress</li>
+              <li>Instructor support for understanding assessment criteria and expectations</li>
+            </ul>
+            <p>Postgraduate Diploma students also receive supervision and mentoring on their research and dissertation projects from qualified academic supervisors.</p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── CERTIFICATION ── -->
+    <div class="faq-section-block" id="certification">
+      <div class="section-label">
+        <div class="label-icon">🏅</div>
+        <h2>Certification &amp; Verification</h2>
+        <span class="q-count">5 Questions</span>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What certificate or award will I receive upon completion?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Upon successfully completing all program requirements, you will be awarded an official <strong>AIET certificate or diploma</strong> in your chosen area of specialization. The certificate will clearly state:</p>
+            <ul>
+              <li>Your full name</li>
+              <li>The specific qualification earned (e.g., <em>Diploma in Educational Leadership</em>)</li>
+              <li>The level of the award (Certificate / Diploma / Higher Diploma / Postgraduate Diploma)</li>
+              <li>Your classification (Distinction / Merit / Pass)</li>
+              <li>Date of completion and award</li>
+              <li>Authorized institutional signatures and official branding</li>
+              <li>A unique <strong>Certificate Identification Number</strong> for verification</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Can my certificate be verified by an employer or institution?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p><strong>Yes.</strong> AIET provides a structured <strong>manual certificate verification system</strong> to allow employers, academic institutions, professional bodies, government agencies, and recruitment firms to confirm the authenticity and validity of any AIET-issued certificate.</p>
+            <p>To request verification, contact AIET at: <a href="mailto:verifycertificate@aietglobal.us" style="color:var(--teal-dark);font-weight:600;">verifycertificate@aietglobal.us</a></p>
+            <p>Include the following in your request:</p>
+            <ul>
+              <li>Full name of the certificate holder (as it appears on the certificate)</li>
+              <li>Certificate Identification Number (if available)</li>
+              <li>Title and level of the program completed</li>
+              <li>Year or date of completion</li>
+              <li>Purpose of the verification request</li>
+            </ul>
+            <div class="highlight-box">Standard processing time: 2–5 working days. AIET is also developing a future digital/QR code-based verification platform for instant online validation.</div>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What happens if a certificate is found to be fraudulent or altered?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET takes academic fraud extremely seriously. Any form of tampering, alteration, or falsification of an AIET certificate renders it <strong>automatically invalid</strong>.</p>
+            <p>If a fraudulent or altered certificate is suspected, it should be reported immediately to <a href="mailto:verifycertificate@aietglobal.us" style="color:var(--teal-dark);font-weight:600;">verifycertificate@aietglobal.us</a> with all relevant supporting details. AIET will:</p>
+            <ul>
+              <li>Investigate the reported case thoroughly</li>
+              <li>Invalidate the certificate if fraud is confirmed</li>
+              <li>Take appropriate administrative or legal action where applicable</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Can I access my academic records after graduation?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Yes. AIET provides students with access to their academic records and transcripts where applicable. After graduation, you can contact AIET to request:</p>
+            <ul>
+              <li>Official transcripts of your academic performance</li>
+              <li>Confirmation letters for employers or institutions</li>
+              <li>Certificate verification support for job applications or further study admissions</li>
+            </ul>
+            <p>All records are handled securely and confidentially in line with applicable data protection standards.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Does verification of my certificate guarantee employment or university admission?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Certificate verification confirms the <strong>authenticity</strong> of your AIET qualification only. It is important to note that:</p>
+            <ul>
+              <li>Verification does <em>not</em> guarantee employment or job placement</li>
+              <li>Verification does <em>not</em> automatically grant professional licensing</li>
+              <li>Verification does <em>not</em> replace independent evaluation by employers or institutions</li>
+              <li>Recognition of qualifications may vary depending on country, employer, or regulatory body</li>
+            </ul>
+            <p>Prospective students are encouraged to verify how AIET qualifications align with their specific career or academic goals before enrolling, especially if they intend to use the qualification for regulated professions.</p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── ACCREDITATION ── -->
+    <div class="faq-section-block" id="accreditation">
+      <div class="section-label">
+        <div class="label-icon">⚖️</div>
+        <h2>Accreditation &amp; Recognition</h2>
+        <span class="q-count">4 Questions</span>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Is AIET accredited?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET is a <strong>legally registered educational institution</strong> in the United States, recognized by the <strong>Secretary of State of Arizona</strong> as a duly registered entity authorized to operate and provide education and training services.</p>
+            <p>It is important to note that this registration confirms <strong>legal establishment and authorization to operate</strong> — it is not the same as academic accreditation by a government-recognized accrediting agency. AIET operates as an <strong>independent provider</strong> of education and professional training.</p>
+            <p>AIET does not claim degree-granting authority as a university. Its programs are professional-level qualifications designed to support career development and skills enhancement.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Are AIET qualifications recognized internationally?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET programs are developed using <strong>recognized academic frameworks and international best practices</strong> in education and training, and are designed to meet international standards. However, formal recognition may vary depending on the country, employer, or institution.</p>
+            <div class="highlight-box">⚠️ Prospective students are strongly advised to verify the recognition requirements within their local jurisdiction or professional body before enrolling, especially if they intend to use the qualification for regulated professions or government employment.</div>
+            <p>AIET is actively pursuing additional partnerships, affiliations, and recognition opportunities to strengthen the global standing of its qualifications.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Can I use an AIET qualification to pursue further university studies?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>This depends on the requirements of the receiving institution. While the Postgraduate Diploma is positioned as a bridge to Master's-level study, whether a specific university will recognize it for direct entry into a degree program is entirely at that institution's discretion.</p>
+            <p>Students intending to use AIET qualifications for progression into degree programs at accredited universities are <strong>strongly advised to verify admission requirements</strong> of those institutions before enrolling with AIET.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How does AIET ensure quality in its programs?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET maintains a robust <strong>internal quality assurance system</strong> that ensures consistency, credibility, and continuous improvement. This includes:</p>
+            <ul>
+              <li>Systematic curriculum design and periodic review</li>
+              <li>Clearly defined learning outcomes and competencies per program</li>
+              <li>Standardized assessment frameworks and grading systems</li>
+              <li>Continuous monitoring of teaching and learning effectiveness</li>
+              <li>Regular updates to reflect current trends and industry needs</li>
+              <li>Integration of student feedback into program improvement</li>
+              <li>Strict academic integrity and plagiarism prevention policies</li>
+            </ul>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── FEES & PAYMENTS ── -->
+    <div class="faq-section-block" id="fees">
+      <div class="section-label">
+        <div class="label-icon">💳</div>
+        <h2>Fees &amp; Payments</h2>
+        <span class="q-count">4 Questions</span>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How much do AIET programs cost?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Program fees vary depending on the level, duration, and specialization of the course. Detailed and up-to-date fee information is provided on the AIET official website and within the Application Portal.</p>
+            <p>For specific fee enquiries, please contact AIET directly at <a href="mailto:info@aietglobal.us" style="color:var(--teal-dark);font-weight:600;">info@aietglobal.us</a> or call <a href="tel:+14809550876" style="color:var(--teal-dark);font-weight:600;">+1 (480) 955-0876</a>.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Are payment plans or installments available?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Flexible payment options may be available for selected programs. AIET recognizes that learners come from diverse financial backgrounds and aims to make its programs accessible. Contact the admissions team to enquire about available payment arrangements for your chosen program.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What is the refund policy if I withdraw or change my mind?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET's refund policy is designed to be fair and transparent:</p>
+            <ul>
+              <li><strong>Full refund</strong> — available within a limited period if no course content has been accessed</li>
+              <li><strong>Partial refund</strong> — may be available under certain conditions depending on how much of the program has been accessed</li>
+              <li><strong>No refund</strong> — after significant program completion, subject to institutional guidelines</li>
+            </ul>
+            <p>Refund eligibility depends on the specific circumstances of the withdrawal and the refund policy applicable to your program. Students are advised to review the refund policy carefully before enrolling and contact AIET for clarification if needed.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What payment methods are accepted?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Payment methods and accepted currencies are detailed on the AIET Application Portal and official website. As AIET serves a global student base, it accommodates a range of payment options to make enrollment accessible from different countries.</p>
+            <p>For specific payment method enquiries, contact the AIET support team at <a href="mailto:info@aietglobal.us" style="color:var(--teal-dark);font-weight:600;">info@aietglobal.us</a>.</p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── STUDENT SUPPORT ── -->
+    <div class="faq-section-block" id="support">
+      <div class="section-label">
+        <div class="label-icon">🛠</div>
+        <h2>Student Support</h2>
+        <span class="q-count">5 Questions</span>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What academic support is available to students?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET provides comprehensive academic support to ensure every student succeeds in their studies:</p>
+            <ul>
+              <li>Access to <strong>qualified instructors, tutors, and academic mentors</strong></li>
+              <li>Guidance on course content, assignments, and assessments</li>
+              <li>Support in <strong>academic writing, referencing, and research skills</strong></li>
+              <li>Personalized and constructive feedback on submitted work</li>
+              <li>Clear communication of course expectations and learning outcomes</li>
+              <li>Dedicated <strong>academic supervisors</strong> for research projects (Postgraduate level)</li>
+            </ul>
+            <p>AIET ensures that no student is learning in isolation — guidance and support are available at every stage of the journey.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Can I communicate directly with my instructors?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p><strong>Yes.</strong> Students can communicate with instructors and academic staff through AIET's online learning platforms. This includes:</p>
+            <ul>
+              <li>Messaging and email communication with instructors</li>
+              <li>Participation in academic discussions and forums</li>
+              <li>Opportunities for guided learning interactions and Q&amp;A</li>
+              <li>Feedback exchanges on submitted assignments and projects</li>
+            </ul>
+            <p>This structured interaction ensures that students receive timely guidance and feel connected to their learning community throughout their program.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What happens if I have technical difficulties with the platform?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET provides dedicated <strong>technical support</strong> to ensure a smooth and uninterrupted learning experience. Technical support includes:</p>
+            <ul>
+              <li>Assistance with login access and platform navigation</li>
+              <li>Troubleshooting course access and content display issues</li>
+              <li>Guidance on using digital tools and learning systems</li>
+              <li>Support with assignment and assessment submission</li>
+            </ul>
+            <p>Contact AIET via email or the official support channel to report technical issues. The team will work promptly to resolve any barriers to your learning.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Are there engagement activities or networking opportunities for students?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Yes. AIET promotes an interactive and engaging learning environment even within a fully online framework. Students can participate in:</p>
+            <ul>
+              <li>Virtual workshops and professional development training sessions</li>
+              <li>Webinars led by academic and industry professionals</li>
+              <li>Guest lectures and expert discussions</li>
+              <li>Academic discussions, forums, and peer interaction</li>
+              <li>Special networking and professional development events</li>
+            </ul>
+            <p>These activities are designed to help students expand their professional networks, stay current with industry developments, and engage with a vibrant global academic community.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Do I remain connected to AIET after graduation?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Yes. AIET actively encourages ongoing alumni engagement. After graduation, you become part of a <strong>growing global alumni network</strong> with access to:</p>
+            <ul>
+              <li>Continued access to learning updates and resources</li>
+              <li>Opportunities to participate in academic and professional activities</li>
+              <li>Inclusion in the expanding AIET alumni community</li>
+              <li>Career tips, industry insights, and professional growth guidance</li>
+            </ul>
+            <p>At AIET, graduation is not the end — it is the beginning of continued professional growth, development, and impact.</p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── CAREER & PROGRESSION ── -->
+    <div class="faq-section-block" id="career">
+      <div class="section-label">
+        <div class="label-icon">🚀</div>
+        <h2>Career &amp; Progression</h2>
+        <span class="q-count">4 Questions</span>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Will an AIET qualification help advance my career?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET programs are designed with career advancement as a primary objective. They are structured to:</p>
+            <ul>
+              <li><strong>Enhance professional skills</strong> directly applicable to education and training roles</li>
+              <li><strong>Support career development</strong> through practical and industry-relevant learning</li>
+              <li><strong>Improve job performance</strong> by deepening expertise in specialized areas</li>
+              <li>Open doors to <strong>leadership and senior roles</strong> in educational institutions and corporate training environments</li>
+            </ul>
+            <p>Our alumni have gone on to enhance their teaching capabilities, transition into education roles, earn promotions, and take on leadership and administrative positions.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What career roles can AIET graduates pursue?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Depending on the level and specialization of qualification, AIET graduates are prepared for a wide range of professional roles, including:</p>
+            <ul>
+              <li>Classroom Teacher / Subject Specialist</li>
+              <li>Early Childhood Educator / Nursery/Montessori Teacher</li>
+              <li>School Administrator / Academic Coordinator</li>
+              <li>Education Manager or Director</li>
+              <li>Corporate Trainer / Learning &amp; Development Officer</li>
+              <li>Curriculum Designer / Instructional Developer</li>
+              <li>Special Education Teacher / Inclusion Specialist</li>
+              <li>Education Consultant / Policy Analyst</li>
+              <li>Online Educator / E-Learning Specialist</li>
+              <li>Researcher / Academic Practitioner</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Does AIET provide job placement services?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET does <strong>not guarantee or provide direct job placement</strong>. However, AIET programs are specifically designed to equip graduates with the <strong>skills, knowledge, and qualifications</strong> that are directly relevant to the education and training marketplace.</p>
+            <p>Students also benefit from career-oriented content including career tips for educators, employability guidance, industry trends, and professional growth strategies through the News, Updates &amp; Blog section.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Can I progress to a Master's degree after completing the Postgraduate Diploma?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>The Postgraduate Diploma is designed as a <strong>bridge between professional qualifications and advanced academic study</strong>, positioning graduates for Master's-level education. However, admission into a Master's program at a specific university is entirely at that institution's discretion and depends on their individual entry requirements.</p>
+            <p>AIET encourages Postgraduate Diploma graduates seeking Master's admission to verify the entry requirements of their target institution and present their AIET qualification and portfolio accordingly. Students intending this pathway are advised to clarify this before enrolling.</p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── POLICIES & CONDUCT ── -->
+    <div class="faq-section-block" id="policies">
+      <div class="section-label">
+        <div class="label-icon">📜</div>
+        <h2>Policies &amp; Conduct</h2>
+        <span class="q-count">4 Questions</span>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What is AIET's academic integrity policy?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET upholds strict standards of <strong>academic integrity</strong> across all programs. All students are required to:</p>
+            <ul>
+              <li>Submit <strong>original and authentic work</strong> — work must be the student's own</li>
+              <li>Avoid <strong>plagiarism</strong> in all forms — including copying, paraphrasing without attribution, and submitting work done by others</li>
+              <li>Follow <strong>ethical academic and research practices</strong> including proper referencing and citation</li>
+              <li>Adhere to the institutional <strong>Code of Conduct</strong> in all interactions</li>
+            </ul>
+            <p>Violations of academic integrity may result in serious penalties, including <strong>failure of the module or program</strong>, and in serious cases, disqualification from the institute.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What is the withdrawal policy if I need to leave a program?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Students who need to withdraw from a program may do so by formally notifying AIET. Refund eligibility upon withdrawal depends on the applicable <strong>refund policy</strong> at the time of withdrawal and how much of the program has been accessed or completed.</p>
+            <p>Students considering withdrawal are encouraged to first contact AIET's student support team to explore alternative options such as a program deferral or pause before making a final decision.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How does AIET handle student data and privacy?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET is committed to safeguarding all personal and academic data. Key data protection commitments include:</p>
+            <ul>
+              <li>All student data is handled <strong>securely and confidentially</strong></li>
+              <li>Personal information is not shared beyond the scope of academic administration and verification</li>
+              <li>Certificate verification requests are processed in a controlled and secure manner</li>
+              <li>Data is handled in line with <strong>applicable data protection standards</strong></li>
+            </ul>
+            <p>For full details, refer to AIET's <a href="pp.html" style="color:var(--teal-dark);font-weight:600;">Privacy Policy</a>.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How can I provide feedback about my learning experience?</span>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>AIET values and actively seeks student feedback as a core part of its <strong>continuous quality improvement</strong> process. Students are provided with:</p>
+            <ul>
+              <li>Structured opportunities to provide feedback on programs and services</li>
+              <li>Channels to raise concerns or suggestions directly to the institution</li>
+            </ul>
+            <p>All feedback is taken seriously and feeds directly into the regular review and enhancement of AIET's academic programs and support services. Your experience matters and helps shape the AIET learning environment for future students.</p>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /faq-content -->
+</div><!-- /faq-main -->
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stats-band-inner">
+    <div class="stat-item">
+      <div class="num">150+</div>
+      <div class="lbl">Specializations Available</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">4</div>
+      <div class="lbl">Qualification Levels</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">24/7</div>
+      <div class="lbl">Platform Access</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">Global</div>
+      <div class="lbl">Student Community</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Ready to Begin Your Professional Journey?</h2>
+  <p>Explore AIET's full range of programs and take the next step toward a more impactful career in education and training.</p>
+  <div class="cta-btns">
+    <a href="app.html" class="btn-white">Apply Now</a>
+    <a href="contact-us.html" class="btn-outline-white">Speak to Our Team</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <img src="assets/icons/logo2.png" onerror="this.src='https://aietglobal.us/wp-content/uploads/2024/01/AIET-Logo-300x174.png'"/>
+      </div>
+      <p>The American Institute of Education and Training — raising formidably well-trained professionals at every level of society through quality education and training programmes.</p>
+      <p class="footer-tagline">"Drive Change. Lead with Purpose."</p>
+      <div class="footer-socials">
+        <a href="https://facebook.com" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></a>
+        <a href="https://linkedin.com" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://x.com" class="social-btn" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://youtube.com" class="social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>About AIET</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="institute-overview.html">Institute Overview</a></li>
+        <li><a href="mission-vision.html">Mission &amp; Vision</a></li>
+        <li><a href="objectives.html">Objectives</a></li>
+        <li><a href="#">Directors</a></li>
+        <li><a href="#">Partners</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Qualifications</h4>
+      <ul>
+        <li><a href="certificate-programs.html">Certificate Programs</a></li>
+        <li><a href="certificate-programs.html">Nursery Teachers Training</a></li>
+        <li><a href="certificate-programs.html">Montessori Teacher Training</a></li>
+        <li><a href="professional-diploma-in-education-and-training.html">Professional Diploma</a></li>
+        <li><a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="nub.html">News Updates &amp; Blogs</a></li>
+        <li><a href="ss.html">Student Services</a></li>
+        <li><a href="alut.html">Alumni and Testimonials</a></li>
+        <li><a href="faq.html">FAQs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-contact">
+      <h4>Contact</h4>
+      <ul>
+        <li><span>📞</span><a href="tel:+14809550876">+1 (480) 955-0876</a></li>
+        <li><span>✉</span><a href="mailto:info@aietglobal.us">info@aietglobal.us</a></li>
+        <li><span>📍</span>1950 W Corporate Way #15593, Anaheim, CA 92801</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 American Institute of Education and Training. All rights reserved.</p>
+    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+      <a href="pp.html">Privacy Policy</a>
+      <a href="tu.html">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── NAVBAR TOGGLE ──
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // ── FAQ ACCORDION ──
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── SEARCH / FILTER ──
+  function filterFAQ(query) {
+    const q = query.trim().toLowerCase();
+    const items = document.querySelectorAll('.faq-item');
+    const sections = document.querySelectorAll('.faq-section-block');
+    const noResults = document.getElementById('noResults');
+    let totalVisible = 0;
+
+    if (!q) {
+      items.forEach(i => i.classList.remove('hidden'));
+      sections.forEach(s => s.style.display = '');
+      noResults.style.display = 'none';
+      return;
+    }
+
+    sections.forEach(section => {
+      const sectionItems = section.querySelectorAll('.faq-item');
+      let sectionVisible = 0;
+      sectionItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(q)) {
+          item.classList.remove('hidden');
+          sectionVisible++;
+          totalVisible++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+      section.style.display = sectionVisible === 0 ? 'none' : '';
+    });
+
+    noResults.style.display = totalVisible === 0 ? 'block' : 'none';
+  }
+
+  // ── SIDEBAR ACTIVE ON SCROLL ──
+  const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+  const sectionBlocks = document.querySelectorAll('.faq-section-block');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        sidebarLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.25, rootMargin: '-80px 0px -60% 0px' });
+
+  sectionBlocks.forEach(section => observer.observe(section));
+</script>
+</body>
+</html>

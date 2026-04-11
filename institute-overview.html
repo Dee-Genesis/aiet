@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Institute Overview – AIET</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #1B2A6B;
+      --teal:        #1A9B8C;
+      --teal-dark:   #148078;
+      --navy-deep:   #111A42;
+      --offwhite:    #F4F6F9;
+      --body:        #2D2D2D;
+      --muted:       #6B7280;
+      --white:       #FFFFFF;
+      --teal-light:  #e8f7f5;
+      --navy-light:  #eef0f8;
+      --font-head:   'Playfair Display', Georgia, serif;
+      --font-body:   'Source Sans 3', 'Segoe UI', sans-serif;
+      --radius:      12px;
+      --shadow:      0 8px 32px rgba(27,42,107,0.13);
+      --shadow-lg:   0 16px 56px rgba(27,42,107,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--body); background: var(--white); overflow-x: hidden; }
+
+    /* ── TOPBAR ── */
+    .topbar { background: var(--navy-deep); color: rgba(255,255,255,0.75); font-size: 13px; padding: 9px 0; }
+    .topbar .inner { max-width: 1200px; margin: auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+    .topbar a { color: var(--teal); text-decoration: none; transition: color .2s; }
+    .topbar a:hover { color: #4ecdc4; }
+    .topbar .sep { margin: 0 10px; opacity: 0.3; }
+
+    /* ── NAVBAR ── */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--white); box-shadow: 0 2px 16px rgba(27,42,107,0.10); border-bottom: 3px solid var(--teal); }
+    .nav-inner { max-width: 1200px; margin: auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 74px; }
+    .logo img { height: 54px; width: auto; display: block; }
+    .logo-fallback { display: none; font-family: var(--font-head); font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.1; }
+    .logo-fallback span { display: block; font-size: 10px; color: var(--teal); letter-spacing: 1.5px; text-transform: uppercase; font-family: var(--font-body); }
+
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+    .nav-links > li > a { padding: 8px 13px; border-radius: 6px; font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--navy); text-decoration: none; transition: all .2s; white-space: nowrap; }
+    .nav-links > li > a:hover, .nav-links > li > a.active { color: var(--teal-dark); background: var(--teal-light); }
+
+    .dropdown { position: relative; }
+    .dropdown:hover .drop-menu { display: block; }
+    .drop-menu { display: none; position: absolute; top: calc(100% + 3px); left: 0; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg); padding: 8px 0; min-width: 270px; border-top: 3px solid var(--teal); z-index: 200; }
+    .drop-menu a { display: block; padding: 10px 18px; font-size: 13.5px; color: var(--body); text-decoration: none; border-left: 3px solid transparent; transition: all .15s; }
+    .drop-menu a:hover, .drop-menu a.active { background: var(--teal-light); color: var(--teal-dark); border-left-color: var(--teal); }
+
+    .nav-cta { background: var(--teal) !important; color: var(--white) !important; padding: 9px 20px !important; border-radius: 8px !important; font-weight: 700 !important; }
+    .nav-cta:hover { background: var(--teal-dark) !important; color: var(--white) !important; transform: translateY(-1px); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; }
+
+    /* ── BUTTONS ── */
+    .btn-teal { background: var(--teal); color: var(--white); padding: 14px 30px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; font-family: var(--font-body); transition: all .2s; display: inline-block; }
+    .btn-teal:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,155,140,0.35); }
+    .btn-outline-white { border: 2px solid rgba(255,255,255,0.45); color: var(--white); padding: 14px 30px; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; font-family: var(--font-body); transition: all .2s; display: inline-block; }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.1); }
+    .btn-navy { background: var(--navy); color: var(--white); padding: 13px 28px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; font-family: var(--font-body); transition: all .2s; display: inline-block; }
+    .btn-navy:hover { background: var(--navy-deep); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .btn-outline-navy { border: 2px solid var(--navy); color: var(--navy); padding: 12px 26px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; font-family: var(--font-body); transition: all .2s; display: inline-block; }
+    .btn-outline-navy:hover { background: var(--navy); color: var(--white); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      position: relative;
+      background-image: url('assets/images/hm2.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 100px 24px 80px;
+      overflow: hidden;
+      text-align: center;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(10, 16, 48, 0.88) 0%,
+        rgba(17, 26, 66, 0.80) 50%,
+        rgba(10, 16, 48, 0.75) 100%
+      );
+    }
+    .page-hero::after {
+      content: 'AIET';
+      position: absolute;
+      right: -30px;
+      bottom: -40px;
+      font-family: var(--font-head);
+      font-size: 220px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.03);
+      line-height: 1;
+      pointer-events: none;
+      letter-spacing: -8px;
+    }
+    .page-hero-inner { position: relative; z-index: 2; max-width: 800px; margin: auto; }
+    .breadcrumb { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+    .breadcrumb a { font-family: var(--font-body); font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--teal); }
+    .breadcrumb span { color: rgba(255,255,255,0.25); font-size: 13px; }
+    .breadcrumb strong { font-family: var(--font-body); font-size: 13px; color: var(--teal); }
+    .page-hero-badge { display: inline-block; background: rgba(26,155,140,0.2); color: #4ecdc4; border: 1px solid rgba(26,155,140,0.4); border-radius: 100px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 16px; margin-bottom: 20px; font-family: var(--font-body); }
+    .page-hero h1 { font-family: var(--font-head); font-size: clamp(32px, 5vw, 58px); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 20px; }
+    .page-hero h1 em { color: #4ecdc4; font-style: italic; }
+    .page-hero-desc { font-family: var(--font-body); font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.8; max-width: 620px; margin: 0 auto 36px; }
+    .page-hero-stats { display: flex; justify-content: center; gap: 48px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.12); flex-wrap: wrap; }
+    .hero-stat-num { font-family: var(--font-head); font-size: 36px; font-weight: 700; color: var(--teal); line-height: 1; }
+    .hero-stat-lbl { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 5px; font-family: var(--font-body); letter-spacing: .5px; }
+
+    /* ── SHARED SECTION ── */
+    section { padding: 88px 24px; }
+    .section-inner { max-width: 1200px; margin: auto; }
+    .section-tag { font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+    .section-title { font-family: var(--font-head); font-size: clamp(26px, 3.5vw, 40px); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 14px; }
+    .section-sub { font-family: var(--font-body); font-size: 16px; color: var(--muted); line-height: 1.8; max-width: 560px; }
+
+    /* ── OVERVIEW INTRO ── */
+    .overview-intro { background: var(--white); }
+    .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .overview-img-wrap { position: relative; }
+    .overview-img-wrap img { width: 100%; height: 500px; object-fit: cover; border-radius: 20px; display: block; }
+    .overview-img-wrap::before { content: ''; position: absolute; top: -14px; left: -14px; width: 100%; height: 100%; border: 3px solid var(--teal); border-radius: 20px; z-index: -1; opacity: .45; }
+    .overview-img-badge { position: absolute; bottom: -20px; right: -20px; background: var(--navy); color: var(--white); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow); text-align: center; }
+    .overview-img-badge strong { font-family: var(--font-head); font-size: 26px; font-weight: 700; display: block; color: var(--teal); }
+    .overview-img-badge span { font-size: 13px; font-family: var(--font-body); opacity: .75; line-height: 1.4; display: block; max-width: 120px; }
+    .overview-text p { font-family: var(--font-body); font-size: 16px; color: var(--muted); line-height: 1.85; margin-bottom: 18px; }
+    .overview-text p:last-of-type { margin-bottom: 32px; }
+    .overview-text strong { color: var(--navy); }
+
+    /* ── PILLARS / STRENGTHS ── */
+    .pillars { background: var(--offwhite); }
+    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .pillar-card { background: var(--white); border-radius: 18px; padding: 32px 28px; border: 1.5px solid #dce3f0; transition: all .3s; position: relative; overflow: hidden; }
+    .pillar-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--teal); transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
+    .pillar-card:hover { box-shadow: var(--shadow); transform: translateY(-6px); border-color: transparent; }
+    .pillar-card:hover::before { transform: scaleX(1); }
+    .pillar-icon { width: 54px; height: 54px; background: var(--teal-light); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 20px; transition: background .3s; }
+    .pillar-card:hover .pillar-icon { background: var(--teal); }
+    .pillar-card h3 { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .pillar-card p { font-family: var(--font-body); font-size: 14px; color: var(--muted); line-height: 1.75; }
+
+    /* ── QUALIFICATIONS OVERVIEW ── */
+    .qual-overview { background: var(--navy-deep); }
+    .qual-overview .section-tag { color: var(--teal); }
+    .qual-overview .section-title { color: var(--white); }
+    .qual-overview .section-sub { color: rgba(255,255,255,0.6); }
+    .qual-ladder { display: flex; flex-direction: column; gap: 0; margin-top: 52px; }
+    .qual-rung { display: grid; grid-template-columns: 200px 1fr; gap: 0; align-items: stretch; }
+    .qual-rung:last-child .rung-line { display: none; }
+    .rung-left { display: flex; flex-direction: column; align-items: center; padding-right: 32px; }
+    .rung-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--teal); border: 3px solid var(--navy-deep); box-shadow: 0 0 0 3px var(--teal); flex-shrink: 0; }
+    .rung-line { flex: 1; width: 2px; background: rgba(26,155,140,0.3); margin: 4px 0; }
+    .rung-label { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); text-align: right; padding-right: 16px; padding-top: 2px; width: 100%; }
+    .rung-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px 28px; margin-bottom: 16px; transition: all .3s; }
+    .rung-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(26,155,140,0.4); }
+    .rung-card h3 { font-family: var(--font-head); font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .rung-card p { font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.65; }
+    .rung-card .rung-link { display: inline-block; margin-top: 14px; font-family: var(--font-body); font-size: 13px; font-weight: 700; color: var(--teal); text-decoration: none; }
+    .rung-card .rung-link:hover { color: #4ecdc4; }
+    .qual-overview-footer { text-align: center; margin-top: 48px; }
+
+    /* ── LEARNING MODEL ── */
+    .model { background: var(--white); }
+    .model-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .model-visual { position: relative; }
+    .model-ring { width: 420px; height: 420px; border-radius: 50%; border: 2px dashed rgba(27,42,107,0.12); display: flex; align-items: center; justify-content: center; position: relative; margin: 0 auto; }
+    .model-ring-inner { width: 280px; height: 280px; border-radius: 50%; background: linear-gradient(135deg, var(--navy) 0%, var(--teal-dark) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; box-shadow: 0 20px 60px rgba(27,42,107,0.3); }
+    .model-ring-inner h4 { font-family: var(--font-head); font-size: 20px; font-weight: 700; color: var(--white); line-height: 1.3; }
+    .model-ring-inner span { font-family: var(--font-body); font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 8px; }
+    .orbit-item { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .orbit-icon { width: 52px; height: 52px; border-radius: 50%; background: var(--white); box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center; font-size: 22px; border: 2px solid var(--teal-light); }
+    .orbit-label { font-family: var(--font-body); font-size: 11px; font-weight: 700; color: var(--navy); text-align: center; white-space: nowrap; letter-spacing: .5px; text-transform: uppercase; }
+    .orbit-top    { top: -20px; left: 50%; transform: translateX(-50%); }
+    .orbit-right  { right: -20px; top: 50%; transform: translateY(-50%); }
+    .orbit-bottom { bottom: -20px; left: 50%; transform: translateX(-50%); }
+    .orbit-left   { left: -20px; top: 50%; transform: translateY(-50%); }
+    .model-points { display: flex; flex-direction: column; gap: 20px; }
+    .model-point { display: flex; gap: 18px; align-items: flex-start; padding: 20px; border-radius: var(--radius); background: var(--offwhite); border-left: 4px solid var(--teal); transition: all .3s; }
+    .model-point:hover { background: var(--teal-light); transform: translateX(4px); }
+    .model-point-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+    .model-point-text strong { display: block; font-family: var(--font-body); font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .model-point-text p { font-family: var(--font-body); font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ── GLOBAL REACH ── */
+    .global { background: var(--navy); overflow: hidden; position: relative; }
+    .global::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(26,155,140,0.15) 0%, transparent 65%); }
+    .global .section-tag { color: var(--teal); }
+    .global .section-title { color: var(--white); }
+    .global .section-sub { color: rgba(255,255,255,0.6); }
+    .global-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 48px; }
+    .global-regions { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .region-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px 20px; text-align: center; transition: all .3s; }
+    .region-card:hover { background: rgba(255,255,255,0.12); border-color: rgba(26,155,140,0.45); transform: translateY(-4px); }
+    .region-flag { font-size: 32px; margin-bottom: 10px; display: block; }
+    .region-name { font-family: var(--font-body); font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .region-sub { font-family: var(--font-body); font-size: 12px; color: rgba(255,255,255,0.45); }
+    .global-text p { font-family: var(--font-body); font-size: 16px; color: rgba(255,255,255,0.72); line-height: 1.85; margin-bottom: 20px; }
+    .global-text p strong { color: var(--white); }
+    .global-highlights { display: flex; gap: 32px; margin-top: 36px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; }
+    .global-hl-num { font-family: var(--font-head); font-size: 34px; font-weight: 700; color: var(--teal); line-height: 1; }
+    .global-hl-lbl { font-family: var(--font-body); font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; letter-spacing: .5px; }
+
+    /* ── PULLQUOTE BAND ── */
+    .pullquote-band { background: var(--teal); padding: 56px 24px; text-align: center; position: relative; overflow: hidden; }
+    .pullquote-band::before { content: '❝'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: 160px; color: rgba(255,255,255,0.1); font-family: Georgia; line-height: 1; pointer-events: none; }
+    .pullquote-band blockquote { max-width: 760px; margin: 0 auto; font-family: var(--font-head); font-size: clamp(20px, 2.8vw, 30px); color: var(--white); font-style: italic; line-height: 1.55; position: relative; z-index: 1; }
+    .pullquote-band cite { display: block; margin-top: 18px; font-family: var(--font-body); font-size: 13px; color: rgba(255,255,255,0.7); font-style: normal; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+
+    /* ── COMMITMENT / VALUES ── */
+    .commitment { background: var(--offwhite); }
+    .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
+    .value-card { background: var(--white); border-radius: 16px; padding: 28px 22px; text-align: center; border: 1.5px solid #dce3f0; transition: all .3s; }
+    .value-card:hover { border-color: var(--teal); box-shadow: var(--shadow); transform: translateY(-5px); }
+    .value-emoji { font-size: 36px; margin-bottom: 14px; display: block; }
+    .value-card h3 { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .value-card p { font-family: var(--font-body); font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* ── CTA BAND ── */
+    .cta-band { position: relative; overflow: hidden; padding: 90px 24px; text-align: center; background: linear-gradient(135deg, rgba(17,26,66,0.97) 0%, rgba(27,42,107,0.95) 100%); }
+    .cta-band-overlay { position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(26,155,140,0.18) 0%, transparent 70%); }
+    .cta-band-content { position: relative; z-index: 2; }
+    .cta-band h2 { font-family: var(--font-head); font-size: clamp(26px, 4vw, 42px); color: var(--white); margin-bottom: 14px; font-weight: 700; }
+    .cta-band-quote { font-family: var(--font-head); font-size: 18px; color: rgba(255,255,255,0.6); font-style: italic; margin-bottom: 10px; }
+    .cta-band p { font-family: var(--font-body); font-size: 17px; color: rgba(255,255,255,0.72); margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer { background: #060d2e; padding: 64px 24px 0; }
+    .footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; }
+    .footer-logo-wrap { display: inline-block; background: var(--white); border-radius: 10px; padding: 10px 16px; margin-bottom: 18px; }
+    .footer-logo-wrap img { height: 48px; width: auto; display: block; }
+    .footer-brand p { font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 280px; margin-bottom: 20px; }
+    .footer-tagline { font-family: var(--font-head); font-size: 13px; font-style: italic; color: rgba(255,255,255,0.35); margin-bottom: 20px; line-height: 1.5; max-width: 280px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-btn { width: 36px; height: 36px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.55); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all .2s; }
+    .social-btn svg { width: 16px; height: 16px; fill: currentColor; display: block; }
+    .social-btn:hover { border-color: var(--teal); background: var(--teal); color: var(--white); }
+    .footer-col h4 { font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 20px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-contact li { display: flex; gap: 10px; font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.5); }
+    .footer-contact span { color: var(--teal); flex-shrink: 0; }
+    .footer-contact a { color: rgba(255,255,255,0.5); }
+    .footer-bottom { max-width: 1200px; margin: 48px auto 0; padding: 22px 0; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-family: var(--font-body); font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-bottom a { color: rgba(255,255,255,0.45); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--white); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .overview-grid, .model-grid, .global-grid { grid-template-columns: 1fr; }
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .model-ring { width: 320px; height: 320px; }
+      .model-ring-inner { width: 210px; height: 210px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .qual-rung { grid-template-columns: 160px 1fr; }
+    }
+    @media (max-width: 600px) {
+      .pillars-grid, .values-grid { grid-template-columns: 1fr; }
+      .global-regions { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 74px; left: 0; right: 0; background: var(--white); box-shadow: var(--shadow); padding: 16px; z-index: 99; gap: 4px; }
+      .drop-menu { position: static; box-shadow: none; border: none; border-left: 3px solid var(--teal); padding: 4px 0 4px 16px; margin: 4px 0; }
+      .page-hero-stats { gap: 24px; }
+      .qual-rung { grid-template-columns: 100px 1fr; }
+      .rung-label { font-size: 10px; }
+      .overview-img-wrap::before { display: none; }
+      .overview-img-badge { bottom: 10px; right: 10px; padding: 12px 16px; }
+      .model-ring { width: 280px; height: 280px; }
+      .model-ring-inner { width: 180px; height: 180px; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    .page-hero-badge { animation: fadeUp .5s ease both; }
+    .page-hero h1 { animation: fadeUp .55s .08s ease both; }
+    .page-hero-desc { animation: fadeUp .55s .16s ease both; }
+    .page-hero-stats { animation: fadeUp .55s .28s ease both; }
+  </style>
+</head>
+<body>
+
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/icons/logo2.png"
+           onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block'"/>
+      <div class="logo-fallback">AIET <span>American Institute of Education &amp; Training</span></div>
+    </a>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="#" class="active">About AIET ▾</a>
+        <div class="drop-menu">
+          <a href="institute-overview.html" class="active">Institute Overview</a>
+          <a href="mission-vision.html">Mission &amp; Vision</a>
+          <a href="objectives.html">Objectives</a>
+          <a href="cv.html">Core Values</a>
+          <a href="lsr.html">Legal Status and Recognition</a>
+          <a href="#">Country Directors</a>
+          <a href="#">Partners</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Qualifications ▾</a>
+        <div class="drop-menu">
+          <a href="certificate-programs.html">Certificate Programs</a>
+          <a href="professional-diploma-in-education-and-training.html">Professional Diploma in Education</a>
+          <a href="adv.html"> Advanced Diploma in Education</a>
+
+          <a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma in Education</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Resources &amp; Insight ▾</a>
+        <div class="drop-menu">
+          <a href="ss.html">Student Services</a>
+          <a href="certv.html">Certification Verification Guidelines</a>
+          <a href="alut.html">Alumni &amp; Testimonials</a>
+          <a href="nub.html">News Updates &amp; Blogs</a>
+        </div>
+      </li>
+      <li><a href="app.html" class="nav-cta">Application Portal</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="#">About AIET</a>
+      <span>/</span>
+      <strong>Institute Overview</strong>
+    </div>
+    <div class="page-hero-badge">About AIET</div>
+    <h1>The American Institute of<br><em>Education &amp; Training</em></h1>
+    <p class="page-hero-desc">A United States–based institution dedicated to delivering high-quality, flexible, and career-oriented learning opportunities to a diverse global population — bridging knowledge with real-world professional practice.</p>
+    <div class="page-hero-stats">
+      <div>
+        <div class="hero-stat-num">4</div>
+        <div class="hero-stat-lbl">Continents Served</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">6+</div>
+        <div class="hero-stat-lbl">Qualification Levels</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-lbl">Globally Recognised</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">Online</div>
+        <div class="hero-stat-lbl">Flexible Delivery</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW INTRO -->
+<section class="overview-intro">
+  <div class="section-inner overview-grid">
+    <div class="overview-img-wrap">
+      <img src="assets/images/hm35.jpg" alt="AIET Institute"/>
+      <div class="overview-img-badge">
+        <strong>US-Based</strong>
+        <span>Globally Recognised Training</span>
+      </div>
+    </div>
+    <div class="overview-text">
+      <div class="section-tag">Institute Overview</div>
+      <h2 class="section-title">Shaping the Future Through Quality Education</h2>
+      <p>The <strong>American Institute of Education and Training (AIET)</strong> is a United States–based educational and professional training institution dedicated to delivering high-quality, flexible, and career-oriented learning opportunities to a diverse global population.</p>
+      <p>Established with the goal of <strong>bridging the gap between academic knowledge and practical workforce skills</strong>, AIET serves as a platform for individuals seeking to enhance their competencies, advance their careers, and adapt to the evolving demands of the modern workplace.</p>
+      <p>AIET specialises in offering a structured range of qualifications — including <strong>Certificate, Diploma, Higher Diploma, and Postgraduate Diploma programmes</strong> — designed to meet the needs of learners at different stages of personal and professional development, providing a clear progressive learning pathway from foundational knowledge to advanced professional specialisation.</p>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="mission-vision.html" class="btn-navy">Mission &amp; Vision</a>
+        <a href="app.html" class="btn-outline-navy">Apply Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom:8px;">
+      <div class="section-tag" style="display:flex; justify-content:center;">What Defines Us</div>
+      <h2 class="section-title" style="max-width:580px; margin:0 auto;">The Core Strengths That Set AIET Apart</h2>
+      <p class="section-sub" style="margin:14px auto 0; text-align:center;">Six defining characteristics that make AIET the preferred choice for professionals worldwide.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">🎓</div>
+        <h3>Learner-Centred Model</h3>
+        <p>AIET's educational approach emphasises flexibility, accessibility, and inclusivity — accommodating recent graduates, working professionals, entrepreneurs, and those pursuing continuing education.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🛠️</div>
+        <h3>Practical &amp; Applied Learning</h3>
+        <p>Theoretical instruction is integrated with real-world case studies, project-based assignments, and industry-relevant scenarios — ensuring students develop both academic knowledge and applied professional skills.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🌐</div>
+        <h3>Global Relevance</h3>
+        <p>Curricula are continuously reviewed and updated to reflect emerging trends, technological advancements, and evolving labour market demands across competitive and dynamic global sectors.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">💻</div>
+        <h3>Flexible Delivery</h3>
+        <p>Online, blended, and self-paced learning options enable students from various geographic locations to access quality education without the constraints of traditional classroom settings.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🚀</div>
+        <h3>Professional Development</h3>
+        <p>Beyond academics, AIET fosters leadership skills, ethical awareness, communication proficiency, and adaptability — qualities essential for long-term career success and meaningful community contribution.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🤝</div>
+        <h3>Diversity &amp; Inclusion</h3>
+        <p>An inclusive learning environment brings together students from different cultural, academic, and professional backgrounds, enhancing learning through collaboration and cross-cultural understanding.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALIFICATIONS PATHWAY -->
+<section class="qual-overview">
+  <div class="section-inner">
+    <div class="section-tag">Qualification Pathway</div>
+    <h2 class="section-title">A Clear Progressive Learning Journey</h2>
+    <p class="section-sub">From early specialisations to postgraduate achievement — AIET's structured programmes guide every learner from foundational skills to expert-level mastery.</p>
+
+    <div class="qual-ladder">
+      <div class="qual-rung">
+        <div class="rung-left">
+          <div class="rung-label">Foundation</div>
+          <div class="rung-dot"></div>
+          <div class="rung-line"></div>
+        </div>
+        <div>
+          <div class="rung-card">
+            <h3>Early Child Care &amp; Education Courses</h3>
+            <p>Specialised training covering child development, care, and early education practices for young children — the ideal entry point for aspiring early-years professionals.</p>
+            <a href="certificate-programs.html" class="rung-link">Explore Courses →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="qual-rung">
+        <div class="rung-left">
+          <div class="rung-label">Certificate</div>
+          <div class="rung-dot"></div>
+          <div class="rung-line"></div>
+        </div>
+        <div>
+          <div class="rung-card">
+            <h3>Nursery Teachers Training</h3>
+            <p>A focused certificate programme equipping practitioners to deliver quality early-years education with specialised nursery pedagogy and developmental strategies.</p>
+            <a href="certificate-programs.html" class="rung-link">Explore Courses →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="qual-rung">
+        <div class="rung-left">
+          <div class="rung-label">Certificate</div>
+          <div class="rung-dot"></div>
+          <div class="rung-line"></div>
+        </div>
+        <div>
+          <div class="rung-card">
+            <h3>Pre &amp; Primary Teacher Training Course</h3>
+            <p>A comprehensive programme preparing educators for pre-school and primary level teaching, covering curriculum design, child psychology, and classroom management.</p>
+            <a href="certificate-programs.html" class="rung-link">Explore Courses →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="qual-rung">
+        <div class="rung-left">
+          <div class="rung-label">Specialisation</div>
+          <div class="rung-dot"></div>
+          <div class="rung-line"></div>
+        </div>
+        <div>
+          <div class="rung-card">
+            <h3>Montessori Teacher Training</h3>
+            <p>Master the globally respected Montessori method — creating enriching, child-led learning environments that support holistic development for young learners worldwide.</p>
+            <a href="certificate-programs.html" class="rung-link">Explore Courses →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="qual-rung">
+        <div class="rung-left">
+          <div class="rung-label">Diploma</div>
+          <div class="rung-dot"></div>
+          <div class="rung-line"></div>
+        </div>
+        <div>
+          <div class="rung-card">
+            <h3>Professional Diploma in Education and Training</h3>
+            <p>A professional-level diploma for practitioners advancing their expertise in education and training delivery — ideal for those stepping into senior educational roles.</p>
+            <a href="professional-diploma-in-education-and-training.html" class="rung-link">Learn More →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="qual-rung">
+        <div class="rung-left">
+          <div class="rung-label">Postgraduate</div>
+          <div class="rung-dot"></div>
+        </div>
+        <div>
+          <div class="rung-card">
+            <h3>Postgraduate Diploma in Education and Training</h3>
+            <p>The pinnacle of AIET's qualification framework — an advanced postgraduate qualification for experienced educators seeking the highest level of professional recognition and global credibility.</p>
+            <a href="postgraduate-diploma-in-education-and-training.html" class="rung-link">Learn More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qual-overview-footer">
+      <a href="certificate-programs.html" class="btn-teal">View All Qualifications</a>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNING MODEL -->
+<section class="model">
+  <div class="section-inner model-grid">
+    <div class="model-visual">
+      <div class="model-ring">
+        <div class="model-ring-inner">
+          <h4>AIET Learning Model</h4>
+          <span>Learner-Centred &amp; Industry-Aligned</span>
+        </div>
+        <div class="orbit-item orbit-top">
+          <div class="orbit-icon">📖</div>
+          <div class="orbit-label">Theory</div>
+        </div>
+        <div class="orbit-item orbit-right">
+          <div class="orbit-icon">🌍</div>
+          <div class="orbit-label">Global</div>
+        </div>
+        <div class="orbit-item orbit-bottom">
+          <div class="orbit-icon">🏆</div>
+          <div class="orbit-label">Practice</div>
+        </div>
+        <div class="orbit-item orbit-left">
+          <div class="orbit-icon">💡</div>
+          <div class="orbit-label">Mentorship</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-tag">How We Teach</div>
+      <h2 class="section-title">A Learning Model Built for the Real World</h2>
+      <p class="section-sub" style="margin-bottom:32px;">AIET's approach integrates four essential dimensions of professional development into every programme.</p>
+      <div class="model-points">
+        <div class="model-point">
+          <div class="model-point-icon">📖</div>
+          <div class="model-point-text">
+            <strong>Theoretical Foundations</strong>
+            <p>Every programme begins with rigorous academic grounding — equipping learners with the conceptual frameworks needed to understand their field deeply.</p>
+          </div>
+        </div>
+        <div class="model-point">
+          <div class="model-point-icon">🏆</div>
+          <div class="model-point-text">
+            <strong>Applied Practice</strong>
+            <p>Case studies, project-based assignments, and real-world scenarios bridge theory and practice — building skills that transfer directly into the workplace.</p>
+          </div>
+        </div>
+        <div class="model-point">
+          <div class="model-point-icon">💡</div>
+          <div class="model-point-text">
+            <strong>Guided Mentorship</strong>
+            <p>Expert instructors with deep industry experience guide learners at every stage, offering personalised feedback and professional insight throughout the programme.</p>
+          </div>
+        </div>
+        <div class="model-point">
+          <div class="model-point-icon">🌍</div>
+          <div class="model-point-text">
+            <strong>Global Perspective</strong>
+            <p>An internationally diverse community of learners enriches every programme — exposing students to cross-cultural ideas, collaboration, and global best practices.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PULLQUOTE -->
+<div class="pullquote-band">
+  <blockquote>
+    "Leadership begins with knowledge, grows with experience, and thrives with guidance."
+    <cite>— AIET Mission</cite>
+  </blockquote>
+</div>
+
+<!-- GLOBAL REACH -->
+<section class="global">
+  <div class="section-inner">
+    <div class="section-tag">Global Reach</div>
+    <h2 class="section-title">Education Without Borders</h2>
+    <p class="section-sub">AIET connects professionals across four continents, delivering world-class qualifications to learners wherever they are.</p>
+    <div class="global-grid">
+      <div>
+        <div class="global-regions">
+          <div class="region-card">
+            <span class="region-flag">🌍</span>
+            <div class="region-name">Africa</div>
+            <div class="region-sub">Nigeria, Ghana &amp; across the continent</div>
+          </div>
+          <div class="region-card">
+            <span class="region-flag">🌏</span>
+            <div class="region-name">Asia</div>
+            <div class="region-sub">Malaysia, India &amp; Southeast Asia</div>
+          </div>
+          <div class="region-card">
+            <span class="region-flag">🌍</span>
+            <div class="region-name">Europe</div>
+            <div class="region-sub">United Kingdom &amp; wider Europe</div>
+          </div>
+          <div class="region-card">
+            <span class="region-flag">🌎</span>
+            <div class="region-name">Americas</div>
+            <div class="region-sub">United States headquarters &amp; beyond</div>
+          </div>
+        </div>
+      </div>
+      <div class="global-text">
+        <p>AIET's commitment to <strong>diversity and international engagement</strong> creates an inclusive learning environment that brings together students from different cultural, academic, and professional backgrounds.</p>
+        <p>Through flexible online, blended, and self-paced delivery options, AIET removes geographic barriers — enabling any motivated professional worldwide to access the same globally recognised qualifications as those in major metropolitan centres.</p>
+        <p>This diversity enhances the learning experience by encouraging <strong>collaboration, cross-cultural understanding, and the rich exchange of ideas</strong> that can only come from a truly global community of learners.</p>
+        <div class="global-highlights">
+          <div>
+            <div class="global-hl-num">4+</div>
+            <div class="global-hl-lbl">Continents Active</div>
+          </div>
+          <div>
+            <div class="global-hl-num">Online</div>
+            <div class="global-hl-lbl">&amp; Onsite Options</div>
+          </div>
+          <div>
+            <div class="global-hl-num">100%</div>
+            <div class="global-hl-lbl">Globally Recognised</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMITMENT / VALUES -->
+<section class="commitment">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom:8px;">
+      <div class="section-tag" style="display:flex; justify-content:center;">Our Commitment</div>
+      <h2 class="section-title" style="max-width:580px; margin:0 auto;">What We Stand For</h2>
+      <p class="section-sub" style="margin:14px auto 0; text-align:center;">The values that guide every programme, every interaction, and every graduate AIET produces.</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <span class="value-emoji">⭐</span>
+        <h3>Quality</h3>
+        <p>Uncompromising commitment to academic standards, programme rigour, and the professional excellence of every qualification we award.</p>
+      </div>
+      <div class="value-card">
+        <span class="value-emoji">♿</span>
+        <h3>Accessibility</h3>
+        <p>Breaking down barriers to quality education through flexible delivery, inclusive design, and programmes that meet learners where they are.</p>
+      </div>
+      <div class="value-card">
+        <span class="value-emoji">🔄</span>
+        <h3>Relevance</h3>
+        <p>Continuously updating curricula to reflect industry evolution, ensuring every graduate enters the workforce with current, in-demand skills.</p>
+      </div>
+      <div class="value-card">
+        <span class="value-emoji">🌱</span>
+        <h3>Lifelong Growth</h3>
+        <p>Fostering a culture of continuous professional development — because learning doesn't stop at graduation; it's a career-long journey.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band-overlay"></div>
+  <div class="cta-band-content">
+    <h2>Ready to Begin Your Journey?</h2>
+    <p class="cta-band-quote">"Your path to professional excellence starts with a single step."</p>
+    <p>Join thousands of professionals worldwide who have transformed their careers through AIET's globally recognised education and training programmes.</p>
+    <div class="cta-btns">
+      <a href="app.html" class="btn-teal">Apply Now</a>
+      <a href="certificate-programs.html" class="btn-outline-white">View Qualifications</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+      <img src="assets/icons/logo2.png"
+             onerror="this.src='https://aietglobal.us/wp-content/uploads/2024/01/AIET-Logo-300x174.png'"/>
+      </div>
+      <p>The American Institute of Education and Training — raising formidably well-trained professionals at every level of society through quality education and training programmes.</p>
+      <p class="footer-tagline">"Drive Change. Lead with Purpose."</p>
+      <div class="footer-socials">
+        <a href="https://facebook.com" class="social-btn" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+        </a>
+        <a href="https://linkedin.com" class="social-btn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://x.com" class="social-btn" aria-label="X">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://youtube.com" class="social-btn" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>About AIET</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="institute-overview.html">Institute Overview</a></li>
+        <li><a href="mission-vision.html">Mission &amp; Vision</a></li>
+        <li><a href="objectives.html">Objectives</a></li>
+        <li><a href="#">Directors</a></li>
+        <li><a href="#">Partners</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Qualifications</h4>
+      <ul>
+        <li><a href="certificate-programs.html">Early Child Care &amp; Education</a></li>
+        <li><a href="certificate-programs.html">Nursery Teachers Training</a></li>
+        <li><a href="certificate-programs.html">Pre &amp; Primary Teacher Training</a></li>
+        <li><a href="certificate-programs.html">Montessori Teacher Training</a></li>
+        <li><a href="professional-diploma-in-education-and-training.html">Professional Diploma</a></li>
+        <li><a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="nub.html">News Updates &amp; Blogs</a></li>
+        <li><a href="ss.html">Student Services</a></li>
+        <li><a href="alut.html">Alumni and Testimonials</a></li>
+        <li><a href="faq.html">FAQs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-contact">
+      <h4>Contact</h4>
+      <ul>
+        <li><span>📞</span><a href="tel:+14809550876">+1 (480) 955-0876</a></li>
+        <li><span>✉</span><a href="mailto:info@aietglobal.us">info@aietglobal.us</a></li>
+        <li><span>📍</span>1950 W Corporate Way #15593, Anaheim, CA 92801</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 American Institute of Education and Training. All rights reserved.</p>
+    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+      <a href="pp.html">Privacy Policy</a>
+      <a href="tu.html">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Application Portal — AIET Global</title>
+<link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B2A6B;--teal:#1A9B8C;--teal-dark:#148078;--navy-deep:#111A42;
+  --offwhite:#F4F6F9;--body:#2D2D2D;--muted:#6B7280;--white:#FFFFFF;
+  --teal-light:#e8f7f5;--navy-light:#eef0f8;--green:#1d9d5f;--red:#c0392b;
+  --font-head:'Playfair Display',Georgia,serif;
+  --font-body:'Source Sans 3','Segoe UI',sans-serif;
+  --radius:12px;--shadow:0 8px 32px rgba(27,42,107,0.13);--shadow-lg:0 16px 56px rgba(27,42,107,0.18);
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--body);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+ul{list-style:none}
+button{cursor:pointer;background:none;border:none;font-family:inherit}
+input,select,textarea{font-family:var(--font-body)}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--navy-deep);color:rgba(255,255,255,0.75);font-size:13px;padding:9px 0}
+.topbar .inner{max-width:1200px;margin:auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.topbar a{color:var(--teal);text-decoration:none;transition:color .2s}
+.topbar a:hover{color:#4ecdc4}
+.topbar .sep{margin:0 10px;opacity:0.3}
+
+/* ── NAVBAR ── */
+nav{position:sticky;top:0;z-index:100;background:var(--white);box-shadow:0 2px 16px rgba(27,42,107,0.10);border-bottom:3px solid var(--teal)}
+.nav-inner{max-width:1200px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo img{height:54px;width:auto;display:block}
+.logo-fallback{display:none;font-family:var(--font-head);font-size:20px;font-weight:700;color:var(--navy);line-height:1.1}
+.logo-fallback span{display:block;font-size:10px;color:var(--teal);letter-spacing:1.5px;text-transform:uppercase;font-family:var(--font-body)}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-links>li>a{padding:8px 13px;border-radius:6px;font-size:14px;font-weight:600;color:var(--navy);text-decoration:none;transition:all .2s;white-space:nowrap}
+.nav-links>li>a:hover{color:var(--teal-dark);background:var(--teal-light)}
+.dropdown{position:relative}
+.dropdown:hover .drop-menu{display:block}
+.drop-menu{display:none;position:absolute;top:calc(100% + 3px);left:0;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-lg);padding:8px 0;min-width:270px;border-top:3px solid var(--teal);z-index:200}
+.drop-menu a{display:block;padding:10px 18px;font-size:13.5px;color:var(--body);text-decoration:none;border-left:3px solid transparent;transition:all .15s}
+.drop-menu a:hover{background:var(--teal-light);color:var(--teal-dark);border-left-color:var(--teal)}
+.nav-cta{background:var(--teal)!important;color:var(--white)!important;padding:9px 20px!important;border-radius:8px!important;font-weight:700!important}
+.nav-cta:hover{background:var(--teal-dark)!important;color:var(--white)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px}
+
+/* ── PAGE HERO ── */
+.page-hero{background:var(--navy-deep);position:relative;overflow:hidden;padding:64px 24px 56px}
+.page-hero::before{content:'';position:absolute;inset:0;background:url('assets/images/hm3.jpg') center/cover no-repeat;opacity:.12}
+.page-hero::after{content:'AIET';position:absolute;right:-20px;bottom:-40px;font-family:var(--font-head);font-size:180px;font-weight:700;color:rgba(255,255,255,0.03);line-height:1;pointer-events:none}
+.page-hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto}
+.breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:20px}
+.breadcrumb a,.breadcrumb span{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);transition:color .2s}
+.breadcrumb a:hover{color:var(--teal)}
+.breadcrumb .sep{color:rgba(255,255,255,0.25)}
+.breadcrumb .current{color:var(--teal)}
+.hero-badge{display:inline-block;background:rgba(26,155,140,0.18);color:#4ecdc4;border:1px solid rgba(26,155,140,0.4);border-radius:100px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 16px;margin-bottom:18px}
+.page-hero h1{font-family:var(--font-head);font-size:clamp(28px,4vw,48px);color:var(--white);line-height:1.15;margin-bottom:12px}
+.page-hero h1 em{color:#4ecdc4;font-style:italic}
+.page-hero p{font-size:16px;color:rgba(255,255,255,0.72);line-height:1.8;max-width:540px}
+
+/* ── TICKER ANNOUNCE ── */
+.ticker-bar{background:var(--teal);overflow:hidden;height:38px;display:flex;align-items:center}
+.ticker-label{background:var(--navy-deep);color:var(--teal);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:0 20px;height:100%;display:flex;align-items:center;flex-shrink:0;white-space:nowrap}
+.ticker-track-wrap{overflow:hidden;flex:1;height:100%;display:flex;align-items:center}
+.ticker-track{display:inline-flex;animation:tickerScroll 32s linear infinite;white-space:nowrap}
+.ticker-track span{font-size:12px;font-weight:600;color:rgba(255,255,255,0.9);padding:0 40px}
+.ticker-track span::before{content:'•';margin-right:12px;color:rgba(255,255,255,0.55)}
+@keyframes tickerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── APP LAYOUT ── */
+.app-layout{display:grid;grid-template-columns:270px 1fr;max-width:1200px;margin:0 auto;min-height:80vh}
+
+/* ── STEP SIDEBAR ── */
+.step-sidebar{background:var(--navy-deep);padding:2.5rem 0;position:sticky;top:74px;height:fit-content;align-self:start}
+.step-sidebar-head{padding:0 24px 24px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:20px}
+.step-sidebar-head p{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:4px}
+.step-sidebar-head strong{font-size:13px;font-weight:700;color:var(--white);display:block}
+.step-list{padding:0 16px;display:flex;flex-direction:column;gap:4px}
+.step-item{display:flex;align-items:flex-start;gap:12px;padding:12px 10px;border-left:3px solid transparent;cursor:pointer;transition:all .2s;position:relative}
+.step-item.active{border-left-color:var(--teal);background:rgba(26,155,140,0.08)}
+.step-item.done{border-left-color:var(--green)}
+.step-item.done .step-num{background:var(--green);color:#fff;border-color:var(--green)}
+.step-num{width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:rgba(255,255,255,0.4);flex-shrink:0;transition:all .3s}
+.step-item.active .step-num{border-color:var(--teal);background:var(--teal);color:var(--white)}
+.step-text-label{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:2px;transition:color .2s}
+.step-item.active .step-text-label{color:var(--teal)}
+.step-item.done .step-text-label{color:var(--green)}
+.step-text-name{font-size:12px;font-weight:700;color:rgba(255,255,255,0.5);line-height:1.3;transition:color .2s}
+.step-item.active .step-text-name{color:var(--white)}
+.step-item.done .step-text-name{color:rgba(255,255,255,0.65)}
+.step-check{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--green);font-size:13px;opacity:0;transition:opacity .2s}
+.step-item.done .step-check{opacity:1}
+.sidebar-help{padding:24px 24px 0;border-top:1px solid rgba(255,255,255,0.08);margin-top:24px}
+.sidebar-help p{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.7}
+.sidebar-help a{color:var(--teal);transition:color .2s}
+.sidebar-help a:hover{color:#4ecdc4}
+
+/* ── FORM AREA ── */
+.form-area{background:var(--offwhite);padding:3rem 3.5rem}
+.form-panel{display:none;animation:fadeInUp .35s var(--ease)}
+.form-panel.active{display:block}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.form-panel-title{font-family:var(--font-head);font-size:clamp(22px,2.5vw,32px);color:var(--navy);margin-bottom:6px;line-height:1.15}
+.form-panel-title em{font-style:italic;color:var(--teal-dark)}
+.form-panel-sub{font-size:14px;color:var(--muted);margin-bottom:2.5rem;line-height:1.7;max-width:560px}
+.form-section-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(27,42,107,0.45);margin-bottom:16px;margin-top:28px;padding-bottom:8px;border-bottom:1px solid rgba(27,42,107,0.08);display:flex;align-items:center;gap:8px}
+.form-section-label:first-of-type{margin-top:0}
+.form-section-label::before{content:'';width:18px;height:2px;background:var(--teal);display:block;flex-shrink:0}
+
+/* ── FORM GRID ── */
+.form-row{display:grid;gap:18px;margin-bottom:18px}
+.form-row.c1{grid-template-columns:1fr}
+.form-row.c2{grid-template-columns:1fr 1fr}
+.form-row.c3{grid-template-columns:1fr 1fr 1fr}
+
+/* ── FIELDS ── */
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(27,42,107,0.6)}
+.field label .req{color:var(--red)}
+.field input,.field select,.field textarea{background:var(--white);border:1.5px solid rgba(27,42,107,0.12);padding:12px 14px;font-size:14px;color:var(--body);transition:border-color .2s,box-shadow .2s;outline:none;width:100%;border-radius:8px;appearance:none;-webkit-appearance:none}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B2A6B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(26,155,140,0.12)}
+.field input.error,.field select.error{border-color:var(--red)}
+.field textarea{resize:vertical;min-height:110px;line-height:1.6}
+.field-hint{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ── PROGRAM INFO BOX ── */
+.prog-info-box{background:var(--white);border:1.5px solid rgba(26,155,140,0.25);border-radius:12px;padding:20px 22px;margin-top:4px;display:none}
+.prog-info-box.visible{display:block;animation:fadeInUp .3s var(--ease)}
+.prog-info-box h4{font-family:var(--font-head);font-size:17px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.prog-info-box p{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px}
+.prog-info-pills{display:flex;flex-wrap:wrap;gap:8px}
+.prog-pill{background:var(--teal-light);color:var(--teal-dark);border-radius:100px;padding:4px 12px;font-size:11px;font-weight:700}
+
+/* ── RADIO / CHECK GROUPS ── */
+.radio-group,.check-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.radio-opt,.check-opt{display:flex;align-items:center;gap:8px;background:var(--white);border:1.5px solid rgba(27,42,107,0.12);padding:9px 14px;cursor:pointer;transition:all .2s;font-size:13px;color:var(--muted);border-radius:8px;user-select:none}
+.radio-opt:hover,.check-opt:hover{border-color:var(--teal);color:var(--teal-dark)}
+.radio-opt input,.check-opt input{width:14px;height:14px;accent-color:var(--teal);flex-shrink:0}
+.radio-opt.selected,.check-opt.selected{border-color:var(--teal);background:var(--teal-light);color:var(--teal-dark);font-weight:600}
+
+/* ── FILE UPLOAD ── */
+.file-upload{border:2px dashed rgba(27,42,107,0.15);background:var(--white);border-radius:12px;padding:28px;text-align:center;cursor:pointer;transition:all .25s;position:relative}
+.file-upload:hover,.file-upload.drag{border-color:var(--teal);background:var(--teal-light)}
+.file-upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.file-upload-icon{font-size:2.2rem;margin-bottom:10px}
+.file-upload p{font-size:13px;color:var(--muted);line-height:1.55}
+.file-upload strong{color:var(--teal-dark);font-weight:700}
+.file-upload .file-types{font-size:11px;color:rgba(27,42,107,0.35);margin-top:4px}
+.file-list{margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.file-item{display:flex;align-items:center;justify-content:space-between;background:var(--teal-light);border:1px solid rgba(26,155,140,0.2);border-radius:8px;padding:7px 12px;font-size:12px;color:var(--teal-dark)}
+.file-remove{color:var(--red);cursor:pointer;font-size:16px;padding:0 4px;transition:opacity .2s;line-height:1}
+.file-remove:hover{opacity:.6}
+
+/* ── REVIEW SECTION ── */
+.review-block{background:var(--white);border:1.5px solid rgba(27,42,107,0.08);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.review-block-head{background:var(--navy);padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+.review-block-head h4{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.8)}
+.review-edit-btn{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);cursor:pointer;transition:color .2s}
+.review-edit-btn:hover{color:#4ecdc4}
+.review-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.review-item{padding:14px 20px;border-bottom:1px solid rgba(27,42,107,0.05)}
+.review-item:nth-last-child(-n+2){border-bottom:none}
+.review-item-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.review-item-val{font-size:13px;color:var(--body);font-weight:600}
+.review-item-val.highlight{color:var(--teal-dark);font-weight:700}
+
+/* ── DECLARATION ── */
+.declaration-box{background:var(--white);border:1.5px solid rgba(27,42,107,0.1);border-radius:12px;padding:24px;margin-bottom:20px}
+.declaration-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:18px}
+.declaration-check{display:flex;align-items:flex-start;gap:10px;cursor:pointer}
+.declaration-check input{width:16px;height:16px;margin-top:2px;accent-color:var(--teal);flex-shrink:0}
+.declaration-check span{font-size:13px;color:var(--body);line-height:1.55}
+.declaration-check a{color:var(--teal);text-decoration:underline}
+
+/* ── FORM NAV ── */
+.form-nav{display:flex;align-items:center;justify-content:space-between;padding-top:32px;margin-top:32px;border-top:1.5px solid rgba(27,42,107,0.08)}
+.btn-prev{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1.5px solid rgba(27,42,107,0.2);padding:12px 24px;border-radius:8px;transition:all .25s}
+.btn-prev:hover{color:var(--navy);border-color:var(--navy)}
+.btn-prev:disabled{opacity:.3;pointer-events:none}
+.btn-next{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--navy);color:var(--white);padding:13px 32px;border-radius:8px;transition:all .25s;display:flex;align-items:center;gap:10px}
+.btn-next:hover{background:var(--teal);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,155,140,0.35)}
+.btn-next:disabled{opacity:.5;pointer-events:none}
+.btn-submit{background:var(--teal);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--white);padding:15px 40px;border-radius:8px;transition:all .25s;display:flex;align-items:center;gap:10px}
+.btn-submit:hover{background:var(--teal-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,155,140,0.4)}
+.btn-submit:disabled{opacity:.55;pointer-events:none}
+.spinner{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:var(--white);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.step-count{font-size:11px;color:var(--muted);font-weight:600}
+
+/* ── SUCCESS SCREEN ── */
+.success-screen{display:none;text-align:center;padding:60px 24px}
+.success-screen.show{display:block;animation:fadeInUp .5s var(--ease)}
+.success-icon{width:80px;height:80px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:2.4rem;box-shadow:0 8px 32px rgba(29,157,95,0.3)}
+.success-screen h2{font-family:var(--font-head);font-size:clamp(24px,3vw,36px);color:var(--navy);margin-bottom:14px;line-height:1.15}
+.success-screen h2 em{font-style:italic;color:var(--teal-dark)}
+.success-screen>p{font-size:15px;color:var(--muted);line-height:1.8;max-width:480px;margin:0 auto 28px}
+.success-ref{background:var(--navy-light);border:1.5px solid rgba(27,42,107,0.1);border-radius:12px;padding:20px 32px;display:inline-block;margin-bottom:32px}
+.success-ref-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.success-ref-num{font-family:var(--font-head);font-size:26px;color:var(--navy)}
+.success-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:28px;right:28px;background:var(--navy);color:var(--white);border-radius:12px;padding:18px 20px;max-width:380px;z-index:999;box-shadow:var(--shadow-lg);display:flex;align-items:flex-start;gap:14px;transform:translateY(20px) scale(0.95);opacity:0;transition:all .35s var(--ease);pointer-events:none}
+.toast.show{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+.toast.error-toast{background:var(--red)}
+.toast-icon{width:20px;height:20px;flex-shrink:0;margin-top:1px}
+.toast-icon svg{width:20px;height:20px;stroke:var(--white);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.toast-body{flex:1}
+.toast-title{font-weight:700;font-size:14px;margin-bottom:3px}
+.toast-msg{font-size:12px;color:rgba(255,255,255,0.75);line-height:1.5}
+.toast-close{background:none;border:none;color:rgba(255,255,255,0.55);font-size:20px;cursor:pointer;line-height:1;padding:0;flex-shrink:0;transition:color .2s}
+.toast-close:hover{color:var(--white)}
+
+/* ── BUTTONS (general) ── */
+.btn-teal{background:var(--teal);color:var(--white);padding:13px 28px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-teal:hover{background:var(--teal-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,155,140,0.35)}
+.btn-navy{background:var(--navy);color:var(--white);padding:13px 28px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-navy:hover{background:var(--navy-deep);transform:translateY(-2px)}
+.btn-outline-white{border:2px solid rgba(255,255,255,0.45);color:var(--white);padding:13px 28px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-outline-white:hover{border-color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.1)}
+
+/* ── PROGRESS BAR ── */
+.progress-bar-wrap{background:rgba(27,42,107,0.06);height:4px;position:relative;overflow:hidden}
+.progress-bar-fill{height:100%;background:var(--teal);transition:width .5s var(--ease)}
+
+/* ── FOOTER ── */
+footer{background:#060d2e;padding:48px 24px 0}
+.footer-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px}
+.footer-logo-wrap{display:inline-block;background:var(--white);border-radius:10px;padding:10px 16px;margin-bottom:18px}
+.footer-logo-wrap img{height:48px;width:auto;display:block}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.75;max-width:260px;margin-bottom:16px}
+.footer-socials{display:flex;gap:10px}
+.social-btn{width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.55);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s}
+.social-btn svg{width:14px;height:14px;fill:currentColor}
+.social-btn:hover{border-color:var(--teal);background:var(--teal);color:var(--white)}
+.footer-col h4{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:18px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col a{font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;transition:color .2s}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{max-width:1200px;margin:40px auto 0;padding:20px 0;border-top:1px solid rgba(255,255,255,0.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,0.3)}
+.footer-bottom a{color:rgba(255,255,255,0.4);text-decoration:none}
+.footer-bottom a:hover{color:var(--white)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .app-layout{grid-template-columns:1fr}
+  .step-sidebar{position:relative;top:0;padding:1.5rem 0;display:flex;flex-direction:column}
+  .step-list{flex-direction:row;overflow-x:auto;padding:0 16px;gap:0}
+  .step-item{flex-direction:column;gap:4px;align-items:center;min-width:80px;border-left:none;border-bottom:3px solid transparent;padding:8px}
+  .step-item.active{border-bottom-color:var(--teal);border-left:none;background:rgba(26,155,140,0.08)}
+  .step-item.done{border-bottom-color:var(--green)}
+  .step-text-name{font-size:10px;text-align:center}
+  .step-check{display:none}
+  .sidebar-help,.step-sidebar-head{display:none}
+  .form-area{padding:2rem 1.5rem}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .form-row.c2,.form-row.c3{grid-template-columns:1fr}
+  .review-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:74px;left:0;right:0;background:var(--white);box-shadow:var(--shadow);padding:16px;z-index:99;gap:4px}
+  .drop-menu{position:static;box-shadow:none;border:none;border-left:3px solid var(--teal);padding:4px 0 4px 16px;margin:4px 0}
+  .toast{bottom:16px;right:16px;left:16px;max-width:none}
+  .app-layout{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/icons/logo2.png" onerror="this.style.display='none';document.querySelector('.logo-fallback').style.display='block'"/>
+      <div class="logo-fallback">AIET <span>American Institute of Education &amp; Training</span></div>
+    </a>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="#">About AIET ▾</a>
+        <div class="drop-menu">
+          <a href="institute-overview.html">Institute Overview</a>
+          <a href="mission-vision.html">Mission &amp; Vision</a>
+          <a href="objectives.html">Objectives</a>
+          <a href="cv.html">Core Values</a>
+          <a href="lsr.html">Legal Status and Recognition</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Qualifications ▾</a>
+        <div class="drop-menu">
+          <a href="certificate-programs.html">Certificate Programs</a>
+          <a href="professional-diploma-in-education-and-training.html">Professional Diploma in Education</a>
+          <a href="adv.html">Advanced Diploma in Education</a>
+          <a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma in Education</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Resources &amp; Insight ▾</a>
+        <div class="drop-menu">
+          <a href="ss.html">Student Services</a>
+          <a href="certv.html">Certification Verification Guidelines</a>
+          <a href="alut.html">Alumni &amp; Testimonials</a>
+          <a href="nub.html">News Updates &amp; Blogs</a>
+        </div>
+      </li>
+      <li><a href="app.html" class="nav-cta">Application Portal</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-label">🎓 AIET 2026</div>
+  <div class="ticker-track-wrap">
+    <div class="ticker-track">
+      <span>Applications Now Open for 2026 Intake</span>
+      <span>Available Online &amp; Onsite — Africa · Asia · Europe</span>
+      <span>Certificate, Diploma &amp; Postgraduate Programmes</span>
+      <span>Fellowship Induction Now Open — Apply Today</span>
+      <span>Rolling Admissions — Early Applicants Receive Priority</span>
+      <span>Contact: info@aietglobal.us | +1 (480) 955-0876</span>
+      <span>Applications Now Open for 2026 Intake</span>
+      <span>Available Online &amp; Onsite — Africa · Asia · Europe</span>
+      <span>Certificate, Diploma &amp; Postgraduate Programmes</span>
+      <span>Fellowship Induction Now Open — Apply Today</span>
+      <span>Rolling Admissions — Early Applicants Receive Priority</span>
+      <span>Contact: info@aietglobal.us | +1 (480) 955-0876</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">›</span>
+      <span>Admissions</span>
+      <span class="sep">›</span>
+      <span class="current">Application Portal</span>
+    </nav>
+    <div class="hero-badge">2026 Intake — Now Open</div>
+    <h1>Begin Your <em>Application</em></h1>
+    <p>Complete the form below to apply for your chosen AIET qualification. Applications are reviewed on a rolling basis — early applicants receive priority consideration from our admissions team.</p>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar" style="width:16.6%"></div></div>
+
+<!-- APP LAYOUT -->
+<div class="app-layout" id="appLayout">
+
+  <!-- STEP SIDEBAR -->
+  <aside class="step-sidebar">
+    <div class="step-sidebar-head">
+      <p>Your Progress</p>
+      <strong>2026 Application</strong>
+    </div>
+    <div class="step-list" id="stepList">
+      <div class="step-item active" data-step="1">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <div class="step-text-label">Step 1</div>
+          <div class="step-text-name">Program Selection</div>
+        </div>
+        <span class="step-check">✓</span>
+      </div>
+      <div class="step-item" data-step="2">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <div class="step-text-label">Step 2</div>
+          <div class="step-text-name">Personal Info</div>
+        </div>
+        <span class="step-check">✓</span>
+      </div>
+      <div class="step-item" data-step="3">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <div class="step-text-label">Step 3</div>
+          <div class="step-text-name">Academic Background</div>
+        </div>
+        <span class="step-check">✓</span>
+      </div>
+      <div class="step-item" data-step="4">
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <div class="step-text-label">Step 4</div>
+          <div class="step-text-name">Experience &amp; Goals</div>
+        </div>
+        <span class="step-check">✓</span>
+      </div>
+      <div class="step-item" data-step="5">
+        <div class="step-num">5</div>
+        <div class="step-text">
+          <div class="step-text-label">Step 5</div>
+          <div class="step-text-name">Documents</div>
+        </div>
+        <span class="step-check">✓</span>
+      </div>
+      <div class="step-item" data-step="6">
+        <div class="step-num">6</div>
+        <div class="step-text">
+          <div class="step-text-label">Step 6</div>
+          <div class="step-text-name">Review &amp; Submit</div>
+        </div>
+        <span class="step-check">✓</span>
+      </div>
+    </div>
+    <div class="sidebar-help">
+      <p>Need help? Contact our admissions team at <a href="mailto:info@aietglobal.us">info@aietglobal.us</a> or call <a href="tel:+14809550876">+1 (480) 955-0876</a>.</p>
+    </div>
+  </aside>
+
+  <!-- FORM PANELS -->
+  <div class="form-area">
+
+    <!-- STEP 1: PROGRAM SELECTION -->
+    <div class="form-panel active" id="panel-1">
+      <h2 class="form-panel-title">Choose Your <em>Programme</em></h2>
+      <p class="form-panel-sub">Select the AIET qualification you wish to apply for, your preferred intake, and study mode. All programmes lead to internationally recognised qualifications.</p>
+
+      <div class="form-section-label">Programme Details</div>
+      <div class="form-row c1">
+        <div class="field">
+          <label>Programme Applying For <span class="req">*</span></label>
+          <select id="programSelect" required onchange="updateProgramInfo(this)">
+            <option value="">— Select a Programme —</option>
+            <optgroup label="📜 Certificate Programmes">
+              <option value="Certificate in Early Child Care and Education">Certificate in Early Child Care and Education</option>
+              <option value="Certificate in Nursery Teachers Training">Certificate in Nursery Teachers Training</option>
+              <option value="Certificate in Pre and Primary Teacher Training">Certificate in Pre and Primary Teacher Training</option>
+              <option value="Certificate in Montessori Teacher Training">Certificate in Montessori Teacher Training</option>
+            </optgroup>
+            <optgroup label="🎓 Professional Diploma Programmes">
+              <option value="Professional Diploma in Education and Training (General)">Professional Diploma in Education &amp; Training (General)</option>
+              <option value="Professional Diploma in Early Child Care and Education">Professional Diploma in Early Child Care &amp; Education</option>
+              <option value="Professional Diploma in Nursery Teachers Training">Professional Diploma in Nursery Teachers Training</option>
+              <option value="Professional Diploma in Montessori Teacher Training">Professional Diploma in Montessori Teacher Training</option>
+              <option value="Professional Diploma in Special Needs Education">Professional Diploma in Special Needs Education</option>
+              <option value="Professional Diploma in Educational Leadership">Professional Diploma in Educational Leadership</option>
+              <option value="Professional Diploma in Educational Technology and E-Learning">Professional Diploma in Educational Technology &amp; E-Learning</option>
+              <option value="Professional Diploma in Teaching English as a Second Language (TESL)">Professional Diploma in TESL</option>
+              <option value="Professional Diploma in Educational Psychology and Counselling">Professional Diploma in Educational Psychology &amp; Counselling</option>
+              <option value="Professional Diploma in STEM Education">Professional Diploma in STEM Education</option>
+              <option value="Professional Diploma in Curriculum and Instructional Design">Professional Diploma in Curriculum &amp; Instructional Design</option>
+            </optgroup>
+            <optgroup label="🏅 Advanced Diploma Programmes">
+              <option value="Advanced Diploma in Education and Training">Advanced Diploma in Education and Training</option>
+              <option value="Advanced Diploma in Educational Leadership and Management">Advanced Diploma in Educational Leadership &amp; Management</option>
+              <option value="Advanced Diploma in Special Needs and Inclusive Education">Advanced Diploma in Special Needs &amp; Inclusive Education</option>
+              <option value="Advanced Diploma in Educational Technology">Advanced Diploma in Educational Technology</option>
+              <option value="Advanced Diploma in Curriculum Design and Instructional Planning">Advanced Diploma in Curriculum Design &amp; Instructional Planning</option>
+            </optgroup>
+            <optgroup label="🎓 Postgraduate Diploma">
+              <option value="Postgraduate Diploma in Education and Training">Postgraduate Diploma in Education and Training</option>
+              <option value="Postgraduate Diploma in Educational Leadership and Administration">Postgraduate Diploma in Educational Leadership &amp; Administration</option>
+              <option value="Postgraduate Diploma in Special Needs and Inclusive Education">Postgraduate Diploma in Special Needs &amp; Inclusive Education</option>
+              <option value="Postgraduate Diploma in Educational Research and Policy">Postgraduate Diploma in Educational Research &amp; Policy</option>
+            </optgroup>
+            <optgroup label="🌐 Fellowship &amp; Membership">
+              <option value="AIET Fellow Membership (FAIET)">AIET Fellow Membership (FAIET)</option>
+              <option value="AIET Associate Membership (AAIET)">AIET Associate Membership (AAIET)</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+      <div class="prog-info-box" id="progInfoBox"></div>
+
+      <div class="form-section-label">Intake &amp; Mode</div>
+      <div class="form-row c3">
+        <div class="field">
+          <label>Intake Year <span class="req">*</span></label>
+          <select id="intakeYear" required>
+            <option value="">Select Year</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Intake Semester <span class="req">*</span></label>
+          <select id="intakeSem" required>
+            <option value="">Select Semester</option>
+            <option value="January (Semester 1)">January (Semester 1)</option>
+            <option value="April (Semester 2)">April (Semester 2)</option>
+            <option value="July (Semester 3)">July (Semester 3)</option>
+            <option value="October (Semester 4)">October (Semester 4)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Study Mode <span class="req">*</span></label>
+          <select id="studyMode" required>
+            <option value="">Select Mode</option>
+            <option value="Online (Self-Paced)">Online (Self-Paced)</option>
+            <option value="Online (Guided/Instructor-led)">Online (Guided / Instructor-led)</option>
+            <option value="Blended Learning">Blended Learning</option>
+            <option value="Onsite (Face-to-Face)">Onsite (Face-to-Face)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-section-label">How Did You Hear About Us?</div>
+      <div class="form-row c2">
+        <div class="field">
+          <label>Referral Source</label>
+          <select id="referralSource">
+            <option value="">Select Source</option>
+            <option value="Google Search">Google Search</option>
+            <option value="Social Media (Facebook / Instagram / LinkedIn)">Social Media</option>
+            <option value="Friend or Colleague Referral">Friend or Colleague</option>
+            <option value="AIET Country Director">AIET Country Director</option>
+            <option value="Partner Institution">Partner Institution</option>
+            <option value="Email Newsletter">Email Newsletter</option>
+            <option value="Event or Conference">Event or Conference</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <span class="step-count">Step 1 of 6</span>
+        <button class="btn-next" onclick="nextStep(1)">Personal Information <span>→</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 2: PERSONAL INFORMATION -->
+    <div class="form-panel" id="panel-2">
+      <h2 class="form-panel-title">Personal <em>Information</em></h2>
+      <p class="form-panel-sub">Please provide your personal details exactly as they appear on your official identification document.</p>
+
+      <div class="form-section-label">Name &amp; Identity</div>
+      <div class="form-row c3">
+        <div class="field">
+          <label>Title</label>
+          <select id="title">
+            <option value="">Select</option>
+            <option value="Mr.">Mr.</option>
+            <option value="Mrs.">Mrs.</option>
+            <option value="Ms.">Ms.</option>
+            <option value="Miss">Miss</option>
+            <option value="Dr.">Dr.</option>
+            <option value="Prof.">Prof.</option>
+            <option value="Rev.">Rev.</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>First Name <span class="req">*</span></label>
+          <input type="text" id="firstName" placeholder="e.g. Amina" required/>
+        </div>
+        <div class="field">
+          <label>Last Name <span class="req">*</span></label>
+          <input type="text" id="lastName" placeholder="e.g. Bello" required/>
+        </div>
+      </div>
+      <div class="form-row c2">
+        <div class="field">
+          <label>Middle Name</label>
+          <input type="text" id="middleName" placeholder="If applicable"/>
+        </div>
+        <div class="field">
+          <label>Date of Birth <span class="req">*</span></label>
+          <input type="date" id="dob" required/>
+        </div>
+      </div>
+      <div class="form-row c3">
+        <div class="field">
+          <label>Gender <span class="req">*</span></label>
+          <select id="gender" required>
+            <option value="">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Prefer not to say">Prefer not to say</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Nationality <span class="req">*</span></label>
+          <input type="text" id="nationality" placeholder="e.g. Nigerian" required/>
+        </div>
+        <div class="field">
+          <label>Passport / National ID No.</label>
+          <input type="text" id="passportNum" placeholder="Optional"/>
+        </div>
+      </div>
+
+      <div class="form-section-label">Contact Information</div>
+      <div class="form-row c2">
+        <div class="field">
+          <label>Country of Residence <span class="req">*</span></label>
+          <input type="text" id="country" placeholder="e.g. Nigeria" required/>
+        </div>
+        <div class="field">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" id="email" placeholder="you@example.com" required/>
+        </div>
+      </div>
+      <div class="form-row c2">
+        <div class="field">
+          <label>Confirm Email <span class="req">*</span></label>
+          <input type="email" id="emailConfirm" placeholder="Confirm your email" required/>
+        </div>
+        <div class="field">
+          <label>Phone Number <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="+234 800 000 0000" required/>
+        </div>
+      </div>
+      <div class="form-row c2">
+        <div class="field">
+          <label>WhatsApp Number</label>
+          <input type="tel" id="whatsapp" placeholder="If different from phone"/>
+          <span class="field-hint">Leave blank if same as phone number</span>
+        </div>
+        <div class="field">
+          <label>Mailing Address <span class="req">*</span></label>
+          <input type="text" id="address" placeholder="Street, City, Country" required/>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <button class="btn-prev" onclick="prevStep(2)">← Back</button>
+        <div style="display:flex;align-items:center;gap:14px">
+          <span class="step-count">Step 2 of 6</span>
+          <button class="btn-next" onclick="nextStep(2)">Academic Background <span>→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: ACADEMIC BACKGROUND -->
+    <div class="form-panel" id="panel-3">
+      <h2 class="form-panel-title">Academic <em>Background</em></h2>
+      <p class="form-panel-sub">Please provide details of your highest academic qualification. This information is used to determine programme eligibility.</p>
+
+      <div class="form-section-label">Highest Qualification</div>
+      <div class="form-row c2">
+        <div class="field">
+          <label>Highest Qualification <span class="req">*</span></label>
+          <select id="highestQual" required>
+            <option value="">Select Qualification</option>
+            <option value="Secondary School Certificate (WAEC/NECO/O-Level)">Secondary School Certificate (WAEC/NECO/O-Level)</option>
+            <option value="West African Senior School Certificate (WASSCE)">WASSCE</option>
+            <option value="National Diploma (ND)">National Diploma (ND)</option>
+            <option value="Higher National Diploma (HND)">Higher National Diploma (HND)</option>
+            <option value="Bachelor's Degree (B.Sc / B.A / B.Ed)">Bachelor's Degree (B.Sc / B.A / B.Ed)</option>
+            <option value="Postgraduate Diploma (PGD)">Postgraduate Diploma (PGD)</option>
+            <option value="Master's Degree (M.Sc / M.A / M.Ed)">Master's Degree (M.Sc / M.A / M.Ed)</option>
+            <option value="Doctorate Degree (Ph.D / Ed.D)">Doctorate Degree (Ph.D / Ed.D)</option>
+            <option value="Professional Certificate / Qualification">Professional Certificate / Qualification</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Field / Subject of Study <span class="req">*</span></label>
+          <input type="text" id="fieldOfStudy" placeholder="e.g. Education, Psychology" required/>
+        </div>
+      </div>
+      <div class="form-row c2">
+        <div class="field">
+          <label>Institution Name <span class="req">*</span></label>
+          <input type="text" id="institution1" placeholder="e.g. University of Lagos" required/>
+        </div>
+        <div class="field">
+          <label>Country of Institution <span class="req">*</span></label>
+          <input type="text" id="instCountry1" placeholder="e.g. Nigeria" required/>
+        </div>
+      </div>
+      <div class="form-row c3">
+        <div class="field">
+          <label>Year of Graduation <span class="req">*</span></label>
+          <input type="number" id="gradYear" placeholder="e.g. 2018" min="1970" max="2026" required/>
+        </div>
+        <div class="field">
+          <label>Grade / GPA / Class</label>
+          <input type="text" id="grade" placeholder="e.g. Second Class Upper"/>
+        </div>
+        <div class="field">
+          <label>Language of Instruction <span class="req">*</span></label>
+          <select id="instrLang" required>
+            <option value="">Select</option>
+            <option value="English">English</option>
+            <option value="French">French</option>
+            <option value="Arabic">Arabic</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-section-label">Additional Qualification (Optional)</div>
+      <div class="form-row c2">
+        <div class="field">
+          <label>Additional Qualification</label>
+          <input type="text" id="qual2" placeholder="e.g. PGDE, Certificate in Teaching"/>
+        </div>
+        <div class="field">
+          <label>Awarding Body / Institution</label>
+          <input type="text" id="body2" placeholder="e.g. National Teachers Institute"/>
+        </div>
+      </div>
+
+      <div class="form-section-label">English Language Proficiency</div>
+      <div class="field">
+        <label>English Proficiency Method <span class="req">*</span></label>
+        <div class="radio-group" id="englishRadioGroup">
+          <label class="radio-opt" onclick="selectRadio(this,'english','Native Speaker')">
+            <input type="radio" name="english" value="Native Speaker"/> Native Speaker
+          </label>
+          <label class="radio-opt" onclick="selectRadio(this,'english','English was medium of instruction')">
+            <input type="radio" name="english" value="English was medium of instruction"/> Medium of Instruction
+          </label>
+          <label class="radio-opt" onclick="selectRadio(this,'english','IELTS')">
+            <input type="radio" name="english" value="IELTS"/> IELTS
+          </label>
+          <label class="radio-opt" onclick="selectRadio(this,'english','TOEFL')">
+            <input type="radio" name="english" value="TOEFL"/> TOEFL
+          </label>
+          <label class="radio-opt" onclick="selectRadio(this,'english','Cambridge English')">
+            <input type="radio" name="english" value="Cambridge English"/> Cambridge English
+          </label>
+          <label class="radio-opt" onclick="selectRadio(this,'english','Other / Not applicable')">
+            <input type="radio" name="english" value="Other / Not applicable"/> Other
+          </label>
+        </div>
+      </div>
+      <div class="form-row c2" style="margin-top:14px">
+        <div class="field">
+          <label>Test Score (if applicable)</label>
+          <input type="text" id="englishScore" placeholder="e.g. IELTS 6.5"/>
+        </div>
+        <div class="field">
+          <label>Test Date (if applicable)</label>
+          <input type="date" id="englishDate"/>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <button class="btn-prev" onclick="prevStep(3)">← Back</button>
+        <div style="display:flex;align-items:center;gap:14px">
+          <span class="step-count">Step 3 of 6</span>
+          <button class="btn-next" onclick="nextStep(3)">Experience &amp; Goals <span>→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: EXPERIENCE & GOALS -->
+    <div class="form-panel" id="panel-4">
+      <h2 class="form-panel-title">Experience <em>&amp; Goals</em></h2>
+      <p class="form-panel-sub">Tell us about your professional background and what you hope to achieve through your AIET qualification. This helps our advisors support your journey.</p>
+
+      <div class="form-section-label">Professional Experience</div>
+      <div class="form-row c2">
+        <div class="field">
+          <label>Current Job Title</label>
+          <input type="text" id="jobTitle" placeholder="e.g. Primary School Teacher"/>
+        </div>
+        <div class="field">
+          <label>Current Employer / Organisation</label>
+          <input type="text" id="employer" placeholder="e.g. Lagos State Primary Schools Board"/>
+        </div>
+      </div>
+      <div class="form-row c3">
+        <div class="field">
+          <label>Industry / Sector</label>
+          <select id="industry">
+            <option value="">Select</option>
+            <option value="Education (School / College)">Education (School / College)</option>
+            <option value="Higher Education / University">Higher Education / University</option>
+            <option value="Corporate Training / L&D">Corporate Training / L&amp;D</option>
+            <option value="Early Childhood / Nursery">Early Childhood / Nursery</option>
+            <option value="Special Education / Inclusive Education">Special Education</option>
+            <option value="Government / Public Service">Government / Public Service</option>
+            <option value="Non-Governmental Organisation (NGO)">NGO</option>
+            <option value="Healthcare / Medical Training">Healthcare / Medical Training</option>
+            <option value="Technology / EdTech">Technology / EdTech</option>
+            <option value="Religious / Faith-Based Organisation">Religious / Faith-Based</option>
+            <option value="Unemployed / Seeking Employment">Unemployed / Seeking Employment</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Years of Work Experience</label>
+          <select id="yearsExp">
+            <option value="">Select</option>
+            <option value="Less than 1 year">Less than 1 year</option>
+            <option value="1–3 years">1–3 years</option>
+            <option value="3–5 years">3–5 years</option>
+            <option value="5–10 years">5–10 years</option>
+            <option value="10–15 years">10–15 years</option>
+            <option value="Over 15 years">Over 15 years</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Years in Management / Leadership</label>
+          <select id="mgmtExp">
+            <option value="">Select</option>
+            <option value="None">None</option>
+            <option value="Less than 1 year">Less than 1 year</option>
+            <option value="1–3 years">1–3 years</option>
+            <option value="3–5 years">3–5 years</option>
+            <option value="5–10 years">5–10 years</option>
+            <option value="Over 10 years">Over 10 years</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-section-label">Statement of Purpose</div>
+      <div class="form-row c1">
+        <div class="field">
+          <label>Why do you want to study with AIET? <span class="req">*</span></label>
+          <textarea id="motivation" placeholder="Please describe your motivation for applying to AIET, what drew you to this specific programme, and how this qualification will support your professional development..." required></textarea>
+          <span class="field-hint">Minimum 80 words recommended. This helps our admissions advisors personalise your experience.</span>
+        </div>
+      </div>
+      <div class="form-row c1">
+        <div class="field">
+          <label>Career Goals &amp; Aspirations <span class="req">*</span></label>
+          <textarea id="goals" placeholder="Describe where you see yourself professionally in 3–5 years, and how an AIET qualification will help you get there..." required></textarea>
+        </div>
+      </div>
+
+      <div class="form-section-label">Reference Contact</div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.65;">Please provide details of one professional reference — this could be an employer, supervisor, educator, or professional colleague who can speak to your character and professional conduct.</p>
+      <div class="form-row c2">
+        <div class="field">
+          <label>Referee Full Name</label>
+          <input type="text" id="ref1name" placeholder="e.g. Dr. John Adeyemi"/>
+        </div>
+        <div class="field">
+          <label>Referee Email Address</label>
+          <input type="email" id="ref1email" placeholder="referee@example.com"/>
+        </div>
+      </div>
+      <div class="form-row c2">
+        <div class="field">
+          <label>Referee Position / Title</label>
+          <input type="text" id="ref1title" placeholder="e.g. Head of Department"/>
+        </div>
+        <div class="field">
+          <label>Referee Organisation</label>
+          <input type="text" id="ref1org" placeholder="e.g. University of Ibadan"/>
+        </div>
+      </div>
+
+      <div class="form-nav">
+        <button class="btn-prev" onclick="prevStep(4)">← Back</button>
+        <div style="display:flex;align-items:center;gap:14px">
+          <span class="step-count">Step 4 of 6</span>
+          <button class="btn-next" onclick="nextStep(4)">Upload Documents <span>→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5: DOCUMENTS -->
+    <div class="form-panel" id="panel-5">
+      <h2 class="form-panel-title">Supporting <em>Documents</em></h2>
+      <p class="form-panel-sub">Upload your supporting documents below. All files should be clear, legible, and in PDF, JPG, or PNG format (max 5MB each). Documents can also be submitted via email after application.</p>
+
+      <div class="form-section-label">Identity &amp; Qualification Documents</div>
+      <div class="form-row c2">
+        <div class="field">
+          <label>Passport / Government-Issued ID</label>
+          <div class="file-upload" id="drop_upload_id" ondragover="handleDragOver(event,this)" ondragleave="handleDragLeave(this)" ondrop="handleDrop(event,'upload_id',this)">
+            <input type="file" id="upload_id" accept=".pdf,.jpg,.jpeg,.png" onchange="showFile(this,'upload_id')"/>
+            <div class="file-upload-icon">🪪</div>
+            <p><strong>Click to upload</strong> or drag &amp; drop<br/>Passport or National ID Card</p>
+            <div class="file-types">PDF, JPG, PNG — Max 5MB</div>
+          </div>
+          <div class="file-list" id="list_upload_id"></div>
+        </div>
+        <div class="field">
+          <label>Academic Transcripts / Certificates</label>
+          <div class="file-upload" id="drop_upload_transcripts" ondragover="handleDragOver(event,this)" ondragleave="handleDragLeave(this)" ondrop="handleDrop(event,'upload_transcripts',this)">
+            <input type="file" id="upload_transcripts" accept=".pdf,.jpg,.jpeg,.png" onchange="showFile(this,'upload_transcripts')"/>
+            <div class="file-upload-icon">📜</div>
+            <p><strong>Click to upload</strong> or drag &amp; drop<br/>Academic Certificates &amp; Transcripts</p>
+            <div class="file-types">PDF, JPG, PNG — Max 5MB</div>
+          </div>
+          <div class="file-list" id="list_upload_transcripts"></div>
+        </div>
+      </div>
+
+      <div class="form-section-label">Professional &amp; Additional Documents</div>
+      <div class="form-row c3">
+        <div class="field">
+          <label>CV / Résumé</label>
+          <div class="file-upload" id="drop_upload_cv" ondragover="handleDragOver(event,this)" ondragleave="handleDragLeave(this)" ondrop="handleDrop(event,'upload_cv',this)">
+            <input type="file" id="upload_cv" accept=".pdf,.doc,.docx" onchange="showFile(this,'upload_cv')"/>
+            <div class="file-upload-icon">📋</div>
+            <p><strong>Upload CV</strong> or Résumé</p>
+            <div class="file-types">PDF, DOC, DOCX — Max 5MB</div>
+          </div>
+          <div class="file-list" id="list_upload_cv"></div>
+        </div>
+        <div class="field">
+          <label>English Language Certificate</label>
+          <div class="file-upload" id="drop_upload_english" ondragover="handleDragOver(event,this)" ondragleave="handleDragLeave(this)" ondrop="handleDrop(event,'upload_english',this)">
+            <input type="file" id="upload_english" accept=".pdf,.jpg,.jpeg,.png" onchange="showFile(this,'upload_english')"/>
+            <div class="file-upload-icon">🌐</div>
+            <p><strong>Upload</strong> IELTS / TOEFL / Cambridge</p>
+            <div class="file-types">PDF, JPG, PNG — Max 5MB</div>
+          </div>
+          <div class="file-list" id="list_upload_english"></div>
+        </div>
+        <div class="field">
+          <label>Reference Letter(s)</label>
+          <div class="file-upload" id="drop_upload_refs" ondragover="handleDragOver(event,this)" ondragleave="handleDragLeave(this)" ondrop="handleDrop(event,'upload_refs',this)">
+            <input type="file" id="upload_refs" accept=".pdf,.jpg,.jpeg,.png" onchange="showFile(this,'upload_refs')"/>
+            <div class="file-upload-icon">✉️</div>
+            <p><strong>Upload</strong> Reference Letter(s)</p>
+            <div class="file-types">PDF, JPG, PNG — Max 5MB</div>
+          </div>
+          <div class="file-list" id="list_upload_refs"></div>
+        </div>
+      </div>
+
+      <div style="background:var(--teal-light);border:1.5px solid rgba(26,155,140,0.25);border-radius:10px;padding:16px 20px;margin-top:8px">
+        <p style="font-size:13px;color:var(--teal-dark);line-height:1.7"><strong>📌 Note:</strong> Document uploads are optional at this stage. You may submit your application first and email supporting documents to <a href="mailto:info@aietglobal.us" style="color:var(--teal-dark);font-weight:700">info@aietglobal.us</a> referencing your application number. All documents must be received before your application can be fully processed.</p>
+      </div>
+
+      <div class="form-nav">
+        <button class="btn-prev" onclick="prevStep(5)">← Back</button>
+        <div style="display:flex;align-items:center;gap:14px">
+          <span class="step-count">Step 5 of 6</span>
+          <button class="btn-next" onclick="nextStep(5)">Review &amp; Submit <span>→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6: REVIEW & SUBMIT -->
+    <div class="form-panel" id="panel-6">
+      <h2 class="form-panel-title">Review &amp; <em>Submit</em></h2>
+      <p class="form-panel-sub">Please review your application details carefully before submitting. Click any section heading to go back and make changes.</p>
+
+      <div id="reviewContent"></div>
+
+      <div class="declaration-box">
+        <p>By submitting this application, I confirm that all information provided is accurate and complete to the best of my knowledge. I understand that providing false or misleading information may result in the cancellation of my application or enrolment. I consent to the American Institute of Education and Training (AIET) using my personal data for the purposes of processing this application, in accordance with AIET's Privacy Policy.</p>
+        <label class="declaration-check">
+          <input type="checkbox" id="declarationCheck"/>
+          <span>I have read, understood, and agree to the above declaration. I consent to AIET processing my personal data as described in the <a href="pp.html">Privacy Policy</a>.</span>
+        </label>
+      </div>
+
+      <div class="form-nav">
+        <button class="btn-prev" onclick="prevStep(6)">← Back</button>
+        <div style="display:flex;align-items:center;gap:14px">
+          <span class="step-count">Step 6 of 6</span>
+          <button class="btn-submit" id="submitBtn" onclick="submitApplication()">
+            <span id="submitBtnText">Submit Application</span>
+            <div class="spinner" id="submitBtnSpinner"></div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS SCREEN -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">🎓</div>
+      <h2>Application <em>Submitted!</em></h2>
+      <p>Thank you for applying to AIET. Your application has been received and is being reviewed by our admissions team. You will be contacted at your provided email address within 3–5 business days.</p>
+      <div class="success-ref">
+        <div class="success-ref-label">Your Application Reference</div>
+        <div class="success-ref-num" id="refNumber">AIET-2026-XXXXXX</div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:28px">Please save your reference number. Email <a href="mailto:info@aietglobal.us" style="color:var(--teal-dark);font-weight:700">info@aietglobal.us</a> with this reference to submit any outstanding documents.</p>
+      <div class="success-btns">
+        <a href="index.html" class="btn-navy">Back to Home</a>
+        <a href="certificate-programs.html" class="btn-teal">Explore Programmes</a>
+      </div>
+    </div>
+
+  </div><!-- /form-area -->
+</div><!-- /app-layout -->
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-icon">
+    <svg id="toastIcon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+  </div>
+  <div class="toast-body">
+    <div class="toast-title" id="toastTitle">Notification</div>
+    <div class="toast-msg" id="toastMsg"></div>
+  </div>
+  <button class="toast-close" id="toastClose">×</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <img src="assets/icons/logo2.png" onerror="this.src='https://aietglobal.us/wp-content/uploads/2024/01/AIET-Logo-300x174.png'"/>
+      </div>
+      <p>The American Institute of Education and Training — raising formidably well-trained professionals at every level of society through quality education and training programmes.</p>
+      <div class="footer-socials">
+        <a href="https://facebook.com" class="social-btn" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+        </a>
+        <a href="https://linkedin.com" class="social-btn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://x.com" class="social-btn" aria-label="X">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://youtube.com" class="social-btn" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>About AIET</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="institute-overview.html">Institute Overview</a></li>
+        <li><a href="mission-vision.html">Mission &amp; Vision</a></li>
+        <li><a href="objectives.html">Objectives</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Qualifications</h4>
+      <ul>
+        <li><a href="certificate-programs.html">Certificate Programmes</a></li>
+        <li><a href="professional-diploma-in-education-and-training.html">Professional Diploma</a></li>
+        <li><a href="adv.html">Advanced Diploma</a></li>
+        <li><a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="nub.html">News &amp; Blogs</a></li>
+        <li><a href="ss.html">Student Services</a></li>
+        <li><a href="alut.html">Alumni &amp; Testimonials</a></li>
+        <li><a href="faq.html">FAQs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+14809550876">+1 (480) 955-0876</a></li>
+        <li><a href="mailto:info@aietglobal.us">info@aietglobal.us</a></li>
+        <li>1950 W Corporate Way #15593, Anaheim, CA 92801</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 American Institute of Education and Training. All rights reserved.</p>
+    <div style="display:flex;gap:20px;flex-wrap:wrap">
+      <a href="pp.html">Privacy Policy</a>
+      <a href="tu.html">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── NAVBAR TOGGLE ──
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open')}
+
+// ── PROGRAMME INFO DATA ──
+var progData={
+  'Certificate in Early Child Care and Education':{desc:'A foundational qualification covering child development, care practices, and early education essentials for those entering the early childhood education sector.',pills:['Duration: 3–6 months','Level: Certificate','Mode: Online / Onsite']},
+  'Certificate in Nursery Teachers Training':{desc:'Equips aspiring educators with specialised skills and knowledge to deliver quality early-years education at nursery level.',pills:['Duration: 3–6 months','Level: Certificate','Mode: Online / Onsite']},
+  'Certificate in Pre and Primary Teacher Training':{desc:'A comprehensive training programme for educators entering pre-school and primary level teaching, covering pedagogy, curriculum, and classroom management.',pills:['Duration: 3–6 months','Level: Certificate','Mode: Online / Onsite']},
+  'Certificate in Montessori Teacher Training':{desc:'Master the internationally renowned Montessori method to create child-centred, enriching learning environments for young children.',pills:['Duration: 3–6 months','Level: Certificate','Mode: Online / Onsite']},
+  'default':{desc:'A globally recognised professional qualification from the American Institute of Education and Training. This programme is designed to equip you with the knowledge, skills, and credentials to advance your career in education and training.',pills:['Rolling Admissions','Online / Blended / Onsite','Globally Recognised Credential']}
+};
+
+function updateProgramInfo(el){
+  var box=document.getElementById('progInfoBox');
+  if(!el.value){box.classList.remove('visible');return}
+  var d=progData[el.value]||progData['default'];
+  var pills=d.pills.map(function(p){return'<span class="prog-pill">'+p+'</span>'}).join('');
+  box.innerHTML='<h4>'+el.value+'</h4><p>'+d.desc+'</p><div class="prog-info-pills">'+pills+'</div>';
+  box.classList.add('visible');
+}
+
+// ── STEP MANAGEMENT ──
+var currentStep=1;
+var totalSteps=6;
+
+function goToStep(n){
+  document.querySelectorAll('.form-panel').forEach(function(p){p.classList.remove('active')});
+  var panel=document.getElementById('panel-'+n);
+  if(panel){panel.classList.add('active');panel.scrollIntoView({behavior:'smooth',block:'start'})}
+  document.querySelectorAll('.step-item').forEach(function(item){
+    var s=parseInt(item.dataset.step);
+    item.classList.remove('active','done');
+    if(s===n)item.classList.add('active');
+    else if(s<n)item.classList.add('done');
+  });
+  currentStep=n;
+  var pct=(n/totalSteps)*100;
+  document.getElementById('progressBar').style.width=pct+'%';
+  // scroll to top of form area
+  document.getElementById('appLayout').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function nextStep(from){
+  if(!validateStep(from))return;
+  if(from===5){buildReview()}
+  goToStep(from+1);
+}
+function prevStep(from){goToStep(from-1)}
+
+// ── VALIDATION ──
+function validateStep(step){
+  if(step===1){
+    if(!g('programSelect')){showToast('Selection Required','Please select a programme before continuing.',true);return false}
+    if(!g('intakeYear')){showToast('Intake Year Required','Please select an intake year.',true);return false}
+    if(!g('intakeSem')){showToast('Semester Required','Please select an intake semester.',true);return false}
+    if(!g('studyMode')){showToast('Study Mode Required','Please select a study mode.',true);return false}
+  }
+  if(step===2){
+    if(!g('firstName')||!g('lastName')){showToast('Name Required','Please enter your first and last name.',true);return false}
+    if(!g('dob')){showToast('Date of Birth Required','Please enter your date of birth.',true);return false}
+    if(!g('gender')){showToast('Gender Required','Please select your gender.',true);return false}
+    if(!g('nationality')){showToast('Nationality Required','Please enter your nationality.',true);return false}
+    if(!g('country')){showToast('Country Required','Please enter your country of residence.',true);return false}
+    var emailVal=document.getElementById('email').value.trim();
+    if(!emailVal||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)){showToast('Valid Email Required','Please enter a valid email address.',true);return false}
+    if(emailVal!==document.getElementById('emailConfirm').value.trim()){showToast('Email Mismatch','Your email addresses do not match. Please check and try again.',true);return false}
+    if(!g('phone')){showToast('Phone Required','Please enter your phone number.',true);return false}
+    if(!g('address')){showToast('Address Required','Please enter your mailing address.',true);return false}
+  }
+  if(step===3){
+    if(!g('highestQual')){showToast('Qualification Required','Please select your highest qualification.',true);return false}
+    if(!g('fieldOfStudy')){showToast('Field of Study Required','Please enter your field of study.',true);return false}
+    if(!g('institution1')){showToast('Institution Required','Please enter your institution name.',true);return false}
+    if(!g('instCountry1')){showToast('Country Required','Please enter the country of your institution.',true);return false}
+    if(!g('gradYear')){showToast('Graduation Year Required','Please enter your year of graduation.',true);return false}
+    if(!g('instrLang')){showToast('Language Required','Please select the language of instruction.',true);return false}
+    var engChecked=document.querySelector('input[name="english"]:checked');
+    if(!engChecked){showToast('English Proficiency Required','Please indicate your English language proficiency method.',true);return false}
+  }
+  if(step===4){
+    if(!g('motivation')||g('motivation').length<30){showToast('Statement Required','Please write your statement of purpose (minimum 80 words recommended).',true);return false}
+    if(!g('goals')){showToast('Goals Required','Please describe your career goals and aspirations.',true);return false}
+  }
+  return true;
+}
+
+// ── REVIEW BUILD ──
+function buildReview(){
+  var eng=document.querySelector('input[name="english"]:checked');
+  var data=[
+    {title:'Programme Selection',step:1,fields:[
+      {l:'Programme',v:g('programSelect')},{l:'Intake Year',v:g('intakeYear')},
+      {l:'Semester',v:g('intakeSem')},{l:'Study Mode',v:g('studyMode')},
+      {l:'Referral Source',v:g('referralSource')||'Not specified'}
+    ]},
+    {title:'Personal Information',step:2,fields:[
+      {l:'Full Name',v:(g('title')+' '+g('firstName')+' '+g('middleName')+' '+g('lastName')).trim()},
+      {l:'Date of Birth',v:g('dob')},{l:'Gender',v:g('gender')},
+      {l:'Nationality',v:g('nationality')},{l:'Country of Residence',v:g('country')},
+      {l:'Email Address',v:g('email')},{l:'Phone',v:g('phone')},
+      {l:'WhatsApp',v:g('whatsapp')||'Same as phone'},{l:'Address',v:g('address')}
+    ]},
+    {title:'Academic Background',step:3,fields:[
+      {l:'Highest Qualification',v:g('highestQual')},{l:'Field of Study',v:g('fieldOfStudy')},
+      {l:'Institution',v:g('institution1')},{l:'Country of Institution',v:g('instCountry1')},
+      {l:'Year of Graduation',v:g('gradYear')},{l:'Grade / GPA',v:g('grade')||'Not provided'},
+      {l:'Language of Instruction',v:g('instrLang')},
+      {l:'English Proficiency',v:eng?eng.value:'Not specified'}
+    ]},
+    {title:'Professional Experience',step:4,fields:[
+      {l:'Job Title',v:g('jobTitle')||'Not provided'},{l:'Employer',v:g('employer')||'Not provided'},
+      {l:'Industry',v:g('industry')||'Not provided'},{l:'Years Experience',v:g('yearsExp')||'Not provided'},
+      {l:'Years in Management',v:g('mgmtExp')||'Not provided'},{l:'Referee',v:g('ref1name')||'Not provided'}
+    ]}
+  ];
+  var html='';
+  data.forEach(function(section){
+    var items=section.fields.map(function(f){
+      return'<div class="review-item"><div class="review-item-label">'+f.l+'</div><div class="review-item-val'+(section.title==='Programme Selection'&&f.l==='Programme'?' highlight':'')+'">'+f.v+'</div></div>';
+    }).join('');
+    html+='<div class="review-block"><div class="review-block-head"><h4>'+section.title+'</h4><span class="review-edit-btn" onclick="goToStep('+section.step+')">Edit ✏️</span></div><div class="review-grid">'+items+'</div></div>';
+  });
+  document.getElementById('reviewContent').innerHTML=html;
+}
+
+// ── RADIO SELECTION ──
+function selectRadio(label,name,value){
+  document.querySelectorAll('input[name="'+name+'"]').forEach(function(r){
+    r.closest('.radio-opt').classList.remove('selected');
+  });
+  label.classList.add('selected');
+}
+
+// ── FILE UPLOAD ──
+function showFile(input,id){
+  var listEl=document.getElementById('list_'+id);
+  listEl.innerHTML='';
+  if(!input.files||!input.files[0])return;
+  var f=input.files[0];
+  if(f.size>5*1024*1024){showToast('File Too Large',f.name+' exceeds 5MB. Please compress or choose another file.',true);input.value='';return}
+  var item=document.createElement('div');
+  item.className='file-item';
+  item.innerHTML='<span>📄 '+f.name+'</span><span class="file-remove" onclick="clearFile(\''+id+'\',this)">×</span>';
+  listEl.appendChild(item);
+}
+function clearFile(id,btn){
+  document.getElementById(id).value='';
+  btn.closest('.file-list').innerHTML='';
+}
+function handleDragOver(e,el){e.preventDefault();el.classList.add('drag')}
+function handleDragLeave(el){el.classList.remove('drag')}
+function handleDrop(e,id,el){
+  e.preventDefault();el.classList.remove('drag');
+  var dt=e.dataTransfer;
+  if(dt.files&&dt.files[0]){
+    var inp=document.getElementById(id);
+    inp.files=dt.files;
+    showFile(inp,id);
+  }
+}
+
+// ── HELPERS ──
+function g(id){var el=document.getElementById(id);return el?el.value.trim():''}
+
+// ── TOAST ──
+var toast=document.getElementById('toast');
+var toastTitle=document.getElementById('toastTitle');
+var toastMsg=document.getElementById('toastMsg');
+var toastIcon=document.getElementById('toastIcon');
+var toastClose=document.getElementById('toastClose');
+var toastTimer;
+function showToast(title,msg,isError){
+  clearTimeout(toastTimer);
+  toastTitle.textContent=title;
+  toastMsg.textContent=msg;
+  if(isError){
+    toast.classList.add('error-toast');
+    toastIcon.innerHTML='<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
+  }else{
+    toast.classList.remove('error-toast');
+    toastIcon.innerHTML='<polyline points="20 6 9 17 4 12"></polyline>';
+  }
+  toast.classList.add('show');
+  toastTimer=setTimeout(hideToast,8000);
+}
+function hideToast(){toast.classList.remove('show')}
+toastClose.addEventListener('click',hideToast);
+
+// ── SUBMIT ──
+function submitApplication(){
+  var decl=document.getElementById('declarationCheck');
+  if(!decl.checked){showToast('Declaration Required','Please read and accept the declaration before submitting.',true);return}
+  if(!validateStep(1)||!validateStep(2)||!validateStep(3)||!validateStep(4))return;
+
+  var ref='AIET-2026-'+Math.random().toString(36).substring(2,8).toUpperCase();
+  var fd=new FormData();
+  fd.append('ref',ref);
+  fd.append('programSelect',g('programSelect'));
+  fd.append('specialization','');
+  fd.append('intakeYear',g('intakeYear'));
+  fd.append('intakeSem',g('intakeSem'));
+  fd.append('studyMode',g('studyMode'));
+  fd.append('referralSource',g('referralSource'));
+  fd.append('title',g('title'));
+  fd.append('firstName',g('firstName'));
+  fd.append('lastName',g('lastName'));
+  fd.append('middleName',g('middleName'));
+  fd.append('dob',g('dob'));
+  fd.append('gender',g('gender'));
+  fd.append('nationality',g('nationality'));
+  fd.append('passportNum',g('passportNum'));
+  fd.append('country',g('country'));
+  fd.append('email',g('email'));
+  fd.append('phone',g('phone'));
+  fd.append('whatsapp',g('whatsapp'));
+  fd.append('address',g('address'));
+  fd.append('highestQual',g('highestQual'));
+  fd.append('fieldOfStudy',g('fieldOfStudy'));
+  fd.append('institution1',g('institution1'));
+  fd.append('instCountry1',g('instCountry1'));
+  fd.append('gradYear',g('gradYear'));
+  fd.append('grade',g('grade'));
+  fd.append('instrLang',g('instrLang'));
+  fd.append('qual2',g('qual2'));
+  fd.append('body2',g('body2'));
+  fd.append('englishScore',g('englishScore'));
+  fd.append('englishDate',g('englishDate'));
+  fd.append('jobTitle',g('jobTitle'));
+  fd.append('employer',g('employer'));
+  fd.append('industry',g('industry'));
+  fd.append('yearsExp',g('yearsExp'));
+  fd.append('mgmtExp',g('mgmtExp'));
+  fd.append('motivation',g('motivation'));
+  fd.append('goals',g('goals'));
+  fd.append('ref1name',g('ref1name'));
+  fd.append('ref1email',g('ref1email'));
+  fd.append('ref1title',g('ref1title'));
+  fd.append('ref1org',g('ref1org'));
+  var eng=document.querySelector('input[name="english"]:checked');
+  fd.append('englishMethod',eng?eng.value:'Not provided');
+  ['upload_id','upload_transcripts','upload_cv','upload_english','upload_refs'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el&&el.files[0])fd.append(id,el.files[0]);
+  });
+
+  var btn=document.getElementById('submitBtn');
+  var btnText=document.getElementById('submitBtnText');
+  var spinner=document.getElementById('submitBtnSpinner');
+  btn.disabled=true;
+  btnText.style.display='none';
+  spinner.style.display='inline-block';
+
+  fetch('send_mail_cbs.php',{method:'POST',body:fd})
+  .then(function(res){return res.json()})
+  .then(function(data){
+    btn.disabled=false;
+    btnText.style.display='inline';
+    spinner.style.display='none';
+    if(data.success){
+      showToast('✅ Application Submitted!','Your application has been received by AIET. Ref: '+ref,false);
+      document.getElementById('refNumber').textContent=ref;
+      document.querySelectorAll('.form-panel').forEach(function(p){p.classList.remove('active')});
+      document.querySelectorAll('.step-item').forEach(function(i){i.classList.add('done')});
+      document.getElementById('progressBar').style.width='100%';
+      var s=document.getElementById('successScreen');
+      s.classList.add('show');
+      s.scrollIntoView({behavior:'smooth',block:'start'});
+    }else{
+      showToast('Submission Failed',data.message||'Something went wrong. Please try again or email info@aietglobal.us directly.',true);
+    }
+  })
+  .catch(function(){
+    btn.disabled=false;
+    btnText.style.display='inline';
+    spinner.style.display='none';
+    showToast('Connection Error','Unable to reach the server. Please check your connection and try again.',true);
+  });
+}
+</script>
+</body>
+</html>

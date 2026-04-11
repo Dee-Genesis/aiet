@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms of Use – American Institute of Education and Training</title>
+  <link rel="icon" href="assets/icons/logo.png" type="image/png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #1B2A6B;
+      --teal:       #1A9B8C;
+      --teal-dark:  #148078;
+      --navy-deep:  #111A42;
+      --offwhite:   #F4F6F9;
+      --body:       #2D2D2D;
+      --muted:      #6B7280;
+      --white:      #FFFFFF;
+      --teal-light: #e8f7f5;
+      --navy-light: #eef0f8;
+      --border:     #dce3f0;
+      --font-head:  'Playfair Display', Georgia, serif;
+      --font-body:  'Source Sans 3', 'Segoe UI', sans-serif;
+      --radius:     12px;
+      --shadow:     0 8px 32px rgba(27,42,107,0.13);
+      --shadow-lg:  0 16px 56px rgba(27,42,107,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--body); background: var(--white); overflow-x: hidden; }
+
+    /* ── NAVBAR ── */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--white); box-shadow: 0 2px 16px rgba(27,42,107,0.10); border-bottom: 3px solid var(--teal); }
+    .nav-inner { max-width: 1200px; margin: auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 74px; }
+    .logo img { height: 54px; width: auto; display: block; }
+    .logo-fallback { display: none; font-family: var(--font-head); font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.1; }
+    .logo-fallback span { display: block; font-size: 10px; color: var(--teal); letter-spacing: 1.5px; text-transform: uppercase; font-family: var(--font-body); }
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+    .nav-links > li > a { padding: 8px 13px; border-radius: 6px; font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--navy); text-decoration: none; transition: all .2s; white-space: nowrap; }
+    .nav-links > li > a:hover { color: var(--teal-dark); background: var(--teal-light); }
+    .dropdown { position: relative; }
+    .dropdown:hover .drop-menu { display: block; }
+    .drop-menu { display: none; position: absolute; top: calc(100% + 3px); left: 0; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg); padding: 8px 0; min-width: 270px; border-top: 3px solid var(--teal); z-index: 200; }
+    .drop-menu a { display: block; padding: 10px 18px; font-size: 13.5px; color: var(--body); font-family: var(--font-body); text-decoration: none; border-left: 3px solid transparent; transition: all .15s; }
+    .drop-menu a:hover { background: var(--teal-light); color: var(--teal-dark); border-left-color: var(--teal); }
+    .nav-cta { background: var(--teal) !important; color: var(--white) !important; padding: 9px 20px !important; border-radius: 8px !important; font-weight: 700 !important; }
+    .nav-cta:hover { background: var(--teal-dark) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: linear-gradient(135deg, var(--navy-deep) 0%, #1e3575 100%);
+      padding: 72px 24px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '§';
+      position: absolute;
+      right: 6%;
+      top: -20px;
+      font-size: 300px;
+      color: rgba(255,255,255,0.03);
+      font-family: Georgia, serif;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    }
+    .page-hero .badge {
+      display: inline-block;
+      background: rgba(26,155,140,0.18);
+      color: #4ecdc4;
+      border: 1px solid rgba(26,155,140,0.4);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 5px 18px;
+      margin-bottom: 20px;
+      font-family: var(--font-body);
+    }
+    .page-hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .page-hero h1 em { color: #4ecdc4; font-style: italic; }
+    .page-hero .meta {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 0;
+    }
+    .page-hero .meta strong { color: rgba(255,255,255,0.75); }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb { background: var(--offwhite); border-bottom: 1px solid var(--border); padding: 13px 24px; }
+    .breadcrumb-inner { max-width: 1200px; margin: auto; display: flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 13px; color: var(--muted); }
+    .breadcrumb-inner a { color: var(--teal-dark); text-decoration: none; font-weight: 600; }
+    .breadcrumb-inner a:hover { color: var(--navy); }
+    .breadcrumb-inner span { opacity: 0.4; }
+
+    /* ── MAIN LAYOUT ── */
+    .doc-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 52px;
+      align-items: start;
+    }
+
+    /* ── SIDEBAR TOC ── */
+    .doc-toc { position: sticky; top: 92px; }
+    .toc-label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .toc-list li a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 7px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all .2s;
+      border-left: 3px solid transparent;
+      line-height: 1.4;
+    }
+    .toc-list li a:hover,
+    .toc-list li a.active {
+      color: var(--navy);
+      background: var(--teal-light);
+      border-left-color: var(--teal);
+    }
+    .toc-list li a .num {
+      display: inline-block;
+      width: 20px;
+      font-size: 11px;
+      color: var(--teal);
+      font-weight: 700;
+      margin-right: 4px;
+    }
+
+    .toc-note {
+      margin-top: 20px;
+      background: var(--navy-light);
+      border-radius: 10px;
+      padding: 16px;
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .toc-note strong { display: block; color: var(--navy); margin-bottom: 4px; font-size: 13px; }
+
+    /* ── DOCUMENT BODY ── */
+    .doc-body { min-width: 0; }
+
+    .doc-intro {
+      background: var(--navy);
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin-bottom: 44px;
+    }
+    .doc-intro p {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.85;
+    }
+    .doc-intro p strong { color: var(--white); }
+    .doc-intro .last-updated {
+      display: inline-block;
+      margin-top: 16px;
+      background: rgba(26,155,140,0.2);
+      color: #4ecdc4;
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: var(--font-body);
+      letter-spacing: 1px;
+    }
+
+    /* Section blocks */
+    .doc-section { margin-bottom: 44px; scroll-margin-top: 100px; }
+
+    .doc-section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-num {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .doc-section h2 {
+      font-family: var(--font-head);
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .doc-section p {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+    .doc-section p:last-child { margin-bottom: 0; }
+    .doc-section p strong { color: var(--navy); }
+
+    .doc-section ul, .doc-section ol {
+      padding-left: 20px;
+      margin: 10px 0 16px;
+    }
+    .doc-section li {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 6px;
+    }
+    .doc-section li strong { color: var(--navy); }
+
+    .doc-section h3 {
+      font-family: var(--font-head);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 20px 0 10px;
+    }
+
+    /* Highlight / callout boxes */
+    .callout {
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin: 16px 0;
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      line-height: 1.75;
+    }
+    .callout-info {
+      background: var(--teal-light);
+      border-left: 4px solid var(--teal);
+      color: var(--teal-dark);
+    }
+    .callout-info strong { color: #0d5f57; }
+    .callout-warn {
+      background: #fff8e6;
+      border-left: 4px solid #e9a820;
+      color: #7a5500;
+    }
+    .callout-warn strong { color: #5a3d00; }
+    .callout-navy {
+      background: var(--navy-light);
+      border-left: 4px solid var(--navy);
+      color: var(--navy);
+    }
+
+    /* Refund table */
+    .refund-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-family: var(--font-body);
+      font-size: 14px;
+    }
+    .refund-table th {
+      background: var(--navy);
+      color: var(--white);
+      padding: 11px 16px;
+      text-align: left;
+      font-weight: 700;
+    }
+    .refund-table th:first-child { border-radius: 8px 0 0 0; }
+    .refund-table th:last-child { border-radius: 0 8px 0 0; }
+    .refund-table td { padding: 10px 16px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; }
+    .refund-table tr:nth-child(even) td { background: var(--offwhite); }
+    .refund-table tr:last-child td { border-bottom: none; }
+    .badge-full { display: inline-block; background: #d4f5e9; color: #0a6640; border-radius: 20px; font-size: 12px; font-weight: 700; padding: 2px 10px; }
+    .badge-partial { display: inline-block; background: #fff3cd; color: #7a5500; border-radius: 20px; font-size: 12px; font-weight: 700; padding: 2px 10px; }
+    .badge-none { display: inline-block; background: #fde8e8; color: #9b1c1c; border-radius: 20px; font-size: 12px; font-weight: 700; padding: 2px 10px; }
+
+    /* Divider */
+    .doc-divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    /* Contact card */
+    .contact-card {
+      background: var(--offwhite);
+      border-radius: 14px;
+      padding: 28px 32px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      margin-top: 12px;
+      border: 1.5px solid var(--border);
+    }
+    .contact-card .icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+    .contact-card h4 { font-family: var(--font-head); font-size: 17px; color: var(--navy); margin-bottom: 6px; }
+    .contact-card p { font-family: var(--font-body); font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 8px; }
+    .contact-card a { color: var(--teal-dark); font-weight: 700; text-decoration: none; }
+    .contact-card a:hover { color: var(--navy); }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .cta-band h2 { font-family: var(--font-head); font-size: clamp(22px, 3vw, 34px); color: var(--white); margin-bottom: 12px; }
+    .cta-band p { font-family: var(--font-body); font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-teal { background: var(--teal); color: var(--white); padding: 13px 28px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; font-family: var(--font-body); transition: all .2s; display: inline-block; }
+    .btn-teal:hover { background: var(--teal-dark); transform: translateY(-2px); }
+    .btn-outline-white { border: 2px solid rgba(255,255,255,0.45); color: var(--white); padding: 13px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; font-family: var(--font-body); transition: all .2s; display: inline-block; }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.1); }
+
+    /* ── FOOTER ── */
+    footer { background: #060d2e; padding: 64px 24px 0; }
+    .footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; }
+    .footer-logo-wrap { display: inline-block; background: var(--white); border-radius: 10px; padding: 10px 16px; margin-bottom: 18px; }
+    .footer-logo-wrap img { height: 48px; width: auto; display: block; }
+    .footer-brand p { font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 280px; margin-bottom: 20px; }
+    .footer-tagline { font-family: var(--font-head); font-size: 13px; font-style: italic; color: rgba(255,255,255,0.35); margin-bottom: 20px; line-height: 1.5; max-width: 280px; }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-btn { width: 36px; height: 36px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.55); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all .2s; }
+    .social-btn svg { width: 16px; height: 16px; fill: currentColor; display: block; }
+    .social-btn:hover { border-color: var(--teal); background: var(--teal); color: var(--white); }
+    .footer-col h4 { font-family: var(--font-body); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 20px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-contact li { display: flex; gap: 10px; font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.5); }
+    .footer-contact span { color: var(--teal); flex-shrink: 0; }
+    .footer-contact a { color: rgba(255,255,255,0.5); }
+    .footer-bottom { max-width: 1200px; margin: 48px auto 0; padding: 22px 0; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-family: var(--font-body); font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-bottom a { color: rgba(255,255,255,0.45); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--white); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .doc-layout { grid-template-columns: 1fr; }
+      .doc-toc { position: static; }
+      .toc-list { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+      .toc-list li a { padding: 6px 10px; font-size: 12px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 74px; left: 0; right: 0; background: var(--white); box-shadow: var(--shadow); padding: 16px; z-index: 99; gap: 4px; }
+      .drop-menu { position: static; box-shadow: none; border: none; border-left: 3px solid var(--teal); padding: 4px 0 4px 16px; margin: 4px 0; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .doc-intro { padding: 24px; }
+      .contact-card { flex-direction: column; }
+    }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    .page-hero .badge { animation: fadeUp .5s ease both; }
+    .page-hero h1 { animation: fadeUp .55s .08s ease both; }
+    .page-hero .meta { animation: fadeUp .55s .16s ease both; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/icons/logo2.png" onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block'"/>
+      <div class="logo-fallback">AIET <span>American Institute of Education &amp; Training</span></div>
+    </a>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="#">About AIET ▾</a>
+        <div class="drop-menu">
+          <a href="institute-overview.html">Institute Overview</a>
+          <a href="mission-vision.html">Mission &amp; Vision</a>
+          <a href="objectives.html">Objectives</a>
+          <a href="cv.html">Core Values</a>
+          <a href="lsr.html">Legal Status and Recognition</a>
+          <a href="#">Country Directors</a>
+          <a href="#">Partners</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Qualifications ▾</a>
+        <div class="drop-menu">
+          <a href="certificate-programs.html">Certificate Programs</a>
+          <a href="professional-diploma-in-education-and-training.html">Professional Diploma in Education</a>
+          <a href="adv.html">Advanced Diploma in Education</a>
+          <a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma in Education</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Resources &amp; Insight ▾</a>
+        <div class="drop-menu">
+          <a href="ss.html">Student Services</a>
+          <a href="certv.html">Certification Verification Guidelines</a>
+          <a href="alut.html">Alumni &amp; Testimonials</a>
+          <a href="nub.html">News Updates &amp; Blogs</a>
+        </div>
+      </li>
+      <li><a href="app.html" class="nav-cta">Application Portal</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="badge">Legal &amp; Compliance</div>
+  <h1>Terms of <em>Use</em></h1>
+  <p class="meta">Please read these terms carefully before accessing or using AIET's programs and services.<br>
+  <strong>Last Updated: January 2025</strong></p>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Home</a>
+    <span>›</span>
+    <span style="color:var(--navy); font-weight:600;">Terms of Use</span>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="doc-layout">
+
+  <!-- TOC SIDEBAR -->
+  <aside class="doc-toc">
+    <div class="toc-label">Table of Contents</div>
+    <ul class="toc-list">
+      <li><a href="#acceptance"><span class="num">1.</span> Acceptance of Terms</a></li>
+      <li><a href="#institution"><span class="num">2.</span> About AIET</a></li>
+      <li><a href="#enrollment"><span class="num">3.</span> Enrollment &amp; Registration</a></li>
+      <li><a href="#fees"><span class="num">4.</span> Fees &amp; Payments</a></li>
+      <li><a href="#refunds"><span class="num">5.</span> Refund Policy</a></li>
+      <li><a href="#conduct"><span class="num">6.</span> Student Conduct</a></li>
+      <li><a href="#integrity"><span class="num">7.</span> Academic Integrity</a></li>
+      <li><a href="#ip"><span class="num">8.</span> Intellectual Property</a></li>
+      <li><a href="#platform"><span class="num">9.</span> Platform &amp; Access</a></li>
+      <li><a href="#certification"><span class="num">10.</span> Certification</a></li>
+      <li><a href="#liability"><span class="num">11.</span> Limitation of Liability</a></li>
+      <li><a href="#termination"><span class="num">12.</span> Termination</a></li>
+      <li><a href="#governing"><span class="num">13.</span> Governing Law</a></li>
+      <li><a href="#changes"><span class="num">14.</span> Changes to Terms</a></li>
+      <li><a href="#contact-terms"><span class="num">15.</span> Contact</a></li>
+    </ul>
+    <div class="toc-note">
+      <strong>📋 Important Notice</strong>
+      By enrolling in any AIET program, you confirm that you have read, understood, and agreed to these Terms of Use in full.
+    </div>
+  </aside>
+
+  <!-- DOCUMENT BODY -->
+  <div class="doc-body">
+
+    <div class="doc-intro">
+      <p>Welcome to the <strong>American Institute of Education and Training (AIET)</strong>. These Terms of Use ("Terms") constitute a legally binding agreement between you ("Student," "User," or "you") and AIET ("we," "us," or "the Institute") governing your access to and use of AIET's programs, services, website, and online learning platform.</p>
+      <p style="margin-top:12px;">These Terms apply to all students, prospective applicants, visitors, and any other individual who accesses or uses AIET's services in any capacity. Please read them carefully before proceeding.</p>
+      <span class="last-updated">Effective Date: January 2025</span>
+    </div>
+
+    <!-- 1 -->
+    <div class="doc-section" id="acceptance">
+      <div class="doc-section-header">
+        <div class="section-num">1</div>
+        <h2>Acceptance of Terms</h2>
+      </div>
+      <p>By accessing the AIET website, submitting an application, enrolling in a program, or using any of our services, you confirm that you:</p>
+      <ul>
+        <li>Have read and fully understood these Terms of Use</li>
+        <li>Are at least 16 years of age (or the minimum age requirement for your chosen program)</li>
+        <li>Have the legal capacity to enter into a binding agreement</li>
+        <li>Agree to be legally bound by these Terms and all applicable policies of AIET</li>
+      </ul>
+      <p>If you do not agree with any part of these Terms, you must not access or use AIET's services. Continued use of our platforms and services constitutes your ongoing acceptance of these Terms.</p>
+      <div class="callout callout-warn">
+        <strong>⚠ Minor Applicants:</strong> Applicants under the age of 18 must have their application submitted and approved by a parent or legal guardian, who will also be bound by these Terms on their behalf.
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="doc-section" id="institution">
+      <div class="doc-section-header">
+        <div class="section-num">2</div>
+        <h2>About AIET</h2>
+      </div>
+      <p>The <strong>American Institute of Education and Training (AIET)</strong> is a legally established educational institution registered in the United States and recognized by the <strong>Secretary of State of Arizona</strong>. AIET operates as an independent provider of professional education and training qualifications, including Certificate, Diploma, Higher/Advanced Diploma, and Postgraduate Diploma programs.</p>
+      <p>AIET does not hold degree-granting authority as a university. All qualifications offered are professional-level certifications and diplomas. Students are advised to verify how AIET qualifications align with their specific professional, regulatory, or academic requirements before enrolling.</p>
+      <div class="callout callout-info">
+        <strong>Registered Address:</strong> 1950 W Corporate Way #15593, Anaheim, CA 92801, United States of America
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="doc-section" id="enrollment">
+      <div class="doc-section-header">
+        <div class="section-num">3</div>
+        <h2>Enrollment &amp; Registration</h2>
+      </div>
+      <p>Enrollment in any AIET program is subject to the following conditions:</p>
+      <h3>3.1 Application Requirements</h3>
+      <ul>
+        <li>All applications must be submitted through the official AIET Application Portal</li>
+        <li>Applicants must provide accurate, complete, and truthful information during the application process</li>
+        <li>Required supporting documents must be submitted as specified for the chosen program level</li>
+        <li>AIET reserves the right to decline any application at its sole discretion</li>
+      </ul>
+      <h3>3.2 Accuracy of Information</h3>
+      <p>You agree that all personal information, academic qualifications, and professional credentials you provide to AIET are genuine and accurate. The submission of false, misleading, or fraudulent information constitutes grounds for immediate dismissal from any program without refund and may be reported to relevant authorities.</p>
+      <h3>3.3 Confirmation of Enrollment</h3>
+      <p>Enrollment is only confirmed upon receipt of the required program fees and issuance of official confirmation by AIET. Access to course materials will be granted following enrollment confirmation.</p>
+    </div>
+
+    <!-- 4 -->
+    <div class="doc-section" id="fees">
+      <div class="doc-section-header">
+        <div class="section-num">4</div>
+        <h2>Fees &amp; Payments</h2>
+      </div>
+      <p>All program fees must be paid in accordance with the payment schedule agreed upon at the time of enrollment.</p>
+      <h3>4.1 Program Fees</h3>
+      <ul>
+        <li>Fee amounts vary by program level, duration, and specialization</li>
+        <li>All fees are published on the AIET website and within the Application Portal</li>
+        <li>AIET reserves the right to adjust fees with reasonable notice for future intakes</li>
+        <li>Fees paid apply to the current program intake only and are non-transferable to other individuals</li>
+      </ul>
+      <h3>4.2 Payment Plans</h3>
+      <p>Flexible payment arrangements may be available for selected programs. Any agreed payment plan must be honored in full. Failure to maintain agreed payment schedules may result in suspension of access to course materials until outstanding balances are settled.</p>
+      <h3>4.3 Late Payments</h3>
+      <p>Students with outstanding balances may have their access to learning platforms and assessment submissions suspended until full payment is received. AIET reserves the right to withhold certificates and academic records until all fees are cleared.</p>
+      <div class="callout callout-navy">
+        For payment-related enquiries, contact: <a href="mailto:info@aietglobal.us" style="color:var(--teal-dark);font-weight:700;">info@aietglobal.us</a>
+      </div>
+    </div>
+
+    <!-- 5 — REFUND POLICY -->
+    <div class="doc-section" id="refunds">
+      <div class="doc-section-header">
+        <div class="section-num">5</div>
+        <h2>Student Refund Policy</h2>
+      </div>
+      <p>AIET is committed to fairness and transparency in all financial dealings with students. The following refund policy applies to all program enrollments and governs the circumstances under which refunds may be issued.</p>
+
+      <h3>5.1 Refund Schedule</h3>
+      <p>Refund eligibility is determined by when the withdrawal or refund request is made relative to the date of enrollment and course access:</p>
+
+      <table class="refund-table">
+        <tr>
+          <th>Timeframe</th>
+          <th>Condition</th>
+          <th>Refund Entitlement</th>
+        </tr>
+        <tr>
+          <td><strong>Within 7 days of enrollment</strong></td>
+          <td>No course materials accessed</td>
+          <td><span class="badge-full">Full Refund</span></td>
+        </tr>
+        <tr>
+          <td><strong>Within 7 days of enrollment</strong></td>
+          <td>Course materials accessed</td>
+          <td><span class="badge-partial">Partial Refund (up to 70%)</span></td>
+        </tr>
+        <tr>
+          <td><strong>8–30 days after enrollment</strong></td>
+          <td>Less than 25% of program completed</td>
+          <td><span class="badge-partial">Partial Refund (up to 50%)</span></td>
+        </tr>
+        <tr>
+          <td><strong>31–60 days after enrollment</strong></td>
+          <td>Less than 50% of program completed</td>
+          <td><span class="badge-partial">Partial Refund (up to 25%)</span></td>
+        </tr>
+        <tr>
+          <td><strong>After 60 days</strong></td>
+          <td>Any stage of completion</td>
+          <td><span class="badge-none">No Refund</span></td>
+        </tr>
+        <tr>
+          <td><strong>Program dismissal for misconduct</strong></td>
+          <td>Academic fraud, misconduct, or breach of Terms</td>
+          <td><span class="badge-none">No Refund</span></td>
+        </tr>
+      </table>
+
+      <h3>5.2 How to Request a Refund</h3>
+      <p>All refund requests must be submitted in writing to AIET via email at <a href="mailto:info@aietglobal.us" style="color:var(--teal-dark);font-weight:700;">info@aietglobal.us</a>. Requests must include:</p>
+      <ul>
+        <li>Full name and enrollment details</li>
+        <li>Program name and enrollment date</li>
+        <li>Reason for refund request</li>
+        <li>Proof of payment (where applicable)</li>
+      </ul>
+
+      <h3>5.3 Processing Timeline</h3>
+      <p>Approved refunds will be processed within <strong>10–15 working days</strong> from the date the refund is confirmed. Refunds are issued via the original payment method where possible.</p>
+
+      <h3>5.4 Non-Refundable Items</h3>
+      <p>The following are not eligible for refund under any circumstances:</p>
+      <ul>
+        <li>Application and administrative processing fees</li>
+        <li>Fees paid for programs where certificates have already been issued</li>
+        <li>Fees paid under any promotional or discounted rate (unless specified otherwise)</li>
+        <li>Any fees relating to programs dismissed due to academic misconduct or breach of these Terms</li>
+      </ul>
+
+      <h3>5.5 Program Deferral Alternative</h3>
+      <p>Before requesting a refund, students are encouraged to contact AIET to explore the option of <strong>deferring their enrollment</strong> to a future intake. Deferral requests are considered on a case-by-case basis and may be a more suitable option for students facing temporary personal or professional challenges.</p>
+
+      <div class="callout callout-info">
+        <strong>💡 Important:</strong> AIET reserves the right to modify this refund policy with reasonable notice. The policy applicable at the time of your enrollment shall govern any refund request arising from that enrollment.
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="doc-section" id="conduct">
+      <div class="doc-section-header">
+        <div class="section-num">6</div>
+        <h2>Student Code of Conduct</h2>
+      </div>
+      <p>All students enrolled in AIET programs are expected to conduct themselves with professionalism, respect, and integrity at all times. The following standards of conduct apply across all interactions within the AIET learning environment, including online platforms, communications with instructors, and engagement with fellow students.</p>
+      <h3>6.1 Expected Behavior</h3>
+      <ul>
+        <li>Treat all instructors, staff, and fellow students with courtesy and respect</li>
+        <li>Participate in academic activities honestly and in good faith</li>
+        <li>Comply with all institutional policies, guidelines, and instructions issued by AIET</li>
+        <li>Maintain the confidentiality of other students' personal information</li>
+        <li>Report any concerns or grievances through appropriate channels</li>
+      </ul>
+      <h3>6.2 Prohibited Conduct</h3>
+      <p>The following behaviors are strictly prohibited and may result in disciplinary action, suspension, or dismissal:</p>
+      <ul>
+        <li>Harassment, bullying, discrimination, or intimidation of any kind</li>
+        <li>Fraudulent representation of identity or qualifications</li>
+        <li>Unauthorized sharing or distribution of AIET course materials</li>
+        <li>Disruption of the learning environment or academic activities</li>
+        <li>Any conduct that brings AIET into disrepute</li>
+      </ul>
+      <div class="callout callout-warn">
+        <strong>⚠ Disciplinary Action:</strong> Violations of the Student Code of Conduct may result in formal warnings, suspension of access, dismissal from the program, and/or forfeiture of all fees paid. In serious cases, AIET may report conduct to relevant authorities.
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="doc-section" id="integrity">
+      <div class="doc-section-header">
+        <div class="section-num">7</div>
+        <h2>Academic Integrity</h2>
+      </div>
+      <p>AIET places the highest value on academic honesty and the integrity of its qualifications. All work submitted by students must be their own original work, unless collaboration is explicitly authorized.</p>
+      <h3>7.1 Prohibited Academic Practices</h3>
+      <ul>
+        <li><strong>Plagiarism:</strong> Presenting another person's work, ideas, or language as your own without proper attribution</li>
+        <li><strong>Contract Cheating:</strong> Submitting work produced wholly or partially by another person, AI tool, or third-party service as your own</li>
+        <li><strong>Collusion:</strong> Working with others without authorization on individually assessed tasks</li>
+        <li><strong>Fabrication:</strong> Inventing or falsifying data, research findings, or citations</li>
+        <li><strong>Certificate Fraud:</strong> Falsifying, altering, or misrepresenting any AIET certificate or academic record</li>
+      </ul>
+      <h3>7.2 Consequences</h3>
+      <p>Academic misconduct may result in any or all of the following:</p>
+      <ul>
+        <li>Automatic failure of the relevant assessment or module</li>
+        <li>Dismissal from the program without refund</li>
+        <li>Permanent academic record notation</li>
+        <li>Revocation of any certificate already issued</li>
+        <li>Reporting to relevant professional or regulatory bodies</li>
+      </ul>
+    </div>
+
+    <!-- 8 -->
+    <div class="doc-section" id="ip">
+      <div class="doc-section-header">
+        <div class="section-num">8</div>
+        <h2>Intellectual Property</h2>
+      </div>
+      <p>All content provided through AIET's programs and platforms — including but not limited to course materials, lecture notes, instructional videos, assessments, study guides, branding, and website content — is the <strong>exclusive intellectual property of AIET</strong> or its licensed content providers.</p>
+      <h3>8.1 Permitted Use</h3>
+      <p>Students are granted a limited, non-exclusive, non-transferable license to access and use course materials solely for their personal educational purposes during their active enrollment period.</p>
+      <h3>8.2 Prohibited Use</h3>
+      <ul>
+        <li>Reproducing, copying, or distributing AIET materials without written consent</li>
+        <li>Selling, licensing, or commercially exploiting AIET content in any form</li>
+        <li>Using AIET's name, logo, or branding without written authorization</li>
+        <li>Sharing login credentials or access to materials with non-enrolled individuals</li>
+      </ul>
+      <p>Unauthorized use of AIET's intellectual property may result in dismissal from the program and legal action where applicable.</p>
+    </div>
+
+    <!-- 9 -->
+    <div class="doc-section" id="platform">
+      <div class="doc-section-header">
+        <div class="section-num">9</div>
+        <h2>Platform Access &amp; Technical Use</h2>
+      </div>
+      <p>AIET provides access to an online learning platform to facilitate program delivery. The following conditions apply to your use of the platform:</p>
+      <ul>
+        <li>You are responsible for maintaining the security of your login credentials</li>
+        <li>You must not share your account access with any other person</li>
+        <li>You are responsible for ensuring you have the necessary equipment and internet access to participate</li>
+        <li>AIET does not guarantee uninterrupted access to the platform but will endeavor to minimize downtime</li>
+        <li>AIET reserves the right to suspend platform access for maintenance, security, or compliance purposes</li>
+      </ul>
+      <p>AIET shall not be held liable for any loss or inconvenience arising from platform downtime, technical failures, or loss of data not caused by AIET's direct negligence.</p>
+    </div>
+
+    <!-- 10 -->
+    <div class="doc-section" id="certification">
+      <div class="doc-section-header">
+        <div class="section-num">10</div>
+        <h2>Certification &amp; Qualifications</h2>
+      </div>
+      <p>AIET certificates and diplomas are issued upon successful completion of all program requirements, including coursework, assessments, and payment of all outstanding fees.</p>
+      <ul>
+        <li>Certificates will not be issued until all financial obligations to AIET are fulfilled</li>
+        <li>AIET reserves the right to withhold or revoke a certificate in cases of academic fraud or misconduct</li>
+        <li>Recognition of AIET qualifications by employers, institutions, or regulatory bodies is outside AIET's control and cannot be guaranteed</li>
+        <li>Students are solely responsible for verifying how AIET qualifications are recognized in their jurisdiction before enrolling</li>
+      </ul>
+      <div class="callout callout-warn">
+        <strong>⚠ Non-Degree Status:</strong> AIET qualifications are professional-level certifications and diplomas. AIET does not award university degrees and does not claim degree-granting authority.
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="doc-section" id="liability">
+      <div class="doc-section-header">
+        <div class="section-num">11</div>
+        <h2>Limitation of Liability</h2>
+      </div>
+      <p>To the maximum extent permitted by applicable law, AIET shall not be liable for:</p>
+      <ul>
+        <li>Any indirect, incidental, special, or consequential damages arising from your use of AIET's services</li>
+        <li>Loss of employment, income, or career opportunities alleged to result from AIET programs</li>
+        <li>Failure of third-party institutions or employers to recognize AIET qualifications</li>
+        <li>Technical failures, data loss, or disruptions to the online learning platform</li>
+        <li>Any decisions made by students based on information provided by AIET</li>
+      </ul>
+      <p>AIET's total liability to any student in connection with these Terms shall not exceed the total fees paid by that student for the relevant program.</p>
+    </div>
+
+    <!-- 12 -->
+    <div class="doc-section" id="termination">
+      <div class="doc-section-header">
+        <div class="section-num">12</div>
+        <h2>Termination &amp; Suspension</h2>
+      </div>
+      <p>AIET reserves the right to suspend or terminate a student's enrollment and access to all platform services in the following circumstances:</p>
+      <ul>
+        <li>Breach of these Terms of Use or any AIET policy</li>
+        <li>Academic misconduct or fraudulent behavior</li>
+        <li>Non-payment of program fees</li>
+        <li>Conduct that poses a risk to the safety, wellbeing, or rights of others</li>
+        <li>Any activity that brings AIET into disrepute</li>
+      </ul>
+      <p>In cases of termination for cause, no refund shall be issued. Students who voluntarily withdraw are subject to the Refund Policy outlined in Section 5.</p>
+    </div>
+
+    <!-- 13 -->
+    <div class="doc-section" id="governing">
+      <div class="doc-section-header">
+        <div class="section-num">13</div>
+        <h2>Governing Law &amp; Dispute Resolution</h2>
+      </div>
+      <p>These Terms of Use are governed by and construed in accordance with the laws of the <strong>State of Arizona, United States of America</strong>.</p>
+      <p>In the event of any dispute arising from or relating to these Terms or your enrollment with AIET, the parties agree to first attempt resolution through good-faith negotiation and communication. If a resolution cannot be reached informally, disputes shall be submitted to binding arbitration or the appropriate courts in Arizona.</p>
+      <p>Students located outside the United States acknowledge that they are entering into an agreement governed by U.S. law and accept that disputes will be resolved under U.S. jurisdiction.</p>
+    </div>
+
+    <!-- 14 -->
+    <div class="doc-section" id="changes">
+      <div class="doc-section-header">
+        <div class="section-num">14</div>
+        <h2>Changes to These Terms</h2>
+      </div>
+      <p>AIET reserves the right to update, modify, or revise these Terms of Use at any time. When changes are made:</p>
+      <ul>
+        <li>The updated Terms will be published on the AIET official website</li>
+        <li>The "Last Updated" date at the top of this document will be revised</li>
+        <li>For material changes, AIET will make reasonable efforts to notify enrolled students via email</li>
+        <li>Continued use of AIET services after any changes constitutes acceptance of the revised Terms</li>
+      </ul>
+      <p>Students are encouraged to review these Terms periodically to remain informed of any updates.</p>
+    </div>
+
+    <!-- 15 -->
+    <div class="doc-section" id="contact-terms">
+      <div class="doc-section-header">
+        <div class="section-num">15</div>
+        <h2>Contact &amp; Enquiries</h2>
+      </div>
+      <p>If you have any questions, concerns, or require clarification on any aspect of these Terms of Use, please contact AIET through the following channels:</p>
+      <div class="contact-card">
+        <div class="icon">✉️</div>
+        <div>
+          <h4>General Enquiries</h4>
+          <p>For questions about these Terms, enrollment, fees, or refund requests:</p>
+          <a href="mailto:info@aietglobal.us">info@aietglobal.us</a>
+        </div>
+      </div>
+      <div class="contact-card" style="margin-top:12px;">
+        <div class="icon">📞</div>
+        <div>
+          <h4>Phone</h4>
+          <p>Available during standard business hours:</p>
+          <a href="tel:+14809550876">+1 (480) 955-0876</a>
+        </div>
+      </div>
+      <div class="contact-card" style="margin-top:12px;">
+        <div class="icon">📍</div>
+        <div>
+          <h4>Registered Address</h4>
+          <p>1950 W Corporate Way #15593<br>Anaheim, CA 92801<br>United States of America</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="doc-divider"/>
+    <p style="font-family:var(--font-body); font-size:13px; color:var(--muted); line-height:1.7; text-align:center;">
+      These Terms of Use were last reviewed and updated in <strong>January 2025</strong>. By enrolling in any AIET program or accessing any AIET service, you acknowledge that you have read, understood, and agreed to be bound by these Terms. For the Privacy Policy governing how AIET collects and uses your data, please visit our <a href="pp.html" style="color:var(--teal-dark);font-weight:700;">Privacy Policy</a> page.
+    </p>
+
+  </div><!-- /doc-body -->
+</div><!-- /doc-layout -->
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Questions About Our Terms?</h2>
+  <p>Our team is always available to clarify any aspect of our policies, fees, or enrollment process.</p>
+  <div class="cta-btns">
+    <a href="contact-us.html" class="btn-teal">Contact Us</a>
+    <a href="faq.html" class="btn-outline-white">Visit FAQs</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <img src="assets/icons/logo2.png" onerror="this.src='https://aietglobal.us/wp-content/uploads/2024/01/AIET-Logo-300x174.png'"/>
+      </div>
+      <p>The American Institute of Education and Training — raising formidably well-trained professionals at every level of society through quality education and training programmes.</p>
+      <p class="footer-tagline">"Drive Change. Lead with Purpose."</p>
+      <div class="footer-socials">
+        <a href="https://facebook.com" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></a>
+        <a href="https://linkedin.com" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://x.com" class="social-btn" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://youtube.com" class="social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>About AIET</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="institute-overview.html">Institute Overview</a></li>
+        <li><a href="mission-vision.html">Mission &amp; Vision</a></li>
+        <li><a href="objectives.html">Objectives</a></li>
+        <li><a href="#">Directors</a></li>
+        <li><a href="#">Partners</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Qualifications</h4>
+      <ul>
+        <li><a href="certificate-programs.html">Certificate Programs</a></li>
+        <li><a href="certificate-programs.html">Montessori Teacher Training</a></li>
+        <li><a href="professional-diploma-in-education-and-training.html">Professional Diploma</a></li>
+        <li><a href="postgraduate-diploma-in-education-and-training.html">Postgraduate Diploma</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="faq.html">FAQs</a></li>
+        <li><a href="ss.html">Student Services</a></li>
+        <li><a href="alut.html">Alumni and Testimonials</a></li>
+        <li><a href="nub.html">News &amp; Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-contact">
+      <h4>Contact</h4>
+      <ul>
+        <li><span>📞</span><a href="tel:+14809550876">+1 (480) 955-0876</a></li>
+        <li><span>✉</span><a href="mailto:info@aietglobal.us">info@aietglobal.us</a></li>
+        <li><span>📍</span>1950 W Corporate Way #15593, Anaheim, CA 92801</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 American Institute of Education and Training. All rights reserved.</p>
+    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+      <a href="pp.html">Privacy Policy</a>
+      <a href="tu.html">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Sidebar TOC active state on scroll
+  const sections = document.querySelectorAll('.doc-section');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        tocLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-80px 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
