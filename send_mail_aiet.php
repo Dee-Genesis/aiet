@@ -134,79 +134,174 @@ $now      = date('l, d F Y \a\t H:i T');
 $intake   = "$intakeSem $intakeYear";
 $subject  = "New Application | $program | $firstName $lastName [$ref]";
 
-$nl   = "\r\n";
-$body  = "AMERICAN INSTITUTE OF EDUCATION AND TRAINING — ONLINE APPLICATION{$nl}";
-$body .= "=========================================={$nl}";
-$body .= "Reference Number : {$ref}{$nl}";
-$body .= "Submitted On     : {$now}{$nl}{$nl}{$nl}";
+// ── Image extensions that can be shown inline ──
+$inlineImageExts = ['jpg','jpeg','png'];
 
-$body .= "[ 1 ] PROGRAM SELECTION{$nl}";
-$body .= "------------------------{$nl}";
-$body .= "Programme Type       : {$program}{$nl}";
-$body .= "Course / Specialism  : " . ($spec ?: 'Not specified') . "{$nl}";
-$body .= "Intake               : {$intake}{$nl}";
-$body .= "Study Mode           : {$studyMode}{$nl}";
-$body .= "Referral Source      : " . ($referral ?: 'Not provided') . "{$nl}{$nl}{$nl}";
+// ── Build inline CID map for image uploads ──
+// key => cid string (used in HTML src="cid:...")
+$cidMap = [];
+foreach ($uploads as $key => $up) {
+    if ($up['ok'] && $up['path'] && file_exists($up['path'])) {
+        $ext = strtolower(pathinfo($up['path'], PATHINFO_EXTENSION));
+        if (in_array($ext, $inlineImageExts)) {
+            $cidMap[$key] = $key . '_' . $ref . '@aiet';
+        }
+    }
+}
 
-$body .= "[ 2 ] PERSONAL INFORMATION{$nl}";
-$body .= "---------------------------{$nl}";
-$body .= "Full Name            : {$fullName}{$nl}";
-$body .= "Date of Birth        : {$dob}{$nl}";
-$body .= "Gender               : {$gender}{$nl}";
-$body .= "Nationality          : {$nationality}{$nl}";
-$body .= "ID / Passport No.    : {$passportNum}{$nl}";
-$body .= "Country of Residence : {$country}{$nl}";
-$body .= "Email Address        : {$email}{$nl}";
-$body .= "Phone Number         : {$phone}{$nl}";
-$body .= "WhatsApp             : " . ($whatsapp ?: 'Same as phone') . "{$nl}";
-$body .= "Mailing Address      : {$address}{$nl}{$nl}{$nl}";
+// ── Helper: render a document row ──
+function docRow($label, $key, $up, $cidMap) {
+    if (!$up['ok']) {
+        return '<tr>
+            <td style="padding:10px 14px;font-size:13px;color:#6B7280;border-bottom:1px solid #F3F4F6;white-space:nowrap;width:180px;">' . htmlspecialchars($label) . '</td>
+            <td style="padding:10px 14px;border-bottom:1px solid #F3F4F6;">
+                <span style="font-size:12px;color:#9CA3AF;background:#F9FAFB;padding:3px 10px;border-radius:4px;border:1px solid #E5E7EB;">Not uploaded</span>
+            </td>
+        </tr>';
+    }
+    $imgHtml = '';
+    if (isset($cidMap[$key])) {
+        $imgHtml = '<br><img src="cid:' . $cidMap[$key] . '" alt="' . htmlspecialchars($label) . '" style="margin-top:10px;max-width:480px;width:100%;border-radius:6px;border:1px solid #E5E7EB;display:block;">';
+    }
+    return '<tr>
+        <td style="padding:10px 14px;font-size:13px;color:#6B7280;border-bottom:1px solid #F3F4F6;white-space:nowrap;vertical-align:top;width:180px;">' . htmlspecialchars($label) . '</td>
+        <td style="padding:10px 14px;border-bottom:1px solid #F3F4F6;">
+            <span style="font-size:12px;color:#065F46;background:#ECFDF5;padding:3px 10px;border-radius:4px;border:1px solid #A7F3D0;">&#10003; ' . htmlspecialchars($up['origName']) . ' (attached)</span>
+            ' . $imgHtml . '
+        </td>
+    </tr>';
+}
 
-$body .= "[ 3 ] ACADEMIC BACKGROUND{$nl}";
-$body .= "--------------------------{$nl}";
-$body .= "Highest Qualification    : {$highestQual}{$nl}";
-$body .= "Field of Study           : {$fieldStudy}{$nl}";
-$body .= "Institution              : {$institution}{$nl}";
-$body .= "Country of Institution   : {$instCountry}{$nl}";
-$body .= "Year of Graduation       : {$gradYear}{$nl}";
-$body .= "Grade / GPA              : " . ($grade ?: 'Not provided') . "{$nl}";
-$body .= "Language of Instruction  : {$instrLang}{$nl}";
-$body .= "Additional Qualification : " . ($qual2 ?: 'None') . "{$nl}";
-$body .= "Awarding Body            : " . ($body2 ?: 'N/A') . "{$nl}";
-$body .= "English Proficiency      : {$englishMethod}{$nl}";
-$body .= "English Test Score       : " . ($englishScore ?: 'N/A') . "{$nl}";
-$body .= "English Test Date        : " . ($englishDate ?: 'N/A') . "{$nl}{$nl}{$nl}";
+// ── HTML email body ──
+$body = '<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#F4F6F9;font-family:\'Segoe UI\',Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#F4F6F9;padding:32px 0;">
+<tr><td align="center">
+<table width="640" cellpadding="0" cellspacing="0" style="max-width:640px;width:100%;">
 
-$body .= "[ 4 ] PROFESSIONAL EXPERIENCE & GOALS{$nl}";
-$body .= "--------------------------------------{$nl}";
-$body .= "Current Job Title        : " . ($jobTitle ?: 'Not provided') . "{$nl}";
-$body .= "Current Employer         : " . ($employer ?: 'Not provided') . "{$nl}";
-$body .= "Industry / Sector        : " . ($industry ?: 'Not provided') . "{$nl}";
-$body .= "Years of Work Experience : " . ($yearsExp ?: 'Not provided') . "{$nl}";
-$body .= "Years in Management      : " . ($mgmtExp ?: 'Not provided') . "{$nl}{$nl}";
-$body .= "STATEMENT OF PURPOSE:{$nl}";
-$body .= "---------------------{$nl}";
-$body .= ($motivation ?: 'Not provided') . "{$nl}{$nl}";
-$body .= "CAREER GOALS:{$nl}";
-$body .= "-------------{$nl}";
-$body .= ($goals ?: 'Not provided') . "{$nl}{$nl}{$nl}";
+  <!-- HEADER -->
+  <tr><td style="background:#111A42;border-radius:12px 12px 0 0;padding:28px 32px;text-align:center;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#1A9B8C;margin-bottom:6px;">American Institute of Education and Training</div>
+    <div style="font-size:22px;font-weight:700;color:#FFFFFF;margin-bottom:4px;">New Student Application</div>
+    <div style="font-size:13px;color:rgba(255,255,255,0.55);">Submitted ' . $now . '</div>
+  </td></tr>
 
-$body .= "[ 5 ] REFERENCE{$nl}";
-$body .= "----------------{$nl}";
-$body .= "Name         : " . ($ref1name  ?: 'Not provided') . "{$nl}";
-$body .= "Email        : " . ($ref1email ?: 'Not provided') . "{$nl}";
-$body .= "Position     : " . ($ref1title ?: 'Not provided') . "{$nl}";
-$body .= "Organisation : " . ($ref1org   ?: 'Not provided') . "{$nl}{$nl}{$nl}";
+  <!-- REF BANNER -->
+  <tr><td style="background:#1A9B8C;padding:12px 32px;text-align:center;">
+    <span style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);">Reference Number &nbsp;|&nbsp; </span>
+    <span style="font-size:14px;font-weight:700;color:#FFFFFF;letter-spacing:1px;">' . $ref . '</span>
+  </td></tr>
 
-$body .= "[ 6 ] UPLOADED DOCUMENTS{$nl}";
-$body .= "-------------------------{$nl}";
+  <!-- BODY CARD -->
+  <tr><td style="background:#FFFFFF;padding:32px;">
+
+    <!-- SECTION 1 -->
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1A9B8C;border-bottom:2px solid #E8F7F5;padding-bottom:8px;margin-bottom:16px;">1 &mdash; Program Selection</div>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;width:200px;">Programme Type</td><td style="padding:6px 0;font-size:13px;color:#111827;font-weight:600;">' . htmlspecialchars($program) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Course / Specialism</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($spec ?: 'Not specified') . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Intake</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($intake) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Study Mode</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($studyMode) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Referral Source</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($referral ?: 'Not provided') . '</td></tr>
+    </table>
+
+    <!-- SECTION 2 -->
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1A9B8C;border-bottom:2px solid #E8F7F5;padding-bottom:8px;margin-bottom:16px;">2 &mdash; Personal Information</div>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;width:200px;">Full Name</td><td style="padding:6px 0;font-size:14px;color:#111827;font-weight:700;">' . htmlspecialchars($fullName) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Date of Birth</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($dob) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Gender</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($gender) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Nationality</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($nationality) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">ID / Passport No.</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($passportNum) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Country of Residence</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($country) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Email Address</td><td style="padding:6px 0;font-size:13px;color:#1A9B8C;">' . htmlspecialchars($email) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Phone Number</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($phone) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">WhatsApp</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($whatsapp ?: 'Same as phone') . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Mailing Address</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($address) . '</td></tr>
+    </table>
+
+    <!-- SECTION 3 -->
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1A9B8C;border-bottom:2px solid #E8F7F5;padding-bottom:8px;margin-bottom:16px;">3 &mdash; Academic Background</div>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;width:200px;">Highest Qualification</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($highestQual) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Field of Study</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($fieldStudy) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Institution</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($institution) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Country of Institution</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($instCountry) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Year of Graduation</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($gradYear) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Grade / GPA</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($grade ?: 'Not provided') . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Language of Instruction</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($instrLang) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Additional Qualification</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($qual2 ?: 'None') . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Awarding Body</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($body2 ?: 'N/A') . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">English Proficiency</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($englishMethod) . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">English Test Score</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($englishScore ?: 'N/A') . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">English Test Date</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($englishDate ?: 'N/A') . '</td></tr>
+    </table>
+
+    <!-- SECTION 4 -->
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1A9B8C;border-bottom:2px solid #E8F7F5;padding-bottom:8px;margin-bottom:16px;">4 &mdash; Professional Experience &amp; Goals</div>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:20px;">
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;width:200px;">Current Job Title</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($jobTitle ?: 'Not provided') . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Current Employer</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($employer ?: 'Not provided') . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Industry / Sector</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($industry ?: 'Not provided') . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Years of Experience</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($yearsExp ?: 'Not provided') . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Years in Management</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($mgmtExp ?: 'Not provided') . '</td></tr>
+    </table>
+    <div style="background:#F9FAFB;border-left:3px solid #1A9B8C;border-radius:0 6px 6px 0;padding:14px 16px;margin-bottom:12px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#1A9B8C;margin-bottom:6px;">Statement of Purpose</div>
+      <div style="font-size:13px;color:#374151;line-height:1.7;">' . nl2br(htmlspecialchars($motivation ?: 'Not provided')) . '</div>
+    </div>
+    <div style="background:#F9FAFB;border-left:3px solid #1A9B8C;border-radius:0 6px 6px 0;padding:14px 16px;margin-bottom:28px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#1A9B8C;margin-bottom:6px;">Career Goals</div>
+      <div style="font-size:13px;color:#374151;line-height:1.7;">' . nl2br(htmlspecialchars($goals ?: 'Not provided')) . '</div>
+    </div>
+
+    <!-- SECTION 5 -->
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1A9B8C;border-bottom:2px solid #E8F7F5;padding-bottom:8px;margin-bottom:16px;">5 &mdash; Reference</div>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;width:200px;">Name</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($ref1name ?: 'Not provided') . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Email</td><td style="padding:6px 0;font-size:13px;color:#1A9B8C;">' . htmlspecialchars($ref1email ?: 'Not provided') . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Position</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($ref1title ?: 'Not provided') . '</td></tr>
+      <tr><td style="padding:6px 0;font-size:13px;color:#6B7280;">Organisation</td><td style="padding:6px 0;font-size:13px;color:#111827;">' . htmlspecialchars($ref1org ?: 'Not provided') . '</td></tr>
+    </table>
+
+    <!-- SECTION 6 -->
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1A9B8C;border-bottom:2px solid #E8F7F5;padding-bottom:8px;margin-bottom:16px;">6 &mdash; Uploaded Documents</div>
+    <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;margin-bottom:28px;">';
+
 foreach ($uploads as $key => $up) {
     $label = $labels[$key] ?? $key;
-    $body .= str_pad($label . ' :', 25) . ($up['ok'] ? $up['origName'] . ' (attached)' : 'Not uploaded') . "{$nl}";
+    $body .= docRow($label, $key, $up, $cidMap);
 }
-$body .= "{$nl}=========================================={$nl}";
-$body .= "Files also saved on server: uploads/applications/{$nl}";
-$body .= "Contact applicant: {$email}{$nl}";
-$body .= "Reference: {$ref}{$nl}";
+
+$body .= '
+    </table>
+
+  </td></tr>
+
+  <!-- FOOTER -->
+  <tr><td style="background:#111A42;border-radius:0 0 12px 12px;padding:20px 32px;">
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="font-size:12px;color:rgba(255,255,255,0.45);">Files saved on server: <span style="color:rgba(255,255,255,0.7);">uploads/applications/</span></td>
+        <td align="right" style="font-size:12px;color:rgba(255,255,255,0.45);">Reply-To: <a href="mailto:' . $email . '" style="color:#1A9B8C;text-decoration:none;">' . $email . '</a></td>
+      </tr>
+    </table>
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>';
+
+// ── Plain-text fallback ──
+$altBody  = "AIET APPLICATION — {$ref}\r\n";
+$altBody .= "Submitted: {$now}\r\n\r\n";
+$altBody .= "Applicant : {$fullName}\r\nEmail     : {$email}\r\nPhone     : {$phone}\r\n\r\n";
+$altBody .= "Programme : {$program}\r\nIntake    : {$intake}\r\nMode      : {$studyMode}\r\n\r\n";
+$altBody .= "Please view this email in an HTML-capable client for full details and document previews.\r\n";
 
 // ── Send email ──
 $sent    = false;
@@ -219,13 +314,19 @@ if ($phpMailerLoaded) {
         $mail->setFrom('noreply@aietglobal.us', 'AIET Admissions Portal');
         $mail->addAddress('info@aietglobal.us', 'AIET Admissions');
         $mail->addReplyTo($email, $fullName);
-        $mail->Subject = $subject;
-        $mail->Body    = $body;
-        $mail->isHTML(false);
+        $mail->Subject  = $subject;
+        $mail->isHTML(true);
+        $mail->Body     = $body;
+        $mail->AltBody  = $altBody;
 
-        // Attach all uploaded files
-        foreach ($uploads as $up) {
-            if ($up['ok'] && $up['path'] && file_exists($up['path'])) {
+        // Embed image uploads inline, attach everything else
+        foreach ($uploads as $key => $up) {
+            if (!$up['ok'] || !$up['path'] || !file_exists($up['path'])) continue;
+            if (isset($cidMap[$key])) {
+                // Inline image — embedded with CID so it shows in the email body
+                $mail->addEmbeddedImage($up['path'], $cidMap[$key], $up['origName']);
+            } else {
+                // PDF / Word doc — regular attachment
                 $mail->addAttachment($up['path'], $up['origName']);
             }
         }
@@ -244,7 +345,7 @@ if (!$sent) {
     $headers  = "From: noreply@aietglobal.us\r\n";
     $headers .= "Reply-To: {$email}\r\n";
     $fallbackNote = "\r\n\r\nNOTE: File attachments failed. Retrieve from server: uploads/applications/\r\n" . ($warning ? "Error: $warning" : '');
-    $sent = mail('info@aietglobal.us', $subject, $body . $fallbackNote, $headers);
+    $sent = mail('info@aietglobal.us', $subject, $altBody . $fallbackNote, $headers);
 }
 
 echo json_encode([
